@@ -1,0 +1,1240 @@
+/* ============================================================
+   N.H. TALUKDER & ASSOCIATES — chamber theme
+   Layout via Bootstrap utilities; below is brand styling only
+   (colors, serif type, overlays, buttons, dropdown behavior).
+   ============================================================ */
+:root {
+    --ch-gold: #c9a45c;
+    --ch-gold-light: #e7cd97;
+    --ch-gold-deep: #a8823f;
+    --ch-dark: #141210;
+    --ch-dark-2: #1d1a15;
+    --ch-cream: #f5f0e4;
+    --ch-cream-card: #eae1cc;
+    --ch-ink: #2a2620; 
+    --ch-serif: 'Playfair Display', Georgia, serif;
+    --ch-sans: 'Inter', 'Hind Siliguri', sans-serif;
+}
+
+/* ---------------- Header ---------------- */
+.ch-header {
+    background: #090e16;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.22);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+.ch-monogram {
+    width: 52px;
+    height: 58px;
+    flex-shrink: 0;
+    color: var(--ch-gold);
+    position: relative;
+}
+.ch-monogram img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--ch-dark);
+}
+.ch-brand-name {
+    font-family: var(--ch-serif);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.14em;
+    color: #f3ead6;
+    white-space: nowrap;
+}
+.ch-brand-estd {
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    color: var(--ch-gold);
+    margin-top: 3px;
+}
+.ch-nav > a,
+.ch-nav-drop > button {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #e9e2d2;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.ch-nav > a:hover,
+.ch-nav-drop > button:hover {
+    color: var(--ch-gold-light);
+}
+.ch-nav > a.active {
+    color: var(--ch-gold-light);
+    border-bottom: 2px solid var(--ch-gold);
+}
+.ch-nav-drop {
+    position: relative;
+}
+.ch-nav-drop .chev {
+    font-size: 11px;
+    color: var(--ch-gold);
+}
+/* Hover-open dropdown (not native to Bootstrap → custom) */
+.ch-drop-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 250px;
+    background: #1e1a14;
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 10px;
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    list-style: none;
+    margin: 0;
+    z-index: 950;
+}
+.ch-nav-drop:hover .ch-drop-menu,
+.ch-nav-drop:focus-within .ch-drop-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+.ch-drop-menu a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 7px;
+    color: #e9e2d2;
+    font-size: 13.5px;
+    text-decoration: none;
+}
+.ch-drop-menu a:hover {
+    background: rgba(201, 164, 92, 0.14);
+    color: var(--ch-gold-light);
+}
+.ch-consult-btn {
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
+    font-size: 14.5px;
+    font-weight: 700;
+    padding: 13px 26px;
+    border: none;
+    box-shadow: 0 8px 22px rgba(201, 164, 92, 0.25);
+    white-space: nowrap;
+}
+.ch-consult-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(201, 164, 92, 0.35);
+    color: #1a1408;
+}
+.ch-consult-btn .arr {
+    font-size: 16px;
+    line-height: 1;
+}
+.ch-burger {
+    background: transparent;
+    border: 1px solid rgba(201, 164, 92, 0.5);
+    color: var(--ch-gold-light);
+    padding: 9px 14px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Mobile menu panel (slide-in driven by site JS → custom) */
+#menu-box.ch-menu {
+    background: #171410;
+}
+#menu-box.ch-menu .menu-header {
+    border-bottom: 1px solid rgba(201, 164, 92, 0.2);
+}
+#menu-box.ch-menu #close-menu-btn {
+    color: var(--ch-gold-light);
+    background: transparent;
+    border: 1px solid rgba(201, 164, 92, 0.5);
+    border-radius: 6px;
+    padding: 8px 14px;
+}
+#menu-box.ch-menu .main-nav a {
+    color: #e9e2d2;
+}
+#menu-box.ch-menu .main-nav a:hover {
+    color: var(--ch-gold-light);
+}
+#menu-box.ch-menu .ch-m-consult {
+    display: block;
+    margin: 18px 22px;
+    text-align: center;
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
+    font-weight: 700;
+    padding: 13px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* ---------------- Hero ---------------- */
+.ch-hero {
+    position: relative;
+    background:
+        radial-gradient(900px 480px at 12% 20%, rgba(201, 164, 92, 0.14), transparent 60%),
+        radial-gradient(700px 500px at 85% 90%, rgba(120, 84, 30, 0.25), transparent 60%),
+        linear-gradient(100deg, #161310 30%, #241c12 62%, #3a2c18 100%);
+    overflow: hidden;
+}
+.ch-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(18, 15, 11, 0.95) 0%, rgba(18, 15, 11, 0.82) 32%, rgba(18, 15, 11, 0.35) 55%, rgba(18, 15, 11, 0) 75%, rgba(18, 15, 11, 0) 100%);
+    pointer-events: none;
+}
+.ch-hero .container {
+    position: relative;
+    z-index: 2;
+}
+.ch-hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    color: var(--ch-gold);
+    font-weight: 600;
+    margin-bottom: 22px;
+}
+.ch-hero-eyebrow::after {
+    content: '';
+    width: 64px;
+    height: 2px;
+    background: var(--ch-gold);
+    display: inline-block;
+}
+.ch-hero h1 {
+    font-family: var(--ch-serif);
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.25;
+    color: var(--ch-gold-light);
+    max-width: 640px;
+    margin: 0 0 16px;
+    letter-spacing: 0.01em;
+}
+.ch-hero-sub {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #d8d0bd;
+    max-width: 520px;
+    margin: 0 0 26px;
+}
+.ch-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px 30px;
+    border: none;
+    box-shadow: 0 10px 26px rgba(201, 164, 92, 0.3);
+}
+.ch-btn-gold:hover {
+    color: #1a1408;
+    transform: translateY(-1px);
+}
+.ch-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    color: #f0e8d5;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px 30px;
+    border: 1px solid rgba(231, 205, 151, 0.65);
+}
+.ch-btn-outline:hover {
+    color: var(--ch-gold-light);
+    border-color: var(--ch-gold-light);
+    background: rgba(201, 164, 92, 0.08);
+}
+
+/* ---------------- Credentials strip ---------------- */
+.ch-strip {
+    background: #1b1712;
+    border-top: 1px solid rgba(201, 164, 92, 0.25);
+    border-bottom: 1px solid rgba(201, 164, 92, 0.25);
+}
+.ch-strip-item svg {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--ch-gold);
+}
+.ch-strip-item span {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    line-height: 1.7;
+    color: #ded5bf;
+    font-weight: 500;
+}
+@media (min-width: 992px) {
+    .ch-strip .col + .col .ch-strip-item {
+        border-left: 1px solid rgba(233, 226, 210, 0.16);
+        padding-left: 1.5rem;
+    }
+}
+
+/* ---------------- 01 / About the chamber (cream) ---------------- */
+.ch-chamber {
+    background: var(--ch-cream);
+}
+.ch-kicker {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--ch-gold-deep);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+.ch-kicker-line {
+    width: 36px;
+    height: 2px;
+    background: var(--ch-gold);
+    display: inline-block;
+}
+.ch-kicker--light {
+    color: var(--ch-gold);
+}
+.ch-chamber h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.6vw, 36px);
+    line-height: 1.3;
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 16px;
+    max-width: 480px;
+}
+.ch-chamber-lead {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #4a4436;
+    margin: 0 0 26px;
+    max-width: 480px;
+}
+.ch-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--ch-gold-deep);
+    color: #3d3423;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 12px 30px;
+    background: transparent;
+}
+.ch-btn-ghost:hover {
+    background: rgba(201, 164, 92, 0.14);
+    color: #3d3423;
+}
+.ch-chamber-photo {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    min-height: 380px;
+    background:
+        radial-gradient(420px 300px at 50% 30%, rgba(201, 164, 92, 0.22), transparent 65%),
+        linear-gradient(160deg, #2b241a 0%, #171310 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 24px 50px rgba(60, 45, 20, 0.22);
+}
+.ch-chamber-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-photo-sign {
+    color: var(--ch-gold);
+    padding: 30px;
+}
+.ch-photo-sign svg {
+    width: 84px;
+    height: 94px;
+    margin-bottom: 12px;
+}
+.ch-photo-sign .sign-name {
+    font-family: var(--ch-serif);
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    color: var(--ch-gold-light);
+}
+.ch-photo-sign .sign-estd {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    margin-top: 8px;
+    color: var(--ch-gold);
+}
+.ch-quote-card {
+    border: 1px solid rgba(168, 130, 63, 0.45);
+    background: rgba(234, 225, 204, 0.5);
+    padding: 34px 28px;
+}
+.ch-quote-card p {
+    font-family: var(--ch-serif);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.65;
+    color: #2a251c;
+    margin: 0 0 18px;
+}
+.ch-quote-card span {
+    font-size: 11.5px;
+    color: #6b6350;
+}
+
+/* ---------------- 02 / Head of the chamber (dark) ---------------- */
+.ch-head {
+    background: var(--ch-dark);
+    border-top: 1px solid rgba(201, 164, 92, 0.25);
+}
+.ch-head-photo {
+    position: relative;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1.02;
+    background:
+        radial-gradient(360px 260px at 50% 25%, rgba(201, 164, 92, 0.16), transparent 65%),
+        linear-gradient(160deg, #262019 0%, #12100c 70%);
+    border: 1px solid rgba(201, 164, 92, 0.45);
+    box-shadow: 0 0 0 8px rgba(201, 164, 92, 0.07), 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 90px rgba(201, 164, 92, 0.1);
+    overflow: hidden;
+}
+.ch-head-photo > img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.ch-head-badge {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(18, 15, 11, 0.85);
+    border: 1px solid rgba(201, 164, 92, 0.5);
+    border-radius: 6px;
+    padding: 10px 16px;
+    backdrop-filter: blur(4px);
+}
+.ch-head-badge i {
+    color: var(--ch-gold);
+    font-size: 22px;
+}
+.ch-head-badge span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f3ead6;
+    line-height: 1.4;
+}
+.ch-head-badge em {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11.5px;
+    color: var(--ch-gold-light);
+}
+.ch-pill {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ch-gold-light);
+    border: 1px solid rgba(201, 164, 92, 0.45);
+    background: rgba(201, 164, 92, 0.08);
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+.ch-head-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    transition: transform 0.6s ease;
+}
+.ch-head-photo:hover img {
+    transform: scale(1.04);
+}
+.ch-head-initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ch-serif);
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(201, 164, 92, 0.55);
+}
+.ch-head-initials span {
+    color: rgba(231, 205, 151, 0.85);
+}
+.ch-head h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(24px, 2.4vw, 32px);
+    letter-spacing: 0.06em;
+    color: #f3ead6;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+.ch-head-degrees {
+    font-size: 13px;
+    color: #b7ad94;
+    margin-bottom: 14px;
+}
+.ch-head-adv {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #e4dac2;
+    margin-bottom: 26px;
+}
+.ch-btn-goldline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--ch-gold);
+    color: var(--ch-gold-light);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 12px 30px;
+    background: transparent;
+}
+.ch-btn-goldline:hover {
+    background: rgba(201, 164, 92, 0.12);
+    color: var(--ch-gold-light);
+}
+.ch-head-quote-inline {
+    position: relative;
+    border: none;
+    border-left: 2px solid var(--ch-gold);
+    padding: 4px 0 4px 22px;
+    margin: 0 0 28px;
+    font-family: var(--ch-serif);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ch-gold-light);
+    max-width: 560px;
+}
+.ch-head-quote-inline::before {
+    content: '\201C';
+    position: absolute;
+    left: -6px;
+    top: -30px;
+    font-size: 64px;
+    line-height: 1;
+    color: rgba(201, 164, 92, 0.35);
+    font-style: normal;
+}
+
+/* Notice follow-up section on cream */
+.ch-notice-wrap {
+    background: var(--ch-cream);
+    padding: 0 0 72px;
+}
+.ch-notice-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ---------------- 03 / Practice areas (cream) ---------------- */
+.ch-practice {
+    background: var(--ch-cream);
+}
+.ch-practice h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.6vw, 36px);
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 16px;
+}
+.ch-practice-lead {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #4a4436;
+    margin: 0 0 26px;
+    max-width: 380px;
+}
+.ch-btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #191510;
+    color: #f3ead6;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border: none;
+}
+.ch-btn-dark:hover {
+    background: #2b251c;
+    color: var(--ch-gold-light);
+}
+.ch-pa-item {
+    position: relative;
+    padding: 15px 14px;
+    border-bottom: 1px solid rgba(42, 38, 32, 0.14);
+    border-radius: 8px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.ch-pa-item .num {
+    font-family: var(--ch-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ch-gold-deep);
+    min-width: 30px;
+    transition: color 0.25s ease;
+}
+.ch-pa-item .name {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #2a251c;
+    transition: color 0.25s ease;
+}
+.ch-pa-item .arr {
+    color: var(--ch-gold-deep);
+    font-size: 16px;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+.ch-pa-item:hover {
+    background: #191510;
+    border-bottom-color: transparent;
+    transform: translateX(5px);
+    box-shadow: 0 14px 30px rgba(25, 21, 16, 0.25);
+}
+.ch-pa-item:hover .name {
+    color: #f3ead6;
+}
+.ch-pa-item:hover .num,
+.ch-pa-item:hover .arr {
+    color: var(--ch-gold-light);
+}
+.ch-pa-item:hover .arr {
+    transform: translateX(7px);
+}
+
+/* ---------------- 04 / Legal services (dark) ---------------- */
+.ch-services {
+    background: var(--ch-dark);
+}
+.ch-services-photo-strip {
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 300px;
+    min-height: 240px;
+    background: linear-gradient(160deg, #2b241a 0%, #12100c 70%);
+}
+.ch-services-photo-strip img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-services-body h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(24px, 2.4vw, 33px);
+    color: #f3ead6;
+    font-weight: 600;
+    margin: 0 0 14px;
+}
+.ch-services-body p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #cfc5ab;
+    margin: 0 0 24px;
+    max-width: 460px;
+}
+@media (min-width: 1200px) {
+    .ch-services-lists {
+        border-left: 1px solid rgba(201, 164, 92, 0.3);
+        padding-left: 3rem;
+    }
+}
+.ch-svc-item i {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ch-gold);
+    font-size: 17px;
+    border: 1px solid rgba(201, 164, 92, 0.35);
+    border-radius: 50%;
+}
+.ch-svc-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e4dac2;
+}
+
+/* ---------------- 05 / Why choose us (cream) ---------------- */
+.ch-why {
+    background: var(--ch-cream);
+}
+.ch-why h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.6vw, 36px);
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+.ch-why-lead {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #4a4436;
+    margin: 0;
+    max-width: 640px;
+}
+.ch-why-card {
+    padding: 10px 22px 10px 0;
+}
+.ch-why-card .why-num {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ch-gold-deep);
+    color: var(--ch-gold-deep);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 18px;
+}
+.ch-why-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #191510;
+    margin: 0 0 8px;
+}
+.ch-why-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #6b6350;
+    margin: 0;
+}
+@media (min-width: 992px) {
+    .ch-why .col + .col .ch-why-card {
+        border-left: 1px solid rgba(42, 38, 32, 0.14);
+        padding-left: 1.75rem;
+    }
+}
+
+/* ---------------- 06 / Our team (dark) ---------------- */
+.ch-team {
+    background: var(--ch-dark);
+    border-top: 1px solid rgba(201, 164, 92, 0.25);
+}
+.ch-team h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(24px, 2.4vw, 33px);
+    color: #f3ead6;
+    font-weight: 600;
+    margin: 0 0 14px;
+}
+.ch-team-lead {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #cfc5ab;
+    margin: 0 0 26px;
+}
+.ch-arrow {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(201, 164, 92, 0.5);
+    color: var(--ch-gold-light);
+    font-size: 20px;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.ch-arrow:hover {
+    background: rgba(201, 164, 92, 0.15);
+}
+.ch-team-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+.ch-team-track::-webkit-scrollbar {
+    display: none;
+}
+.ch-team-card {
+    flex: 0 0 calc(25% - 12px);
+    min-width: 200px;
+    scroll-snap-align: start;
+}
+.ch-team-photo {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    aspect-ratio: 3 / 3.6;
+    background: linear-gradient(160deg, #262019 0%, #12100c 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ch-team-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-team-initials {
+    font-family: var(--ch-serif);
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(201, 164, 92, 0.55);
+}
+.ch-team-meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px 16px 14px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 8, 6, 0.92) 100%);
+}
+.ch-team-meta h3 {
+    font-family: var(--ch-serif);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: #f3ead6;
+    margin: 0 0 3px;
+}
+.ch-team-meta span {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ch-gold);
+}
+@media (max-width: 992px) {
+    .ch-team-card {
+        flex-basis: calc(50% - 8px);
+    }
+}
+@media (max-width: 576px) {
+    .ch-team-card {
+        flex-basis: 76%;
+    }
+}
+
+/* ---------------- 07 / Insights (cream) ---------------- */
+.ch-insights {
+    background: var(--ch-cream);
+}
+.ch-insights h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.6vw, 36px);
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 14px;
+}
+.ch-insights-lead {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #4a4436;
+    margin: 0 0 26px;
+}
+.ch-insight-card {
+    background: #fff;
+    border: 1px solid rgba(42, 38, 32, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 28px rgba(60, 45, 20, 0.08);
+}
+.ch-insight-card:hover {
+    box-shadow: 0 16px 36px rgba(60, 45, 20, 0.14);
+}
+.ch-insight-img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(160deg, #2b241a 0%, #171310 70%);
+    overflow: hidden;
+}
+.ch-insight-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-insight-body {
+    padding: 18px 18px 20px;
+}
+.ch-insight-cat {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--ch-gold-deep);
+    margin-bottom: 8px;
+}
+.ch-insight-body h3 {
+    font-family: var(--ch-serif);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+.ch-insight-date {
+    font-size: 12px;
+    color: #8a8272;
+}
+.ch-insight-date i {
+    color: var(--ch-gold-deep);
+    margin-right: 5px;
+}
+
+/* ---------------- 08 / Testimonials (cream carousel) ---------------- */
+.ch-testimonials {
+    background: var(--ch-cream);
+}
+.ch-testimonials-head {
+    max-width: 560px;
+    margin-bottom: 34px;
+}
+.ch-testimonials-head h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.8vw, 38px);
+    color: #191510;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+.ch-testimonials-head p {
+    font-size: 14.5px;
+    color: #4a4436;
+    margin: 0;
+}
+.ch-t-stage {
+    max-width: 780px;
+    overflow: hidden;
+}
+.ch-t-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.ch-t-slide {
+    flex: 0 0 100%;
+    text-align: center;
+    padding: 10px 24px 0;
+}
+.ch-t-mark {
+    font-family: var(--ch-serif);
+    font-size: 72px;
+    line-height: 0.6;
+    color: var(--ch-gold);
+    margin-bottom: 10px;
+}
+.ch-t-stars {
+    color: var(--ch-gold-deep);
+    font-size: 15px;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+}
+.ch-t-slide > p {
+    font-family: var(--ch-serif);
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.7;
+    color: #2a251c;
+    margin: 0 0 24px;
+}
+.ch-t-person {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+}
+.ch-t-avatar {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+}
+.ch-t-who {
+    text-align: left;
+}
+.ch-t-who strong {
+    display: block;
+    font-size: 14px;
+    color: #191510;
+}
+.ch-t-who em {
+    font-style: normal;
+    font-size: 12px;
+    color: #8a8272;
+}
+.ch-t-arrow {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--ch-gold-deep);
+    color: var(--ch-gold-deep);
+    font-size: 22px;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.ch-t-arrow:hover {
+    background: rgba(201, 164, 92, 0.15);
+}
+.ch-t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(42, 38, 32, 0.2);
+    cursor: pointer;
+    padding: 0;
+}
+.ch-t-dot.on {
+    background: var(--ch-gold-deep);
+    transform: scale(1.2);
+}
+.ch-cta-strip {
+    max-width: 780px;
+    margin-top: 40px;
+    background: var(--ch-dark);
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 6px;
+    padding: 26px 32px;
+}
+.ch-cta-strip h3 {
+    font-family: var(--ch-serif);
+    font-size: 21px;
+    color: #f3ead6;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ---------------- 09 / Contact (dark, centered) ---------------- */
+.ch-contact {
+    background:
+        radial-gradient(800px 380px at 50% 0%, rgba(201, 164, 92, 0.1), transparent 60%),
+        var(--ch-dark);
+    border-top: 1px solid rgba(201, 164, 92, 0.25);
+}
+.ch-contact-head {
+    max-width: 560px;
+    margin-bottom: 40px;
+}
+.ch-contact-head h2 {
+    font-family: var(--ch-serif);
+    font-size: clamp(26px, 2.8vw, 38px);
+    color: #f3ead6;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+.ch-contact-head p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #cfc5ab;
+    margin: 0;
+}
+.ch-contact-tile {
+    border: 1px solid rgba(201, 164, 92, 0.28);
+    background: rgba(201, 164, 92, 0.05);
+    border-radius: 6px;
+    padding: 28px 20px;
+}
+.ch-contact-tile i {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ch-dark);
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    font-size: 18px;
+    border-radius: 50%;
+    margin-bottom: 14px;
+}
+.ch-contact-tile h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #f3ead6;
+    margin: 0 0 8px;
+}
+.ch-contact-tile span {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #cfc5ab;
+}
+.ch-contact-panel {
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1c1813;
+}
+.ch-contact-form {
+    padding: 44px 40px;
+}
+.ch-contact-form h3 {
+    font-family: var(--ch-serif);
+    font-size: 22px;
+    color: #f3ead6;
+    font-weight: 600;
+    margin: 0 0 22px;
+}
+.ch-contact-form .form-control {
+    background: #262019;
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    color: #f3ead6;
+    font-size: 13.5px;
+    padding: 13px 15px;
+    border-radius: 4px;
+}
+.ch-contact-form .form-control::placeholder {
+    color: #8a8272;
+}
+.ch-contact-form .form-control:focus {
+    background: #262019;
+    border-color: var(--ch-gold);
+    color: #f3ead6;
+    box-shadow: 0 0 0 3px rgba(201, 164, 92, 0.15);
+}
+.ch-contact-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    background: linear-gradient(160deg, #2b241a 0%, #12100c 70%);
+}
+.ch-contact-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ch-hours-badge {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(18, 15, 11, 0.82);
+    border: 1px solid rgba(201, 164, 92, 0.45);
+    border-radius: 6px;
+    padding: 14px 18px;
+    backdrop-filter: blur(4px);
+}
+.ch-hours-badge i {
+    color: var(--ch-gold);
+    font-size: 22px;
+}
+.ch-hours-badge strong {
+    display: block;
+    font-size: 13.5px;
+    color: #f3ead6;
+}
+.ch-hours-badge span {
+    font-size: 12.5px;
+    color: var(--ch-gold-light);
+}
+
+/* Footer brand logo (dynamic from Settings → Footer Logo) */
+.footer-brand-logo img {
+    max-height: 64px;
+    max-width: 220px;
+    object-fit: contain;
+}
+
+/* ---------------- Location (chamber theme override) ---------------- */
+.location-area {
+    background: #141210;
+    padding: 76px 0;
+}
+.location-area .section-heading .sub-title {
+    color: var(--ch-gold);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    font-weight: 600;
+}
+.location-area .section-heading h3 {
+    font-family: var(--ch-serif);
+    color: #f3ead6;
+    font-size: clamp(26px, 2.6vw, 36px);
+    font-weight: 600;
+}
+.location-title-line {
+    background: var(--ch-gold);
+}
+.location-content-panel {
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #1c1813;
+}
+.map-window-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.25);
+}
+.map-window-header h4 {
+    color: #f3ead6;
+    font-family: var(--ch-serif);
+}
+
+/* ---------------- Small-screen polish ---------------- */
+@media (max-width: 640px) {
+    .ch-brand-name {
+        font-size: 14px;
+    }
+    .ch-hero::after {
+        background: linear-gradient(90deg, rgba(18, 15, 11, 0.95) 0%, rgba(18, 15, 11, 0.75) 55%, rgba(18, 15, 11, 0.45) 100%);
+    }
+    .ch-head-badge {
+        left: 12px;
+        bottom: 12px;
+        padding: 8px 12px;
+    }
+}

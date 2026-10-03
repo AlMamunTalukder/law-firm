@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@font-face {
+    font-family: "Shurjo";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400;
+    src: url(./custom-font/ShurjoWeb_400_v2-46e441a492e5db01a626.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Shurjo";
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal;
+    src:url(./custom-font/ShurjoWeb_700_v2-7084d97ccd992205d87b.ttf) format('truetype');
+}

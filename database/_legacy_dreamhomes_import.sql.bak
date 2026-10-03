@@ -1,0 +1,2642 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: May 07, 2026 at 11:01 AM
+-- Server version: 11.4.10-MariaDB
+-- PHP Version: 8.4.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `dreamhomesbd_website_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acc_classes`
+--
+
+CREATE TABLE `acc_classes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT 'class name',
+  `short_name` varchar(255) DEFAULT NULL COMMENT 'class short name',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertises`
+--
+
+CREATE TABLE `advertises` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertise_sections`
+--
+
+CREATE TABLE `advertise_sections` (
+  `advertise_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `albums`
+--
+
+CREATE TABLE `albums` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` text DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL COMMENT 'for video use as thumnail',
+  `link` text DEFAULT NULL COMMENT 'basic used for video; for image external link',
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=image;2=video',
+  `is_show_in_home` tinyint(1) DEFAULT NULL COMMENT '1=show in home page according to order',
+  `is_home_slider_sticky` tinyint(1) DEFAULT NULL,
+  `is_featured` tinyint(1) DEFAULT NULL COMMENT '1=show in category page slider for image or fatured video',
+  `video_type` tinyint(4) DEFAULT NULL COMMENT '1=youtube;2=dailymotion;3=uploaded',
+  `total_view` int(11) DEFAULT 0,
+  `order` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `albums`
+--
+
+INSERT INTO `albums` (`id`, `name`, `photo`, `link`, `type`, `is_show_in_home`, `is_home_slider_sticky`, `is_featured`, `video_type`, `total_view`, `order`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'This is video 1', NULL, 'album/video/album-video-usfnn.mp4', 2, 1, NULL, 1, 3, 0, 1, 1, '2025-12-07 01:59:27', '2025-12-13 01:09:43', NULL),
+(2, 'This is video2', NULL, 'album/video/album-video-zemsd.mp4', 2, 1, NULL, NULL, 3, 0, 2, 1, '2025-12-07 02:00:01', '2025-12-13 01:09:57', NULL),
+(3, 'This is video 3', NULL, 'https://www.youtube.com/watch?v=vNd-6R1UXN4', 2, 1, NULL, NULL, 1, 0, 5, 1, '2025-12-07 02:01:50', '2025-12-13 01:09:22', NULL),
+(4, 'হিফজুল কুরআন বার্ষিক পরীক্ষা-২০২৫ ড্রীম হোমস হিফজ বিভাগ', 'album/image/album-image-c0n1n.jpg', NULL, 1, NULL, NULL, NULL, NULL, 0, 6, 1, '2025-12-11 23:41:32', '2025-12-13 00:54:21', NULL),
+(5, 'Welcome to our Dream Homes', NULL, 'album/video/album-video-1j76m.mp4', 2, 1, NULL, 1, 3, 1, 1, 1, '2025-12-12 00:01:25', '2026-04-11 23:54:06', NULL),
+(6, 'Welcome to our Dream Homes', NULL, 'album/video/album-video-4mcv1.mp4', 2, 1, NULL, 1, 3, 2, 2, 1, '2025-12-12 00:02:36', '2026-04-12 22:58:24', NULL),
+(7, '১৩ শতাংশ দেশটির স্বরাষ্ট্রমন্ত্রীর ক্ষমতায় আইনগতভাবেই নাগরিকত্ব হারাতে পারেন।', 'album/image/album-image-q39mc.jpg', NULL, 1, NULL, NULL, NULL, NULL, 0, 1, 1, '2025-12-13 00:50:54', '2025-12-13 00:50:54', NULL),
+(8, 'ক্ষমতায় আইনগতভাবেই নাগরিকত্ব হারাতে পারেন।', 'album/image/album-image-jxbkg.jpg', NULL, 1, NULL, NULL, NULL, NULL, 0, 1, 1, '2025-12-13 00:51:17', '2025-12-13 00:51:17', NULL),
+(9, 'প্রতিবেদনে বলা হয়েছে, যুক্তরাজ্যে প্রায় ৯ মিলিয়ন', 'album/image/album-image-ocuju.jpg', NULL, 1, NULL, NULL, NULL, NULL, 0, 4, 1, '2025-12-13 00:51:53', '2025-12-13 00:51:53', NULL),
+(10, 'পারিবারিক বা বংশগত সম্পর্ক রয়েছে, এমন নাগরিকদের ওপর', 'album/image/album-image-mskbp.jpg', NULL, 1, NULL, NULL, NULL, NULL, 0, 1, 1, '2025-12-13 00:53:10', '2025-12-13 00:53:10', NULL),
+(11, 'যুক্তরাজ্যের দুই স্বনামধন্য মানবাধিকার ও নীতি গবেষণাপ্রতিষ্ঠান রানিমিড ট্রাস্ট', 'album/video/thumbnail/album-image-qzvei.jpg', 'album/video/album-video-muf4w.mp4', 2, 1, 1, 1, 3, 3, 1, 1, '2025-12-13 00:58:05', '2026-04-08 13:41:41', NULL),
+(12, 'Documentary Of Dream Homes', 'album/video/thumbnail/album-image-vqgtr.jpg', 'https://youtu.be/GzeUM0bzdRk?si=JZi47YQsL4eHU4xi', 2, 1, NULL, NULL, 1, 6, 1, 1, '2025-12-13 01:02:07', '2026-04-12 22:58:32', NULL),
+(13, 'পরিক্ষামূলক টাইটেল', 'album/video/thumbnail/album-image-dwepf.png', 'album/video/album-video-aegy9.mp4', 2, 1, 1, 1, 3, 0, NULL, 1, '2026-01-05 09:43:03', '2026-01-05 09:43:03', NULL),
+(14, 'youtube', 'album/video/thumbnail/album-image-dvrma.jpg', 'https://www.youtube.com/watch?v=ERqvtzqs2UE', 2, 1, NULL, 1, 1, 3, NULL, 1, '2026-01-05 09:46:54', '2026-01-05 09:50:35', NULL),
+(15, 'test', 'album/image/album-image-a5pwl.png', NULL, 1, NULL, NULL, 1, NULL, 0, NULL, 1, '2026-01-05 09:52:13', '2026-01-05 09:52:13', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `album_categories`
+--
+
+CREATE TABLE `album_categories` (
+  `album_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `album_categories`
+--
+
+INSERT INTO `album_categories` (`album_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(7, 4, '2025-12-13 00:50:54', '2025-12-13 00:50:54'),
+(8, 4, '2025-12-13 00:51:17', '2025-12-13 00:51:17'),
+(9, 4, '2025-12-13 00:51:53', '2025-12-13 00:51:53'),
+(10, 4, '2025-12-13 00:53:10', '2025-12-13 00:53:10'),
+(4, 15, '2025-12-13 00:54:21', '2025-12-13 00:54:21'),
+(3, 3, '2025-12-13 01:09:22', '2025-12-13 01:09:22'),
+(11, 16, '2025-12-13 01:09:28', '2025-12-13 01:09:28'),
+(1, 3, '2025-12-13 01:09:43', '2025-12-13 01:09:43'),
+(5, 16, '2025-12-13 01:09:49', '2025-12-13 01:09:49'),
+(2, 3, '2025-12-13 01:09:57', '2025-12-13 01:09:57'),
+(6, 16, '2025-12-13 01:10:03', '2025-12-13 01:10:03'),
+(13, 21, '2026-01-05 09:43:03', '2026-01-05 09:43:03'),
+(14, 21, '2026-01-05 09:50:29', '2026-01-05 09:50:29'),
+(15, 17, '2026-01-05 09:52:13', '2026-01-05 09:52:13'),
+(12, 16, '2026-04-11 23:52:46', '2026-04-11 23:52:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `areas`
+--
+
+CREATE TABLE `areas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `bn_name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `areas`
+--
+
+INSERT INTO `areas` (`id`, `district_id`, `name`, `bn_name`, `code`, `url`) VALUES
+(1, 1, 'Debidwar', 'দেবিদ্বার', '1008', 'debidwar.comilla.gov.bd'),
+(2, 1, 'Barura', 'বরুড়া', '1012', 'barura.comilla.gov.bd'),
+(3, 1, 'Brahmanpara', 'ব্রাহ্মণপাড়া', '1004', 'brahmanpara.comilla.gov.bd'),
+(4, 1, 'Chandina', 'চান্দিনা', '1011', 'chandina.comilla.gov.bd'),
+(5, 1, 'Chauddagram', 'চৌদ্দগ্রাম', '1002', 'chauddagram.comilla.gov.bd'),
+(6, 1, 'Daudkandi', 'দাউদকান্দি', '1010', 'daudkandi.comilla.gov.bd'),
+(7, 1, 'Homna', 'হোমনা', '1013', 'homna.comilla.gov.bd'),
+(8, 1, 'Laksam', 'লাকসাম', '1005', 'laksam.comilla.gov.bd'),
+(9, 1, 'Muradnagar', 'মুরাদনগর', '1003', 'muradnagar.comilla.gov.bd'),
+(10, 1, 'Nangalkot', 'নাঙ্গলকোট', '1006', 'nangalkot.comilla.gov.bd'),
+(11, 1, 'Comilla Sadar', 'কুমিল্লা সদর', '1001', 'comillasadar.comilla.gov.bd'),
+(12, 1, 'Meghna', 'মেঘনা', '1014', 'meghna.comilla.gov.bd'),
+(13, 1, 'Monohargonj', 'মনোহরগঞ্জ', '1007', 'monohargonj.comilla.gov.bd'),
+(15, 1, 'Titas', 'তিতাস', '1015', 'titas.comilla.gov.bd'),
+(16, 1, 'Burichang', 'বুড়িচং', '1009', 'burichang.comilla.gov.bd'),
+(17, 1, 'Lalmai', 'লালমাই', '1016', 'lalmai.comilla.gov.bd'),
+(18, 2, 'Chhagalnaiya', 'ছাগলনাইয়া', '0604', 'chhagalnaiya.feni.gov.bd'),
+(19, 2, 'Feni Sadar', 'ফেনী সদর', '0601', 'sadar.feni.gov.bd'),
+(20, 2, 'Sonagazi', 'সোনাগাজী', '0606', 'sonagazi.feni.gov.bd'),
+(21, 2, 'Fulgazi', 'ফুলগাজী', '0603', 'fulgazi.feni.gov.bd'),
+(22, 2, 'Parshuram', 'পরশুরাম', '0602', 'parshuram.feni.gov.bd'),
+(23, 2, 'Daganbhuiyan', 'দাগনভূঞা', '0605', 'daganbhuiyan.feni.gov.bd'),
+(24, 3, 'Brahmanbaria Sadar', 'ব্রাহ্মণবাড়িয়া সদর', '1101', 'sadar.brahmanbaria.gov.bd'),
+(25, 3, 'Kasba', 'কসবা', '1104', 'kasba.brahmanbaria.gov.bd'),
+(26, 3, 'Nasirnagar', 'নাসিরনগর', '1108', 'nasirnagar.brahmanbaria.gov.bd'),
+(27, 3, 'Sarail', 'সরাইল', '1109', 'sarail.brahmanbaria.gov.bd'),
+(28, 3, 'Ashuganj', 'আশুগঞ্জ', '1106', 'ashuganj.brahmanbaria.gov.bd'),
+(29, 3, 'Akhaura', 'আখাউড়া', '1102', 'akhaura.brahmanbaria.gov.bd'),
+(30, 3, 'Nabinagar', 'নবীনগর', '1103', 'nabinagar.brahmanbaria.gov.bd'),
+(31, 3, 'Bancharampur', 'বাঞ্ছারামপুর', '1107', 'bancharampur.brahmanbaria.gov.bd'),
+(32, 3, 'Bijoynagar', 'বিজয়নগর', '1105', 'bijoynagar.brahmanbaria.gov.bd    '),
+(33, 4, 'Rangamati Sadar', 'রাঙ্গামাটি সদর', '0401', 'sadar.rangamati.gov.bd'),
+(34, 4, 'Kaptai', 'কাপ্তাই', '0402', 'kaptai.rangamati.gov.bd'),
+(35, 4, 'Kawkhali', 'কাউখালী', '0406', 'kawkhali.rangamati.gov.bd'),
+(36, 4, 'Baghaichari', 'বাঘাইছড়ি', '0410', 'baghaichari.rangamati.gov.bd'),
+(37, 4, 'Barkal', 'বরকল', '0405', 'barkal.rangamati.gov.bd'),
+(38, 4, 'Langadu', 'লংগদু', '0403', 'langadu.rangamati.gov.bd'),
+(39, 4, 'Rajasthali', 'রাজস্থলী', '0408', 'rajasthali.rangamati.gov.bd'),
+(40, 4, 'Belaichari', 'বিলাইছড়ি', '0409', 'belaichari.rangamati.gov.bd'),
+(41, 4, 'Juraichari', 'জুরাছড়ি', '0411', 'juraichari.rangamati.gov.bd'),
+(42, 4, 'Naniarchar', 'নানিয়ারচর', '0404', 'naniarchar.rangamati.gov.bd'),
+(43, 5, 'Noakhali Sadar', 'নোয়াখালী সদর', '0801', 'sadar.noakhali.gov.bd'),
+(44, 5, 'Companiganj', 'কোম্পানীগঞ্জ', '0805', 'companiganj.noakhali.gov.bd'),
+(45, 5, 'Begumganj', 'বেগমগঞ্জ', '0804', 'begumganj.noakhali.gov.bd'),
+(46, 5, 'Hatia', 'হাতিয়া', '0807', 'hatia.noakhali.gov.bd'),
+(47, 5, 'Subarnachar', 'সুবর্ণচর', '0806', 'subarnachar.noakhali.gov.bd'),
+(48, 5, 'Kabirhat', 'কবিরহাট', '0809', 'kabirhat.noakhali.gov.bd'),
+(49, 5, 'Senbug', 'সেনবাগ', '0803', 'senbug.noakhali.gov.bd'),
+(50, 5, 'Chatkhil', 'চাটখিল', '0802', 'chatkhil.noakhali.gov.bd'),
+(51, 5, 'Sonaimori', 'সোনাইমুড়ী', '0808', 'sonaimori.noakhali.gov.bd'),
+(52, 6, 'Haimchar', 'হাইমচর', '0906', 'haimchar.chandpur.gov.bd'),
+(53, 6, 'Kachua', 'কচুয়া', '0904', 'kachua.chandpur.gov.bd'),
+(54, 6, 'Shahrasti', 'শাহরাস্তি', '0905', 'shahrasti.chandpur.gov.bd'),
+(55, 6, 'Chandpur Sadar', 'চাঁদপুর সদর', '0901', 'sadar.chandpur.gov.bd'),
+(56, 6, 'Matlab South', 'মতলব দক্ষিণ', '0908', 'matlabsouth.chandpur.gov.bd'),
+(57, 6, 'Hajiganj', 'হাজীগঞ্জ', '0902', 'hajiganj.chandpur.gov.bd'),
+(58, 6, 'Matlab North', 'মতলব উত্তর', '0907', 'matlabnorth.chandpur.gov.bd'),
+(59, 6, 'Faridgonj', 'ফরিদগঞ্জ', '0903', 'faridgonj.chandpur.gov.bd'),
+(60, 7, 'Lakshmipur Sadar', 'লক্ষ্মীপুর সদর', '0701', 'sadar.lakshmipur.gov.bd'),
+(61, 7, 'Kamalnagar', 'কমলনগর', '0704', 'kamalnagar.lakshmipur.gov.bd'),
+(62, 7, 'Raipur', 'রায়পুর', '0703', 'raipur.lakshmipur.gov.bd'),
+(63, 7, 'Ramgati', 'রামগতি', '0705', 'ramgati.lakshmipur.gov.bd'),
+(64, 7, 'Ramganj', 'রামগঞ্জ', '0702', 'ramganj.lakshmipur.gov.bd'),
+(65, 8, 'Rangunia', 'রাঙ্গুনিয়া', '0106', 'rangunia.chittagong.gov.bd'),
+(66, 8, 'Sitakunda', 'সীতাকুন্ড', '0107', 'sitakunda.chittagong.gov.bd'),
+(67, 8, 'Mirsharai', 'মীরসরাই', '0108', 'mirsharai.chittagong.gov.bd'),
+(68, 8, 'Patiya', 'পটিয়া', '0110', 'patiya.chittagong.gov.bd'),
+(69, 8, 'Sandwip', 'ডবলমুরিং', '0118', 'sandwip.chittagong.gov.bd'),
+(70, 8, 'Banshkhali', 'বাঁশখালী', '0114', 'banshkhali.chittagong.gov.bd'),
+(71, 8, 'Boalkhali', 'বোয়ালখালী', '0109', 'boalkhali.chittagong.gov.bd'),
+(72, 8, 'Anwara', 'আনোয়ারা', '0115', 'anwara.chittagong.gov.bd'),
+(73, 8, 'Chandanaish', 'চন্দনাইশ', '0111', 'chandanaish.chittagong.gov.bd'),
+(74, 8, 'Satkania', 'সাতকানিয়া', '0112', 'satkania.chittagong.gov.bd'),
+(75, 8, 'Lohagara', 'লোহাগাড়া', '0113', 'lohagara.chittagong.gov.bd'),
+(76, 8, 'Hathazari', 'হাটহাজারী', '0102', 'hathazari.chittagong.gov.bd'),
+(77, 8, 'Fatikchhari', 'ফটিকছড়ি', '0103', 'fatikchhari.chittagong.gov.bd'),
+(78, 8, 'Raozan', 'রাউজান', '0105', 'raozan.chittagong.gov.bd'),
+(79, 8, 'Karnafuli', 'কর্ণফুলী', '0116', 'karnafuli.chittagong.gov.bd'),
+(80, 9, 'Coxsbazar Sadar', 'কক্সবাজার সদর', '0201', 'sadar.coxsbazar.gov.bd'),
+(81, 9, 'Chakaria', 'চকরিয়া', '0203', 'chakaria.coxsbazar.gov.bd'),
+(82, 9, 'Kutubdia', 'কুতুবদিয়া', '0206', 'kutubdia.coxsbazar.gov.bd'),
+(83, 9, 'Ukhiya', 'উখিয়া', '0207', 'ukhiya.coxsbazar.gov.bd'),
+(84, 9, 'Moheshkhali', 'মহেশখালী', '0205', 'moheshkhali.coxsbazar.gov.bd'),
+(85, 9, 'Pekua', 'পেকুয়া', '0204', 'pekua.coxsbazar.gov.bd'),
+(86, 9, 'Ramu', 'রামু', '0202', 'ramu.coxsbazar.gov.bd'),
+(87, 9, 'Teknaf', 'টেকনাফ', '0208', 'teknaf.coxsbazar.gov.bd'),
+(88, 10, 'Khagrachhari Sadar', 'খাগড়াছড়ি সদর', '0501', 'sadar.khagrachhari.gov.bd'),
+(89, 10, 'Dighinala', 'দিঘীনালা', '0506', 'dighinala.khagrachhari.gov.bd'),
+(90, 10, 'Panchari', 'পানছড়ি', '0504', 'panchari.khagrachhari.gov.bd'),
+(91, 10, 'Laxmichhari', 'লক্ষীছড়ি', '0508', 'laxmichhari.khagrachhari.gov.bd'),
+(92, 10, 'Mohalchari', 'মহালছড়ি', '0507', 'mohalchari.khagrachhari.gov.bd'),
+(93, 10, 'Manikchari', 'মানিকছড়ি', '0503', 'manikchari.khagrachhari.gov.bd'),
+(94, 10, 'Ramgarh', 'রামগড়', '0502', 'ramgarh.khagrachhari.gov.bd'),
+(95, 10, 'Matiranga', 'মাটিরাঙ্গা', '0505', 'matiranga.khagrachhari.gov.bd'),
+(96, 10, 'Guimara', 'গুইমারা', '0509', 'guimara.khagrachhari.gov.bd'),
+(97, 11, 'Bandarban Sadar', 'বান্দরবান সদর', '0301', 'sadar.bandarban.gov.bd'),
+(98, 11, 'Alikadam', 'আলীকদম', '0304', 'alikadam.bandarban.gov.bd'),
+(99, 11, 'Naikhongchhari', 'নাইক্ষ্যংছড়ি', '0303', 'naikhongchhari.bandarban.gov.bd'),
+(100, 11, 'Rowangchhari', 'রোয়াংছড়ি', '0308', 'rowangchhari.bandarban.gov.bd'),
+(101, 11, 'Lama', 'লামা', '0302', 'lama.bandarban.gov.bd'),
+(102, 11, 'Ruma', 'রুমা', '0305', 'ruma.bandarban.gov.bd'),
+(103, 11, 'Thanchi', 'থানচি', '0306', 'thanchi.bandarban.gov.bd'),
+(104, 12, 'Belkuchi', 'বেলকুচি', '3907', 'belkuchi.sirajganj.gov.bd'),
+(105, 12, 'Chauhali', 'চৌহালি', '3908', 'chauhali.sirajganj.gov.bd'),
+(106, 12, 'Kamarkhand', 'কামারখন্দ', '3905', 'kamarkhand.sirajganj.gov.bd'),
+(107, 12, 'Kazipur', 'কাজীপুর', '3902', 'kazipur.sirajganj.gov.bd'),
+(108, 12, 'Raigonj', 'রায়গঞ্জ', '3903', 'raigonj.sirajganj.gov.bd'),
+(109, 12, 'Shahjadpur', 'শাহজাদপুর', '3909', 'shahjadpur.sirajganj.gov.bd'),
+(110, 12, 'Sirajganj Sadar', 'সিরাজগঞ্জ সদর', '3901', 'sirajganjsadar.sirajganj.gov.bd'),
+(111, 12, 'Tarash', 'তাড়াশ', '3904', 'tarash.sirajganj.gov.bd'),
+(112, 12, 'Ullapara', 'উল্লাপাড়া', '3906', 'ullapara.sirajganj.gov.bd'),
+(113, 13, 'Sujanagar', 'সুজানগর', '4009', 'sujanagar.pabna.gov.bd'),
+(114, 13, 'Ishurdi', 'ঈশ্বরদী', '4006', 'ishurdi.pabna.gov.bd'),
+(115, 13, 'Bhangura', 'ভাঙ্গুড়া', '4003', 'bhangura.pabna.gov.bd'),
+(116, 13, 'Pabna Sadar', 'পাবনা সদর', '4001', 'pabnasadar.pabna.gov.bd'),
+(117, 13, 'Bera', 'বেড়া', '4008', 'bera.pabna.gov.bd'),
+(118, 13, 'Atghoria', 'আটঘরিয়া', '4005', 'atghoria.pabna.gov.bd'),
+(119, 13, 'Chatmohar', 'চাটমোহর', '4002', 'chatmohar.pabna.gov.bd'),
+(120, 13, 'Santhia', 'সাঁথিয়া', '4007', 'santhia.pabna.gov.bd'),
+(121, 13, 'Faridpur', 'ফরিদপুর', '4004', 'faridpur.pabna.gov.bd'),
+(122, 14, 'Kahaloo', 'কাহালু', '3707', 'kahaloo.bogra.gov.bd'),
+(123, 14, 'Bogra Sadar', 'বগুড়া সদর', '3701', 'sadar.bogra.gov.bd'),
+(124, 14, 'Shariakandi', 'সারিয়াকান্দি', '3706', 'shariakandi.bogra.gov.bd'),
+(125, 14, 'Shajahanpur', 'শাজাহানপুর', '3713', 'shajahanpur.bogra.gov.bd'),
+(126, 14, 'Dupchanchia', 'ধুপচাঁচিয়া', '3705', 'dupchanchia.bogra.gov.bd'),
+(127, 14, 'Adamdighi', 'আদমদিঘি', '3702', 'adamdighi.bogra.gov.bd'),
+(128, 14, 'Nondigram', 'নন্দিগ্রাম', '3710', 'nondigram.bogra.gov.bd'),
+(129, 14, 'Sonatala', 'সোনাতলা', '3709', 'sonatala.bogra.gov.bd'),
+(130, 14, 'Dhunot', 'ধুনট', '3703', 'dhunot.bogra.gov.bd'),
+(131, 14, 'Gabtali', 'গাবতলী', '3704', 'gabtali.bogra.gov.bd'),
+(132, 14, 'Sherpur', 'শেরপুর', '3711', 'sherpur.bogra.gov.bd'),
+(133, 14, 'Shibganj', 'শিবগঞ্জ', '3708', 'shibganj.bogra.gov.bd'),
+(134, 15, 'Paba', 'পবা', '3306', 'paba.rajshahi.gov.bd'),
+(135, 15, 'Durgapur', 'দুর্গাপুর', '3307', 'durgapur.rajshahi.gov.bd'),
+(136, 15, 'Mohonpur', 'মোহনপুর', '3304', 'mohonpur.rajshahi.gov.bd'),
+(137, 15, 'Charghat', 'চারঘাট', '3309', 'charghat.rajshahi.gov.bd'),
+(138, 15, 'Puthia', 'পুঠিয়া', '3308', 'puthia.rajshahi.gov.bd'),
+(139, 15, 'Bagha', 'বাঘা', '3310', 'bagha.rajshahi.gov.bd'),
+(140, 15, 'Godagari', 'গোদাগাড়ী', '3305', 'godagari.rajshahi.gov.bd'),
+(141, 15, 'Tanore', 'তানোর', '3302', 'tanore.rajshahi.gov.bd'),
+(142, 15, 'Bagmara', 'বাগমারা', '3303', 'bagmara.rajshahi.gov.bd'),
+(143, 16, 'Natore Sadar', 'নাটোর সদর', '3801', 'natoresadar.natore.gov.bd'),
+(144, 16, 'Singra', 'সিংড়া', '3802', 'singra.natore.gov.bd'),
+(145, 16, 'Baraigram', 'বড়াইগ্রাম', '3804', 'baraigram.natore.gov.bd'),
+(146, 16, 'Bagatipara', 'বাগাতিপাড়া', '3805', 'bagatipara.natore.gov.bd'),
+(147, 16, 'Lalpur', 'লালপুর', '3806', 'lalpur.natore.gov.bd'),
+(148, 16, 'Gurudaspur', 'গুরুদাসপুর', '3803', 'gurudaspur.natore.gov.bd'),
+(149, 16, 'Naldanga', 'নলডাঙ্গা', '3807', 'naldanga.natore.gov.bd'),
+(150, 17, 'Akkelpur', 'আক্কেলপুর', '3605', 'akkelpur.joypurhat.gov.bd'),
+(151, 17, 'Kalai', 'কালাই', '3603', 'kalai.joypurhat.gov.bd'),
+(152, 17, 'Khetlal', 'ক্ষেতলাল', '3604', 'khetlal.joypurhat.gov.bd'),
+(153, 17, 'Panchbibi', 'পাঁচবিবি', '3602', 'panchbibi.joypurhat.gov.bd'),
+(154, 17, 'Joypurhat Sadar', 'জয়পুরহাট সদর', '3601', 'joypurhatsadar.joypurhat.gov.bd'),
+(155, 18, 'Chapainawabganj Sadar', 'চাঁপাইনবাবগঞ্জ সদর', '3401', 'chapainawabganjsadar.chapainawabganj.gov.bd'),
+(156, 18, 'Gomostapur', 'গোমস্তাপুর', '3405', 'gomostapur.chapainawabganj.gov.bd'),
+(157, 18, 'Nachol', 'নাচোল', '3403', 'nachol.chapainawabganj.gov.bd'),
+(158, 18, 'Bholahat', 'ভোলাহাট', '3402', 'bholahat.chapainawabganj.gov.bd'),
+(159, 18, 'Shibganj', 'শিবগঞ্জ', '3404', 'shibganj.chapainawabganj.gov.bd'),
+(160, 19, 'Mohadevpur', 'মহাদেবপুর', '3504', 'mohadevpur.naogaon.gov.bd'),
+(161, 19, 'Badalgachi', 'বদলগাছী', '3508', 'badalgachi.naogaon.gov.bd'),
+(162, 19, 'Patnitala', 'পত্নিতলা', '3507', 'patnitala.naogaon.gov.bd'),
+(163, 19, 'Dhamoirhat', 'ধামইরহাট', '3506', 'dhamoirhat.naogaon.gov.bd'),
+(164, 19, 'Niamatpur', 'নিয়ামতপুর', '3509', 'niamatpur.naogaon.gov.bd'),
+(165, 19, 'Manda', 'মান্দা', '3510', 'manda.naogaon.gov.bd'),
+(166, 19, 'Atrai', 'আত্রাই', '3511', 'atrai.naogaon.gov.bd'),
+(167, 19, 'Raninagar', 'রাণীনগর', '3502', 'raninagar.naogaon.gov.bd'),
+(168, 19, 'Naogaon Sadar', 'নওগাঁ সদর', '3501', 'naogaonsadar.naogaon.gov.bd'),
+(169, 19, 'Porsha', 'পোরশা', '3503', 'porsha.naogaon.gov.bd'),
+(170, 19, 'Sapahar', 'সাপাহার', '3505', 'sapahar.naogaon.gov.bd'),
+(171, 20, 'Manirampur', 'মণিরামপুর', '5206', 'manirampur.jessore.gov.bd'),
+(172, 20, 'Abhaynagar', 'অভয়নগর', '5207', 'abhaynagar.jessore.gov.bd'),
+(173, 20, 'Bagherpara', 'বাঘারপাড়া', '5203', 'bagherpara.jessore.gov.bd'),
+(174, 20, 'Chougachha', 'চৌগাছা', '5202', 'chougachha.jessore.gov.bd'),
+(175, 20, 'Jhikargacha', 'ঝিকরগাছা', '5204', 'jhikargacha.jessore.gov.bd'),
+(176, 20, 'Keshabpur', 'কেশবপুর', '5208', 'keshabpur.jessore.gov.bd'),
+(177, 20, 'Jessore Sadar', 'যশোর সদর', '5201', 'sadar.jessore.gov.bd'),
+(178, 20, 'Sharsha', 'শার্শা', '5205', 'sharsha.jessore.gov.bd'),
+(179, 21, 'Assasuni', 'আশাশুনি', '5503', 'assasuni.satkhira.gov.bd'),
+(180, 21, 'Debhata', 'দেবহাটা', '5508', 'debhata.satkhira.gov.bd'),
+(181, 21, 'Kalaroa', 'কলারোয়া', '5507', 'kalaroa.satkhira.gov.bd'),
+(182, 21, 'Satkhira Sadar', 'সাতক্ষীরা সদর', '5501', 'satkhirasadar.satkhira.gov.bd'),
+(183, 21, 'Shyamnagar', 'শ্যামনগর', '5506', 'shyamnagar.satkhira.gov.bd'),
+(184, 21, 'Tala', 'তালা', '5502', 'tala.satkhira.gov.bd'),
+(185, 21, 'Kaliganj', 'কালিগঞ্জ', '5504', 'kaliganj.satkhira.gov.bd'),
+(186, 22, 'Mujibnagar', 'মুজিবনগর', '5803', 'mujibnagar.meherpur.gov.bd'),
+(187, 22, 'Meherpur Sadar', 'মেহেরপুর সদর', '5801', 'meherpursadar.meherpur.gov.bd'),
+(188, 22, 'Gangni', 'গাংনী', '5802', 'gangni.meherpur.gov.bd'),
+(189, 23, 'Narail Sadar', 'নড়াইল সদর', '5701', 'narailsadar.narail.gov.bd'),
+(190, 23, 'Lohagara', 'লোহাগড়া', '5702', 'lohagara.narail.gov.bd'),
+(191, 23, 'Kalia', 'কালিয়া', '5703', 'kalia.narail.gov.bd'),
+(192, 24, 'Chuadanga Sadar', 'চুয়াডাঙ্গা সদর', '5101', 'chuadangasadar.chuadanga.gov.bd'),
+(193, 24, 'Alamdanga', 'আলমডাঙ্গা', '5102', 'alamdanga.chuadanga.gov.bd'),
+(194, 24, 'Damurhuda', 'দামুড়হুদা', '5103', 'damurhuda.chuadanga.gov.bd'),
+(195, 24, 'Jibannagar', 'জীবননগর', '5104', 'jibannagar.chuadanga.gov.bd'),
+(196, 25, 'Kushtia Sadar', 'কুষ্টিয়া সদর', '5401', 'kushtiasadar.kushtia.gov.bd'),
+(197, 25, 'Kumarkhali', 'কুমারখালী', '5405', 'kumarkhali.kushtia.gov.bd'),
+(198, 25, 'Khoksa', 'খোকসা', '5406', 'khoksa.kushtia.gov.bd'),
+(199, 25, 'Mirpur', 'মিরপুর', '5404', 'mirpurkushtia.kushtia.gov.bd'),
+(200, 25, 'Daulatpur', 'দৌলতপুর', '5403', 'daulatpur.kushtia.gov.bd'),
+(201, 25, 'Bheramara', 'ভেড়ামারা', '5402', 'bheramara.kushtia.gov.bd'),
+(202, 26, 'Shalikha', 'শালিখা', '5602', 'shalikha.magura.gov.bd'),
+(203, 26, 'Sreepur', 'শ্রীপুর', '5605', 'sreepur.magura.gov.bd'),
+(204, 26, 'Magura Sadar', 'মাগুরা সদর', '5601', 'magurasadar.magura.gov.bd'),
+(205, 26, 'Mohammadpur', 'মুহাম্মদপুর', '5603', 'mohammadpur.magura.gov.bd'),
+(206, 27, 'Paikgasa', 'পাইকগাছা', '4907', 'paikgasa.khulna.gov.bd'),
+(207, 27, 'Fultola', 'ফুলতলা', '4902', 'fultola.khulna.gov.bd'),
+(208, 27, 'Digholia', 'দিঘলিয়া', '4915', 'digholia.khulna.gov.bd'),
+(209, 27, 'Rupsha', 'রূপসা', '4910', 'rupsha.khulna.gov.bd'),
+(210, 27, 'Terokhada', 'তেরখাদা', '4913', 'terokhada.khulna.gov.bd'),
+(211, 27, 'Dumuria', 'ডুমুরিয়া', '4905', 'dumuria.khulna.gov.bd'),
+(212, 27, 'Botiaghata', 'বটিয়াঘাটা', '4906', 'botiaghata.khulna.gov.bd'),
+(213, 27, 'Dakop', 'দাকোপ', '4908', 'dakop.khulna.gov.bd'),
+(214, 27, 'Koyra', 'কয়রা', '4909', 'koyra.khulna.gov.bd'),
+(215, 28, 'Fakirhat', 'ফকিরহাট', '5004', 'fakirhat.bagerhat.gov.bd'),
+(216, 28, 'Bagerhat Sadar', 'বাগেরহাট সদর', '5001', 'sadar.bagerhat.gov.bd'),
+(217, 28, 'Mollahat', 'মোল্লাহাট', '5002', 'mollahat.bagerhat.gov.bd'),
+(218, 28, 'Sarankhola', 'শরণখোলা', '5009', 'sarankhola.bagerhat.gov.bd'),
+(219, 28, 'Rampal', 'রামপাল', '5005', 'rampal.bagerhat.gov.bd'),
+(220, 28, 'Morrelganj', 'মোড়েলগঞ্জ', '5007', 'morrelganj.bagerhat.gov.bd'),
+(221, 28, 'Kachua', 'কচুয়া', '5008', 'kachua.bagerhat.gov.bd'),
+(222, 28, 'Mongla', 'মংলা', '5006', 'mongla.bagerhat.gov.bd'),
+(223, 28, 'Chitalmari', 'চিতলমারী', '5003', 'chitalmari.bagerhat.gov.bd'),
+(224, 29, 'Jhenaidah Sadar', 'ঝিনাইদহ সদর', '5301', 'sadar.jhenaidah.gov.bd'),
+(225, 29, 'Shailkupa', 'শৈলকুপা', '5302', 'shailkupa.jhenaidah.gov.bd'),
+(226, 29, 'Harinakundu', 'হরিণাকুন্ড', '5303', 'harinakundu.jhenaidah.gov.bd'),
+(227, 29, 'Kaliganj', 'কালীগঞ্জ', '5305', 'kaliganj.jhenaidah.gov.bd'),
+(228, 29, 'Kotchandpur', 'কোটচাঁদপুর', '5304', 'kotchandpur.jhenaidah.gov.bd'),
+(229, 29, 'Moheshpur', 'মহেশপুর', '5306', 'moheshpur.jhenaidah.gov.bd'),
+(230, 30, 'Jhalakathi Sadar', 'ঝালকাঠি সদর', '6101', 'sadar.jhalakathi.gov.bd'),
+(231, 30, 'Kathalia', 'কাঠালিয়া', '6104', 'kathalia.jhalakathi.gov.bd'),
+(232, 30, 'Nalchity', 'নলছিটি', '6102', 'nalchity.jhalakathi.gov.bd'),
+(233, 30, 'Rajapur', 'রাজাপুর', '6103', 'rajapur.jhalakathi.gov.bd'),
+(234, 31, 'Bauphal', 'বাউফল', '6403', 'bauphal.patuakhali.gov.bd'),
+(235, 31, 'Patuakhali Sadar', 'পটুয়াখালী সদর', '6401', 'sadar.patuakhali.gov.bd'),
+(236, 31, 'Dumki', 'দুমকি', '6402', 'dumki.patuakhali.gov.bd'),
+(237, 31, 'Dashmina', 'দশমিনা', '6405', 'dashmina.patuakhali.gov.bd'),
+(238, 31, 'Kalapara', 'কলাপাড়া', '6407', 'kalapara.patuakhali.gov.bd'),
+(239, 31, 'Mirzaganj', 'মির্জাগঞ্জ', '6404', 'mirzaganj.patuakhali.gov.bd'),
+(240, 31, 'Galachipa', 'গলাচিপা', '6406', 'galachipa.patuakhali.gov.bd'),
+(241, 31, 'Rangabali', 'মহিপুর', '6408', 'rangabali.patuakhali.gov.bd'),
+(242, 32, 'Pirojpur Sadar', 'ইন্দুরকানী', '6309', 'sadar.pirojpur.gov.bd'),
+(243, 32, 'Nazirpur', 'নাজিরপুর', '6302', 'nazirpur.pirojpur.gov.bd'),
+(244, 32, 'Kawkhali', 'কাউখালী', '6305', 'kawkhali.pirojpur.gov.bd'),
+(245, 32, 'Zianagar', 'জিয়ানগর', '6307', 'zianagar.pirojpur.gov.bd'),
+(246, 32, 'Bhandaria', 'ভান্ডারিয়া', '6306', 'bhandaria.pirojpur.gov.bd'),
+(247, 32, 'Mathbaria', 'মঠবাড়ীয়া', '6308', 'mathbaria.pirojpur.gov.bd'),
+(248, 32, 'Nesarabad', 'নেছারাবাদ', '6304', 'nesarabad.pirojpur.gov.bd'),
+(249, 33, 'Barisal Sadar', 'বরিশাল সদর', '5901', 'barisalsadar.barisal.gov.bd'),
+(250, 33, 'Bakerganj', 'বাকেরগঞ্জ', '5911', 'bakerganj.barisal.gov.bd'),
+(251, 33, 'Babuganj', 'বাবুগঞ্জ', '5908', 'babuganj.barisal.gov.bd'),
+(252, 33, 'Wazirpur', 'উজিরপুর', '5906', 'wazirpur.barisal.gov.bd'),
+(253, 33, 'Banaripara', 'বানারীপাড়া', '5907', 'banaripara.barisal.gov.bd'),
+(254, 33, 'Gournadi', 'গৌরনদী', '5903', 'gournadi.barisal.gov.bd'),
+(255, 33, 'Agailjhara', 'আগৈলঝাড়া', '5904', 'agailjhara.barisal.gov.bd'),
+(256, 33, 'Mehendiganj', 'মেহেন্দিগঞ্জ', '5909', 'mehendiganj.barisal.gov.bd'),
+(257, 33, 'Muladi', 'মুলাদী', '5902', 'muladi.barisal.gov.bd'),
+(258, 33, 'Hizla', 'হিজলা', '5905', 'hizla.barisal.gov.bd'),
+(259, 34, 'Bhola Sadar', 'ভোলা সদর', '6201', 'sadar.bhola.gov.bd'),
+(260, 34, 'Borhan Sddin', 'বোরহান উদ্দিন', '6203', 'borhanuddin.bhola.gov.bd'),
+(261, 34, 'Charfesson', 'চরফ্যাশন', '6204', 'charfesson.bhola.gov.bd'),
+(262, 34, 'Doulatkhan', 'দৌলতখান', '6202', 'doulatkhan.bhola.gov.bd'),
+(263, 34, 'Monpura', 'মনপুরা', '6208', 'monpura.bhola.gov.bd'),
+(264, 34, 'Tazumuddin', 'দক্ষিণ আইচা', '6206', 'tazumuddin.bhola.gov.bd'),
+(265, 34, 'Lalmohan', 'লালমোহন', '6205', 'lalmohan.bhola.gov.bd'),
+(266, 35, 'Amtali', 'আমতলী', '6004', 'amtali.barguna.gov.bd'),
+(267, 35, 'Barguna Sadar', 'বরগুনা সদর', '6001', 'sadar.barguna.gov.bd'),
+(268, 35, 'Betagi', 'বেতাগী', '6002', 'betagi.barguna.gov.bd'),
+(269, 35, 'Bamna', 'বামনা', '6003', 'bamna.barguna.gov.bd'),
+(270, 35, 'Pathorghata', 'পাথরঘাটা', '6005', 'pathorghata.barguna.gov.bd'),
+(271, 35, 'Taltali', 'তালতলি', '6006', 'taltali.barguna.gov.bd'),
+(272, 36, 'Balaganj', 'বালাগঞ্জ', '2514', 'balaganj.sylhet.gov.bd'),
+(273, 36, 'Beanibazar', 'বিয়ানীবাজার', '2511', 'beanibazar.sylhet.gov.bd'),
+(274, 36, 'Bishwanath', 'বিশ্বনাথ', '2509', 'bishwanath.sylhet.gov.bd'),
+(275, 36, 'Companiganj', 'কোম্পানীগঞ্জ', '2504', 'companiganj.sylhet.gov.bd'),
+(276, 36, 'Fenchuganj', 'ফেঞ্চুগঞ্জ', '2513', 'fenchuganj.sylhet.gov.bd'),
+(277, 36, 'Golapganj', 'গোলাপগঞ্জ', '2510', 'golapganj.sylhet.gov.bd'),
+(278, 36, 'Gowainghat', 'গোয়াইনঘাট', '2506', 'gowainghat.sylhet.gov.bd'),
+(279, 36, 'Jaintiapur', 'জৈন্তাপুর', '2503', 'jaintiapur.sylhet.gov.bd'),
+(280, 36, 'Kanaighat', 'কানাইঘাট', '2507', 'kanaighat.sylhet.gov.bd'),
+(281, 36, 'Sylhet Sadar', 'সিলেট সদর', '2501', 'sylhetsadar.sylhet.gov.bd'),
+(282, 36, 'Zakiganj', 'জকিগঞ্জ', '2508', 'zakiganj.sylhet.gov.bd'),
+(283, 36, 'Dakshinsurma', 'দক্ষিণ সুরমা', '2512', 'dakshinsurma.sylhet.gov.bd'),
+(284, 36, 'Osmaninagar', 'ওসমানীনগর', '2505', 'osmaninagar.sylhet.gov.bd'),
+(285, 37, 'Barlekha', 'বড়লেখা', '2706', 'barlekha.moulvibazar.gov.bd'),
+(286, 37, 'Kamolganj', 'কমলগঞ্জ', '2704', 'kamolganj.moulvibazar.gov.bd'),
+(287, 37, 'Kulaura', 'কুলাউড়া', '2702', 'kulaura.moulvibazar.gov.bd'),
+(288, 37, 'Moulvibazar Sadar', 'মৌলভীবাজার সদর', '2701', 'moulvibazarsadar.moulvibazar.gov.bd'),
+(289, 37, 'Rajnagar', 'রাজনগর', '2705', 'rajnagar.moulvibazar.gov.bd'),
+(290, 37, 'Sreemangal', 'শ্রীমঙ্গল', '2703', 'sreemangal.moulvibazar.gov.bd'),
+(291, 37, 'Juri', 'জুরী', '2707', 'juri.moulvibazar.gov.bd'),
+(292, 38, 'Nabiganj', 'নবীগঞ্জ', '2809', 'nabiganj.habiganj.gov.bd'),
+(293, 38, 'Bahubal', 'বাহুবল', '2805', 'bahubal.habiganj.gov.bd'),
+(294, 38, 'Ajmiriganj', 'আজমিরীগঞ্জ', '2807', 'ajmiriganj.habiganj.gov.bd'),
+(295, 38, 'Baniachong', 'বানিয়াচং', '2804', 'baniachong.habiganj.gov.bd'),
+(296, 38, 'Lakhai', 'লাখাই', '2806', 'lakhai.habiganj.gov.bd'),
+(297, 38, 'Chunarughat', 'চুনারুঘাট', '2803', 'chunarughat.habiganj.gov.bd'),
+(298, 38, 'Habiganj Sadar', 'হবিগঞ্জ সদর', '2801', 'habiganjsadar.habiganj.gov.bd'),
+(299, 38, 'Madhabpur', 'মাধবপুর', '2808', 'madhabpur.habiganj.gov.bd'),
+(300, 39, 'Sunamganj Sadar', 'সুনামগঞ্জ সদর', '2601', 'sadar.sunamganj.gov.bd'),
+(301, 39, 'South Sunamganj', 'দক্ষিণ সুনামগঞ্জ', '2608', 'southsunamganj.sunamganj.gov.bd'),
+(302, 39, 'Bishwambarpur', 'বিশ্বম্ভরপুর', '2602', 'bishwambarpur.sunamganj.gov.bd'),
+(303, 39, 'Chhatak', 'ছাতক', '2606', 'chhatak.sunamganj.gov.bd'),
+(304, 39, 'Jagannathpur', 'জগন্নাথপুর', '2610', 'jagannathpur.sunamganj.gov.bd'),
+(305, 39, 'Dowarabazar', 'দোয়ারাবাজার', '2604', 'dowarabazar.sunamganj.gov.bd'),
+(306, 39, 'Tahirpur', 'তাহিরপুর', '2603', 'tahirpur.sunamganj.gov.bd'),
+(307, 39, 'Dharmapasha', 'ধর্মপাশা', '2607', 'dharmapasha.sunamganj.gov.bd'),
+(308, 39, 'Jamalganj', 'জামালগঞ্জ', '2605', 'jamalganj.sunamganj.gov.bd'),
+(309, 39, 'Shalla', 'শাল্লা', '2611', 'shalla.sunamganj.gov.bd'),
+(310, 39, 'Derai', 'দিরাই', '2609', 'derai.sunamganj.gov.bd'),
+(311, 40, 'Belabo', 'বেলাবো', '2004', 'belabo.narsingdi.gov.bd'),
+(312, 40, 'Monohardi', 'মনোহরদী', '2002', 'monohardi.narsingdi.gov.bd'),
+(313, 40, 'Narsingdi Sadar', 'নরসিংদী সদর', '2001', 'narsingdisadar.narsingdi.gov.bd'),
+(314, 40, 'Palash', 'পলাশ', '2007', 'palash.narsingdi.gov.bd'),
+(315, 40, 'Raipura', 'রায়পুর', '2006', 'raipura.narsingdi.gov.bd'),
+(316, 40, 'Shibpur', 'শিবপুর', '2005', 'shibpur.narsingdi.gov.bd'),
+(317, 41, 'Kaliganj', 'কালীগঞ্জ', '1307', 'kaliganj.gazipur.gov.bd'),
+(318, 41, 'Kaliakair', 'কালিয়াকৈর', '1306', 'kaliakair.gazipur.gov.bd'),
+(319, 41, 'Kapasia', 'কাপাসিয়া', '1305', 'kapasia.gazipur.gov.bd'),
+(320, 41, 'Gazipur Sadar', 'গাজীপুর সদর', '1301', 'sadar.gazipur.gov.bd'),
+(321, 41, 'Sreepur', 'শ্রীপুর', '1303', 'sreepur.gazipur.gov.bd'),
+(322, 42, 'Shariatpur Sadar', 'শরিয়তপুর সদর', '2101', 'sadar.shariatpur.gov.bd'),
+(323, 42, 'Naria', 'নড়িয়া', '2103', 'naria.shariatpur.gov.bd'),
+(324, 42, 'Zajira', 'জাজিরা', '2102', 'zajira.shariatpur.gov.bd'),
+(325, 42, 'Gosairhat', 'গোসাইরহাট', '2106', 'gosairhat.shariatpur.gov.bd'),
+(326, 42, 'Bhedarganj', 'ভেদরগঞ্জ', '2104', 'bhedarganj.shariatpur.gov.bd'),
+(327, 42, 'Damudya', 'ডামুড্যা', '2105', 'damudya.shariatpur.gov.bd'),
+(328, 43, 'Araihazar', 'আড়াইহাজার', '1507', 'araihazar.narayanganj.gov.bd'),
+(329, 8, 'Bandar', 'বন্দর', '0127', 'bandar.narayanganj.gov.bd'),
+(330, 43, 'Narayanganj Sadar', 'নারায়নগঞ্জ সদর', '1501', 'narayanganjsadar.narayanganj.gov.bd'),
+(331, 43, 'Rupganj', 'রূপগঞ্জ', '1503', 'rupganj.narayanganj.gov.bd'),
+(332, 43, 'Sonargaon', 'সোনারগাঁও', '1505', 'sonargaon.narayanganj.gov.bd'),
+(333, 44, 'Basail', 'বাসাইল', '2409', 'basail.tangail.gov.bd'),
+(334, 44, 'Bhuapur', 'ভুয়াপুর', '2405', 'bhuapur.tangail.gov.bd'),
+(335, 44, 'Delduar', 'দেলদুয়ার', '2410', 'delduar.tangail.gov.bd'),
+(336, 44, 'Ghatail', 'ঘাটাইল', '2406', 'ghatail.tangail.gov.bd'),
+(337, 44, 'Gopalpur', 'গোপালপুর', '2404', 'gopalpur.tangail.gov.bd'),
+(338, 44, 'Madhupur', 'মধুপুর', '2402', 'madhupur.tangail.gov.bd'),
+(339, 44, 'Mirzapur', 'মির্জাপুর', '2411', 'mirzapur.tangail.gov.bd'),
+(340, 44, 'Nagarpur', 'নাগরপুর', '2412', 'nagarpur.tangail.gov.bd'),
+(341, 44, 'Sakhipur', 'সখিপুর', '2408', 'sakhipur.tangail.gov.bd'),
+(342, 44, 'Tangail Sadar', 'টাঙ্গাইল সদর', '2401', 'tangailsadar.tangail.gov.bd'),
+(343, 44, 'Kalihati', 'কালিহাতী', '2407', 'kalihati.tangail.gov.bd'),
+(344, 44, 'Dhanbari', 'ধনবাড়ী', '2403', 'dhanbari.tangail.gov.bd'),
+(345, 45, 'Itna', 'ইটনা', '2307', 'itna.kishoreganj.gov.bd'),
+(346, 45, 'Katiadi', 'কটিয়াদী', '2304', 'katiadi.kishoreganj.gov.bd'),
+(347, 45, 'Bhairab', 'ভৈরব', '2313', 'bhairab.kishoreganj.gov.bd'),
+(348, 45, 'Tarail', 'তাড়াইল', '2305', 'tarail.kishoreganj.gov.bd'),
+(349, 45, 'Hossainpur', 'হোসেনপুর', '2303', 'hossainpur.kishoreganj.gov.bd'),
+(350, 45, 'Pakundia', 'পাকুন্দিয়া', '2302', 'pakundia.kishoreganj.gov.bd'),
+(351, 45, 'Kuliarchar', 'কুলিয়ারচর', '2312', 'kuliarchar.kishoreganj.gov.bd'),
+(352, 45, 'Kishoreganj Sadar', 'কিশোরগঞ্জ সদর', '2301', 'kishoreganjsadar.kishoreganj.gov.bd'),
+(353, 45, 'Karimgonj', 'করিমগঞ্জ', '2308', 'karimgonj.kishoreganj.gov.bd'),
+(354, 45, 'Bajitpur', 'বাজিতপুর', '2306', 'bajitpur.kishoreganj.gov.bd'),
+(355, 45, 'Austagram', 'অষ্টগ্রাম', '2311', 'austagram.kishoreganj.gov.bd'),
+(356, 45, 'Mithamoin', 'মিঠামইন', '2309', 'mithamoin.kishoreganj.gov.bd'),
+(357, 45, 'Nikli', 'নিকলী', '2310', 'nikli.kishoreganj.gov.bd'),
+(358, 46, 'Harirampur', 'হরিরামপুর', '1406', 'harirampur.manikganj.gov.bd'),
+(359, 46, 'Saturia', 'সাটুরিয়া', '1403', 'saturia.manikganj.gov.bd'),
+(360, 46, 'Manikganj Sadar', 'মানিকগঞ্জ সদর', '1401', 'sadar.manikganj.gov.bd'),
+(361, 46, 'Gior', 'ঘিওর', '1407', 'gior.manikganj.gov.bd'),
+(362, 46, 'Shibaloy', 'শিবালয়', '1405', 'shibaloy.manikganj.gov.bd'),
+(363, 46, 'Doulatpur', 'দৌলতপুর', '1402', 'doulatpur.manikganj.gov.bd'),
+(364, 46, 'Singiar', 'সিংগাইর', '1404', 'singiar.manikganj.gov.bd'),
+(365, 47, 'Savar', 'সাভার', '1246', 'savar.dhaka.gov.bd'),
+(366, 47, 'Dhamrai', 'ধামরাই', '1242', 'dhamrai.dhaka.gov.bd'),
+(367, 47, 'Keraniganj', 'কেরাণীগঞ্জ', '1244', 'keraniganj.dhaka.gov.bd'),
+(368, 47, 'Nawabganj', 'নবাবগঞ্জ', '1245', 'nawabganj.dhaka.gov.bd'),
+(369, 47, 'Dohar', 'দোহার', '1243', 'dohar.dhaka.gov.bd'),
+(370, 48, 'Munshiganj Sadar', 'মুন্সিগঞ্জ সদর', '1601', 'sadar.munshiganj.gov.bd'),
+(371, 48, 'Sreenagar', 'শ্রীনগর', '1603', 'sreenagar.munshiganj.gov.bd'),
+(372, 48, 'Sirajdikhan', 'সিরাজদিখান', '1606', 'sirajdikhan.munshiganj.gov.bd'),
+(373, 48, 'Louhajanj', 'লৌহজং', '1605', 'louhajanj.munshiganj.gov.bd'),
+(374, 48, 'Gajaria', 'গজারিয়া', '1602', 'gajaria.munshiganj.gov.bd'),
+(375, 48, 'Tongibari', 'টংগীবাড়ি', '1604', 'tongibari.munshiganj.gov.bd'),
+(376, 49, 'Rajbari Sadar', 'রাজবাড়ী সদর', '2201', 'sadar.rajbari.gov.bd'),
+(377, 49, 'Goalanda', 'গোয়ালন্দ', '2204', 'goalanda.rajbari.gov.bd'),
+(378, 49, 'Pangsa', 'পাংশা', '2202', 'pangsa.rajbari.gov.bd'),
+(379, 49, 'Baliakandi', 'বালিয়াকান্দি', '2203', 'baliakandi.rajbari.gov.bd'),
+(380, 49, 'Kalukhali', 'কালুখালী', '2205', 'kalukhali.rajbari.gov.bd'),
+(381, 50, 'Madaripur Sadar', 'মাদারীপুর সদর', '1901', 'sadar.madaripur.gov.bd'),
+(382, 50, 'Shibchar', 'শিবচর', '1902', 'shibchar.madaripur.gov.bd'),
+(383, 50, 'Kalkini', 'কালকিনি', '1904', 'kalkini.madaripur.gov.bd'),
+(384, 50, 'Rajoir', 'রাজৈর', '1903', 'rajoir.madaripur.gov.bd'),
+(385, 51, 'Gopalganj Sadar', 'গোপালগঞ্জ সদর', '1701', 'sadar.gopalganj.gov.bd'),
+(386, 51, 'Kashiani', 'কাশিয়ানী', '1703', 'kashiani.gopalganj.gov.bd'),
+(387, 51, 'Tungipara', 'টুংগীপাড়া', '1705', 'tungipara.gopalganj.gov.bd'),
+(388, 51, 'Kotalipara', 'কোটালীপাড়া', '1704', 'kotalipara.gopalganj.gov.bd'),
+(389, 51, 'Muksudpur', 'মুকসুদপুর', '1702', 'muksudpur.gopalganj.gov.bd'),
+(390, 52, 'Faridpur Sadar', 'ফরিদপুর সদর', '1801', 'sadar.faridpur.gov.bd'),
+(391, 52, 'Alfadanga', 'আলফাডাঙ্গা', '1803', 'alfadanga.faridpur.gov.bd'),
+(392, 52, 'Boalmari', 'বোয়ালমারী', '1807', 'boalmari.faridpur.gov.bd'),
+(393, 52, 'Sadarpur', 'সদরপুর', '1804', 'sadarpur.faridpur.gov.bd'),
+(394, 52, 'Nagarkanda', 'নগরকান্দা', '1805', 'nagarkanda.faridpur.gov.bd'),
+(395, 52, 'Bhanga', 'ভাঙ্গা', '1806', 'bhanga.faridpur.gov.bd'),
+(396, 52, 'Charbhadrasan', 'চরভদ্রাসন', '1802', 'charbhadrasan.faridpur.gov.bd'),
+(397, 52, 'Madhukhali', 'মধুখালী', '1808', 'madhukhali.faridpur.gov.bd'),
+(398, 52, 'Saltha', 'সালথা', '1809', 'saltha.faridpur.gov.bd'),
+(399, 53, 'Panchagarh Sadar', 'পঞ্চগড় সদর', '4501', 'panchagarhsadar.panchagarh.gov.bd'),
+(400, 53, 'Debiganj', 'দেবীগঞ্জ', '4505', 'debiganj.panchagarh.gov.bd'),
+(401, 53, 'Boda', 'বোদা', '4504', 'boda.panchagarh.gov.bd'),
+(402, 53, 'Atwari', 'আটোয়ারী', '4503', 'atwari.panchagarh.gov.bd'),
+(403, 53, 'Tetulia', 'তেতুলিয়া', '4502', 'tetulia.panchagarh.gov.bd'),
+(404, 54, 'Nawabganj', 'নবাবগঞ্জ', '4310', 'nawabganj.dinajpur.gov.bd'),
+(405, 54, 'Birganj', 'বীরগঞ্জ', '4302', 'birganj.dinajpur.gov.bd'),
+(406, 54, 'Ghoraghat', 'ঘোড়াঘাট', '4313', 'ghoraghat.dinajpur.gov.bd'),
+(407, 54, 'Birampur', 'বিরামপুর', '4311', 'birampur.dinajpur.gov.bd'),
+(408, 54, 'Parbatipur', 'পার্বতীপুর', '4308', 'parbatipur.dinajpur.gov.bd'),
+(409, 54, 'Bochaganj', 'বোচাগঞ্জ', '4305', 'bochaganj.dinajpur.gov.bd'),
+(410, 54, 'Kaharol', 'কাহারোল', '4304', 'kaharol.dinajpur.gov.bd'),
+(411, 54, 'Fulbari', 'ফুলবাড়ী', '4309', 'fulbari.dinajpur.gov.bd'),
+(412, 54, 'Dinajpur Sadar', 'দিনাজপুর সদর', '4301', 'dinajpursadar.dinajpur.gov.bd'),
+(413, 54, 'Hakimpur', 'হাকিমপুর', '4312', 'hakimpur.dinajpur.gov.bd'),
+(414, 54, 'Khansama', 'খানসামা', '4303', 'khansama.dinajpur.gov.bd'),
+(415, 54, 'Birol', 'বিরল', '4307', 'birol.dinajpur.gov.bd'),
+(416, 54, 'Chirirbandar', 'চিরিরবন্দর', '4306', 'chirirbandar.dinajpur.gov.bd'),
+(417, 55, 'Lalmonirhat Sadar', 'লালমনিরহাট সদর', '4601', 'sadar.lalmonirhat.gov.bd'),
+(418, 55, 'Kaliganj', 'কালীগঞ্জ', '4604', 'kaliganj.lalmonirhat.gov.bd'),
+(419, 55, 'Hatibandha', 'হাতীবান্ধা', '4603', 'hatibandha.lalmonirhat.gov.bd'),
+(420, 55, 'Patgram', 'পাটগ্রাম', '4602', 'patgram.lalmonirhat.gov.bd'),
+(421, 55, 'Aditmari', 'আদিতমারী', '4605', 'aditmari.lalmonirhat.gov.bd'),
+(422, 56, 'Syedpur', 'সৈয়দপুর', '4204', 'syedpur.nilphamari.gov.bd'),
+(423, 56, 'Domar', 'ডোমার', '4205', 'domar.nilphamari.gov.bd'),
+(424, 56, 'Dimla', 'ডিমলা', '4202', 'dimla.nilphamari.gov.bd'),
+(425, 56, 'Jaldhaka', 'জলঢাকা', '4206', 'jaldhaka.nilphamari.gov.bd'),
+(426, 56, 'Kishorganj', 'কিশোরগঞ্জ', '4203', 'kishorganj.nilphamari.gov.bd'),
+(427, 56, 'Nilphamari Sadar', 'নীলফামারী সদর', '4201', 'nilphamarisadar.nilphamari.gov.bd'),
+(428, 57, 'Sadullapur', 'সাদুল্লাপুর', '4703', 'sadullapur.gaibandha.gov.bd'),
+(429, 57, 'Gaibandha Sadar', 'গাইবান্ধা সদর', '4701', 'gaibandhasadar.gaibandha.gov.bd'),
+(430, 57, 'Palashbari', 'পলাশবাড়ী', '4704', 'palashbari.gaibandha.gov.bd'),
+(431, 57, 'Saghata', 'সাঘাটা', '4707', 'saghata.gaibandha.gov.bd'),
+(432, 57, 'Gobindaganj', 'গোবিন্দগঞ্জ', '4706', 'gobindaganj.gaibandha.gov.bd'),
+(433, 57, 'Sundarganj', 'সুন্দরগঞ্জ', '4702', 'sundarganj.gaibandha.gov.bd'),
+(434, 57, 'Phulchari', 'ফুলছড়ি', '4705', 'phulchari.gaibandha.gov.bd'),
+(435, 58, 'Thakurgaon Sadar', 'ঠাকুরগাঁও সদর', '4401', 'thakurgaonsadar.thakurgaon.gov.bd'),
+(436, 58, 'Pirganj', 'পীরগঞ্জ', '4404', 'pirganj.thakurgaon.gov.bd'),
+(437, 58, 'Ranisankail', 'রাণীশংকৈল', '4402', 'ranisankail.thakurgaon.gov.bd'),
+(438, 58, 'Haripur', 'হরিপুর', '4405', 'haripur.thakurgaon.gov.bd'),
+(439, 58, 'Baliadangi', 'বালিয়াডাঙ্গী', '4403', 'baliadangi.thakurgaon.gov.bd'),
+(440, 59, 'Rangpur Sadar', 'রংপুর সদর', '4101', 'rangpursadar.rangpur.gov.bd'),
+(441, 59, 'Gangachara', 'গঙ্গাছড়া', '4102', 'gangachara.rangpur.gov.bd'),
+(442, 59, 'Taragonj', 'তারাগঞ্জ', '4104', 'taragonj.rangpur.gov.bd'),
+(443, 59, 'Badargonj', 'বদরগঞ্জ', '4105', 'badargonj.rangpur.gov.bd'),
+(444, 59, 'Mithapukur', 'মিঠাপুকুর', '4107', 'mithapukur.rangpur.gov.bd'),
+(445, 59, 'Pirgonj', 'পীরগঞ্জ', '4108', 'pirgonj.rangpur.gov.bd'),
+(446, 59, 'Kaunia', 'কাউনিয়া', '4103', 'kaunia.rangpur.gov.bd'),
+(447, 59, 'Pirgacha', 'পীরগাছা', '4106', 'pirgacha.rangpur.gov.bd'),
+(448, 60, 'Kurigram Sadar', 'কুড়িগ্রাম সদর', '4801', 'kurigramsadar.kurigram.gov.bd'),
+(449, 60, 'Nageshwari', 'নাগেশ্বরী', '4803', 'nageshwari.kurigram.gov.bd'),
+(450, 60, 'Bhurungamari', 'ভুরুঙ্গামারী', '4802', 'bhurungamari.kurigram.gov.bd'),
+(451, 60, 'Phulbari', 'ফুলবাড়ী', '4804', 'phulbari.kurigram.gov.bd'),
+(452, 60, 'Rajarhat', 'রাজারহাট', '4805', 'rajarhat.kurigram.gov.bd'),
+(453, 60, 'Ulipur', 'উলিপুর', '4806', 'ulipur.kurigram.gov.bd'),
+(454, 60, 'Chilmari', 'চিলমারী', '4808', 'chilmari.kurigram.gov.bd'),
+(455, 60, 'Rowmari', 'রৌমারী', '4807', 'rowmari.kurigram.gov.bd'),
+(456, 60, 'Charrajibpur', 'চর রাজিবপুর', '4809', 'charrajibpur.kurigram.gov.bd'),
+(457, 61, 'Sherpur Sadar', 'শেরপুর সদর', '3101', 'sherpursadar.sherpur.gov.bd'),
+(458, 61, 'Nalitabari', 'নালিতাবাড়ী', '3104', 'nalitabari.sherpur.gov.bd'),
+(459, 61, 'Sreebordi', 'শ্রীবরদী', '3102', 'sreebordi.sherpur.gov.bd'),
+(460, 61, 'Nokla', 'নকলা', '3105', 'nokla.sherpur.gov.bd'),
+(461, 61, 'Jhenaigati', 'ঝিনাইগাতী', '3103', 'jhenaigati.sherpur.gov.bd'),
+(462, 62, 'Fulbaria', 'ফুলবাড়ীয়া', '2912', 'fulbaria.mymensingh.gov.bd'),
+(463, 62, 'Trishal', 'ত্রিশাল', '2909', 'trishal.mymensingh.gov.bd'),
+(464, 62, 'Bhaluka', 'ভালুকা', '2911', 'bhaluka.mymensingh.gov.bd'),
+(465, 62, 'Muktagacha', 'মুক্তাগাছা', '2906', 'muktagacha.mymensingh.gov.bd'),
+(466, 62, 'Mymensingh Sadar', 'ময়মনসিংহ সদর', '2901', 'mymensinghsadar.mymensingh.gov.bd'),
+(467, 62, 'Dhobaura', 'ধোবাউড়া', '2904', 'dhobaura.mymensingh.gov.bd'),
+(468, 62, 'Phulpur', 'ফুলপুর', '2905', 'phulpur.mymensingh.gov.bd'),
+(469, 62, 'Haluaghat', 'হালুয়াঘাট', '2903', 'haluaghat.mymensingh.gov.bd'),
+(470, 62, 'Gouripur', 'গৌরীপুর', '2907', 'gouripur.mymensingh.gov.bd'),
+(471, 62, 'Gafargaon', 'গফরগাঁও', '2910', 'gafargaon.mymensingh.gov.bd'),
+(472, 62, 'Iswarganj', 'ঈশ্বরগঞ্জ', '2902', 'iswarganj.mymensingh.gov.bd'),
+(473, 62, 'Nandail', 'নান্দাইল', '2908', 'nandail.mymensingh.gov.bd'),
+(474, 62, 'Tarakanda', 'তারাকান্দা', '2913', 'tarakanda.mymensingh.gov.bd'),
+(475, 63, 'Jamalpur Sadar', 'জামালপুর সদর', '3201', 'jamalpursadar.jamalpur.gov.bd'),
+(476, 63, 'Melandah', 'মেলান্দহ', '3203', 'melandah.jamalpur.gov.bd'),
+(477, 63, 'Islampur', 'ইসলামপুর', '3202', 'islampur.jamalpur.gov.bd'),
+(478, 63, 'Dewangonj', 'দেওয়ানগঞ্জ', '3204', 'dewangonj.jamalpur.gov.bd'),
+(479, 63, 'Sarishabari', 'সরিষাবাড়ী', '3206', 'sarishabari.jamalpur.gov.bd'),
+(480, 63, 'Madarganj', 'মাদারগঞ্জ', '3205', 'madarganj.jamalpur.gov.bd'),
+(481, 63, 'Bokshiganj', 'বকশীগঞ্জ', '3207', 'bokshiganj.jamalpur.gov.bd'),
+(482, 64, 'Barhatta', 'বারহাট্টা', '3005', 'barhatta.netrokona.gov.bd'),
+(483, 64, 'Durgapur', 'দুর্গাপুর', '3002', 'durgapur.netrokona.gov.bd'),
+(484, 64, 'Kendua', 'কেন্দুয়া', '3009', 'kendua.netrokona.gov.bd'),
+(485, 64, 'Atpara', 'আটপাড়া', '3007', 'atpara.netrokona.gov.bd'),
+(486, 64, 'Madan', 'মদন', '3010', 'madan.netrokona.gov.bd'),
+(487, 64, 'Khaliajuri', 'খালিয়াজুরী', '3008', 'khaliajuri.netrokona.gov.bd'),
+(488, 64, 'Kalmakanda', 'কলমাকান্দা', '3003', 'kalmakanda.netrokona.gov.bd'),
+(489, 64, 'Mohongonj', 'মোহনগঞ্জ', '3006', 'mohongonj.netrokona.gov.bd'),
+(490, 64, 'Purbadhala', 'পূর্বধলা', '3004', 'purbadhala.netrokona.gov.bd'),
+(491, 64, 'Netrokona Sadar', 'নেত্রকোণা সদর', '3001', 'netrokonasadar.netrokona.gov.bd'),
+(492, 7, NULL, 'চন্দ্রগঞ্জ', '0706', NULL),
+(493, 47, NULL, 'কোতোয়ালী', '1201', NULL),
+(494, 47, NULL, 'আশুলিয়া', '1247', NULL),
+(495, 47, NULL, 'গুলশান', '1231', NULL),
+(496, 47, NULL, 'মিরপুর', '1214', NULL),
+(497, 47, NULL, 'ডেমরা', '1228', NULL),
+(498, 47, NULL, 'ভাটারা', '1211', NULL),
+(499, 47, NULL, 'মতিঝিল', '1215', NULL),
+(500, 47, NULL, 'মুগদা', '1248', NULL),
+(501, 47, NULL, 'বংশাল', '1218', NULL),
+(502, 47, NULL, 'দারুস সালাম', '1223', NULL),
+(503, 47, NULL, 'খিলক্ষেত', '1233', NULL),
+(504, 47, NULL, 'কামরাঙ্গীরচর', '1235', NULL),
+(505, 47, NULL, 'যাত্রাবাড়ী', '1212', NULL),
+(506, 47, NULL, 'ক্যান্টনমেন্ট', '1234', NULL),
+(507, 47, NULL, 'কাফরুল', '1236', NULL),
+(508, 47, NULL, 'শাহজানপুর', '1221', NULL),
+(509, 47, NULL, 'তুরাগ', '1227', NULL),
+(510, 47, NULL, 'কদমতলী', '1238', NULL),
+(511, 47, NULL, 'পল্লবী', '1219', NULL),
+(512, 47, NULL, 'ভাষানটেক', '1225', NULL),
+(513, 47, NULL, 'শাহআলী', '1226', NULL),
+(514, 47, NULL, 'আদাবর', '1241', NULL),
+(515, 47, NULL, 'উত্তরখান', '1240', NULL),
+(516, 41, NULL, 'টঙ্গী', '1302', NULL),
+(517, 41, NULL, 'জয়দেবপুর', '1304', NULL),
+(518, 41, NULL, 'কাশিমপুর', '1308', NULL),
+(519, 41, NULL, 'কোনাবাড়ী', '1309', NULL),
+(520, 41, NULL, 'গাছা', '1310', NULL),
+(521, 41, NULL, 'বাসন', '1311', NULL),
+(522, 43, NULL, 'ফতুল্লা', '1502', NULL),
+(523, 43, NULL, 'সিদ্ধিরগঞ্জ', '1504', NULL),
+(524, 43, NULL, 'কাঁচপুর', '1506', NULL),
+(525, 50, NULL, 'ডাসার', '1905', NULL),
+(526, 40, NULL, 'মাধবদী', '2003', NULL),
+(527, 42, NULL, 'পালং', '2107', NULL),
+(528, 15, NULL, 'রাজশাহী', '3301', NULL),
+(529, 15, NULL, 'রাজপাড়া', '3311', NULL),
+(530, 15, NULL, 'শাহমাখদুম', '3312', NULL),
+(531, 14, NULL, 'মাঝিরা', '3712', NULL),
+(532, 12, NULL, 'সলঙ্গা', '3910', NULL),
+(533, 12, NULL, 'এনায়েতপুর', '3911', NULL),
+(534, 13, NULL, 'আমিনপুর', '4010', NULL),
+(535, 27, NULL, 'খুলনা', '4901', NULL),
+(536, 27, NULL, 'আরাংঘাটা', '4903', NULL),
+(537, 27, NULL, 'দৌলতপুর', '4904', NULL),
+(538, 27, NULL, 'খানজাহান আলী', '4911', NULL),
+(539, 27, NULL, 'খালিশপুর', '4912', NULL),
+(540, 27, NULL, 'সোনাডাঙ্গা', '4914', NULL),
+(541, 27, NULL, 'লবণছড়া', '4916', NULL),
+(542, 27, NULL, 'হরিণটানা', '4917', NULL),
+(543, 25, NULL, 'করিমপুর', '5407', NULL),
+(544, 21, NULL, 'পাটকেলঘাটা', '5505', NULL),
+(545, 26, NULL, 'রহমতপুর', '5604', NULL),
+(546, 33, NULL, 'কাজিরহাট', '5910', NULL),
+(547, 34, NULL, 'শশীভূষণ', '6207', NULL),
+(548, 34, NULL, 'দুলারহাট', '6209', NULL),
+(549, 32, NULL, 'উজিরপুর', '6303', NULL),
+(550, 36, NULL, 'তামাবিল', '2502', NULL),
+(551, 36, NULL, 'মোগলাবাজার', '2515', NULL),
+(552, 36, NULL, 'শাহপরান', '2516', NULL),
+(553, 39, NULL, 'কোম্পানীগঞ্জ', '2612', NULL),
+(554, 38, NULL, 'শায়েস্তাগঞ্জ', '2802', NULL),
+(555, 59, NULL, 'পরশুরাম', '4109', NULL),
+(556, 59, NULL, 'তাজহাট', '4110', NULL),
+(557, 8, NULL, 'চট্টগ্রাম মহানগর', '0101', NULL),
+(558, 8, NULL, 'ভূজপুর', '0104', NULL),
+(559, 8, NULL, 'জোরারগঞ্জ', '0117', NULL),
+(560, 8, NULL, 'আকবরশাহ', '0119', NULL),
+(561, 8, NULL, 'সন্দ্বীপ', '0120', NULL),
+(562, 8, NULL, 'পাহাড়তলী', '0121', NULL),
+(563, 8, NULL, 'বাকলিয়া', '0122', NULL),
+(564, 8, NULL, 'চকবাজার', '0123', NULL),
+(565, 8, NULL, 'খুলশী', '0124', NULL),
+(566, 8, NULL, 'চাঁদগাও', '0125', NULL),
+(567, 8, NULL, 'পতেঙ্গা', '0126', NULL),
+(568, 32, NULL, 'পিরোজপুর সদর', '6301', NULL),
+(569, 8, NULL, 'বায়েজিদ', '0129', NULL),
+(570, 8, NULL, 'হালিশহর', '0130', NULL),
+(572, 9, NULL, 'ঈদগাহ', '0209', NULL),
+(573, 8, NULL, 'পাঁচলাইশ', '0131', NULL),
+(574, 47, NULL, 'হাজারীবাগ', '1202', NULL),
+(575, 47, NULL, 'সুত্রাপুর', '1203', NULL),
+(576, 47, NULL, 'সবুজবাগ', '1204', NULL),
+(577, 47, NULL, 'শ্যামপুর', '1205', NULL),
+(578, 47, NULL, 'শেরেবাংলা নগর', '1206', NULL),
+(579, 47, NULL, 'শাহবাগ', '1207', NULL),
+(580, 47, NULL, 'শাহআলী', '1208', NULL),
+(581, 47, NULL, 'লালবাগ', '1209', NULL),
+(582, 47, NULL, 'রামপুরা', '1210', NULL),
+(583, 47, NULL, 'রমনা', '1211', NULL),
+(584, 47, NULL, 'মোহাম্মদপুর', '1213', NULL),
+(585, 47, NULL, 'বিমান বন্দর', '1216', NULL),
+(586, 47, NULL, 'বাড্ডা', '1217', NULL),
+(587, 47, NULL, 'পল্টন', '1220', NULL),
+(588, 47, NULL, 'নিউমার্কেট', '1221', NULL),
+(589, 47, NULL, 'ধানমন্ডি', '1222', NULL),
+(590, 47, NULL, 'দক্ষিণখান', '1224', NULL),
+(591, 47, NULL, 'তেজগাঁও শিল্পাঞ্চল', '1225', NULL),
+(592, 47, NULL, 'তেজগাঁও', '1226', NULL),
+(593, 47, NULL, 'চকবাজার', '1229', NULL),
+(594, 47, NULL, 'গেন্ডারিয়া', '1230', NULL),
+(595, 47, NULL, 'খিলগাঁও', '1232', NULL),
+(596, 47, NULL, 'কলাবাগান', '1237', NULL),
+(597, 47, NULL, 'উত্তরা', '1239', NULL),
+(598, 13, NULL, 'আতাইকুলা', '4011', NULL),
+(599, 15, NULL, 'কাটাখালী', '3313', NULL),
+(600, 8, NULL, 'ই.পি.জেড', '0128', NULL),
+(601, 34, NULL, 'তজুমদ্দিন', '6210', NULL),
+(602, 1, NULL, 'সদর দক্ষিণ', '1017', NULL),
+(603, 47, NULL, 'হাতিরঝিল', '1249', NULL),
+(604, 33, NULL, 'কাউনিয়া', '5912', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `branches`
+--
+
+CREATE TABLE `branches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `establishment_date` varchar(255) DEFAULT NULL,
+  `male_students` int(11) DEFAULT NULL,
+  `female_students` int(11) DEFAULT NULL,
+  `teachers` int(11) DEFAULT NULL,
+  `staff` int(11) DEFAULT NULL,
+  `area` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `banner` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `branches`
+--
+
+INSERT INTO `branches` (`id`, `name`, `slug`, `establishment_date`, `male_students`, `female_students`, `teachers`, `staff`, `area`, `address`, `phone`, `email`, `photo`, `banner`, `description`, `status`, `order`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Dhaka Dream Homes', 'dhaka-dream-homes', '2019-12-27', 78, 0, 6, NULL, '2500', NULL, NULL, NULL, 'branch/hkd9m0u9hhifxmy8kbvp.webp', NULL, NULL, 1, 1, '2025-12-07 01:22:18', '2026-04-08 22:07:31', NULL),
+(2, 'Chittagong Dream Homes', 'chittagong-dream-homes', '2021-12-04', 55, 0, 4, NULL, '3700', NULL, NULL, NULL, 'branch/ubvoffwmdoeqlabhishg.jpg', NULL, NULL, 1, 3, '2025-12-07 01:28:32', '2026-04-08 22:10:31', NULL),
+(3, 'Tashfia Sharar Dream Homes', 'tashfia-sharar-dream-homes', '2022-12-09', 86, 0, 4, NULL, 'Explicabo Veritatis', NULL, NULL, NULL, 'branch/izsrgmy41wmskadaxhjq.webp', NULL, NULL, 1, 2, '2025-12-07 02:08:52', '2026-04-08 22:08:13', NULL),
+(4, 'Jessore Dream Homes', 'jessore-dream-homes', '2025-12-07', 85, 0, 10, NULL, '43560', NULL, NULL, NULL, 'branch/hlaqksfencty2lplo158.jpeg', NULL, NULL, 1, 4, '2025-12-07 02:09:12', '2026-04-11 23:40:11', NULL),
+(5, 'Wamy Dream Homes,Gazipur', 'wamy-dream-homesgazipur', '2025-12-07', 98, 0, 7, NULL, '3600', NULL, NULL, NULL, 'branch/5intcihh9k4lmugdeixb.png', NULL, NULL, 1, 5, '2025-12-07 02:09:32', '2026-04-08 22:13:57', NULL),
+(6, 'Moulvibazar Dream Homes', 'moulvibazar-dream-homes', '2025-12-09', 26, 0, 2, NULL, '25454', NULL, NULL, NULL, 'branch/hvzvvlif2dmjb9mylzwf.jpg', NULL, NULL, 1, 6, '2025-12-09 09:00:28', '2026-04-08 22:15:02', NULL),
+(7, 'College Dream Homes', 'college-dream-homes', '2025-12-09', 21, 0, 2, NULL, NULL, NULL, NULL, NULL, 'branch/zfzeoalvax2unvecz4zx.jpg', NULL, NULL, 1, 7, '2025-12-09 09:02:21', '2026-04-08 22:15:39', NULL),
+(8, 'Jagannathpur dream Homes', 'jagannathpur-dream-homes', '2026-01-01', 26, 0, 3, NULL, NULL, NULL, NULL, NULL, 'branch/0b9enhogb0yafwspu87z.jpeg', NULL, NULL, 1, 8, '2026-04-08 22:19:42', '2026-04-11 23:43:05', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `is_single_news` varchar(255) DEFAULT NULL,
+  `news_url` varchar(255) DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'for submenu parent id will be placed here',
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=News Category,2=Image & Video category',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `order` int(11) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `is_single_news`, `news_url`, `category_id`, `type`, `status`, `order`, `photo`, `meta_title`, `meta_keyword`, `meta_description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Admission Form', 'admission-form', NULL, '0', NULL, NULL, 1, 1, 4, NULL, NULL, NULL, NULL, NULL, '2025-12-09 11:52:39', NULL),
+(2, 'Menu2', 'menu2', NULL, NULL, NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, '2025-12-09 11:51:34', '2025-12-09 11:51:34'),
+(3, 'Video Category', 'video', NULL, NULL, NULL, NULL, 4, 1, NULL, NULL, NULL, NULL, NULL, '2025-12-07 01:58:52', '2025-12-16 22:40:53', NULL),
+(4, 'Image Category', 'img-cat', NULL, NULL, NULL, NULL, 3, 1, NULL, NULL, NULL, NULL, NULL, '2025-12-07 01:59:02', '2025-12-07 01:59:02', NULL),
+(5, 'Donate Us', 'donate-us', NULL, '1', '3', NULL, 1, 1, 5, NULL, NULL, NULL, NULL, '2025-12-09 07:51:53', '2025-12-09 11:53:18', NULL),
+(6, 'টেস্ট', 'test', NULL, NULL, NULL, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2025-12-09 08:14:56', '2025-12-09 11:49:26', NULL),
+(7, 'donate test', 'dt', NULL, '0', '3', NULL, 1, 1, 1, NULL, NULL, NULL, NULL, '2025-12-09 08:20:20', '2025-12-09 11:53:41', '2025-12-09 11:53:41'),
+(8, 'test d', 'te', NULL, NULL, NULL, 5, 1, 1, 1, NULL, NULL, NULL, NULL, '2025-12-09 08:22:14', '2025-12-09 11:49:48', NULL),
+(9, 'Careers', 'careers', NULL, '0', NULL, NULL, 1, 1, 6, NULL, NULL, NULL, NULL, '2025-12-09 11:53:59', '2025-12-09 11:53:59', NULL),
+(10, 'News & Events', 'News', NULL, '0', NULL, NULL, 1, 1, 3, NULL, NULL, NULL, NULL, '2025-12-09 11:54:32', '2025-12-09 11:54:32', NULL),
+(11, 'About us', 'about-us', NULL, '0', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, '2025-12-09 11:55:00', '2025-12-09 11:55:00', NULL),
+(12, 'Picture Gallery', 'image', NULL, '0', NULL, NULL, 1, 1, 7, NULL, NULL, NULL, NULL, '2025-12-09 11:56:01', '2025-12-09 11:56:35', NULL),
+(13, 'Video Gallery', 'video', NULL, '0', NULL, NULL, 1, 1, 8, NULL, NULL, NULL, NULL, '2025-12-09 11:57:24', '2025-12-09 11:57:24', NULL),
+(14, 'Contact Us', 'contact', NULL, '0', NULL, NULL, 1, 1, 10, NULL, NULL, NULL, NULL, '2025-12-09 12:00:05', '2025-12-09 12:00:05', NULL),
+(15, 'হিফজুল কুরআন বার্ষিক পরীক্ষা-২০২৫', '2025', NULL, NULL, NULL, NULL, 3, 1, NULL, NULL, NULL, NULL, NULL, '2025-12-11 23:38:51', '2025-12-11 23:38:51', NULL),
+(16, 'Guest Visit', 'visit', NULL, NULL, NULL, NULL, 4, 1, NULL, NULL, NULL, NULL, NULL, '2025-12-11 23:50:03', '2025-12-11 23:50:03', NULL),
+(17, 'পরিক্ষামূলক', 'test', NULL, NULL, NULL, NULL, 3, 1, NULL, NULL, NULL, NULL, NULL, '2025-12-13 00:50:18', '2025-12-13 00:50:18', NULL),
+(18, 'test category', 'testing', NULL, '0', NULL, NULL, 1, 1, 8, NULL, NULL, NULL, NULL, '2025-12-13 01:26:52', '2025-12-13 01:26:52', NULL),
+(19, 'more cateee', 'cate', NULL, '0', NULL, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, '2025-12-13 01:29:23', '2025-12-13 01:30:09', '2025-12-13 01:30:09'),
+(20, 'sub of test category', 'sub', NULL, NULL, NULL, 18, 1, 1, 1, NULL, NULL, NULL, NULL, '2025-12-13 01:30:50', '2025-12-13 01:30:50', NULL),
+(21, 'টেস্ট', 'test', NULL, NULL, NULL, NULL, 4, 1, NULL, NULL, NULL, NULL, NULL, '2026-01-05 09:38:30', '2026-01-05 09:38:30', NULL),
+(22, 'Donor Registration', 'donor-register', NULL, '0', NULL, NULL, 1, 1, 5, NULL, NULL, NULL, NULL, '2026-03-10 17:27:25', '2026-03-10 17:31:18', NULL),
+(23, 'Student Admission', 'student-admission', NULL, '0', NULL, NULL, 1, 1, 5, NULL, NULL, NULL, NULL, '2026-04-14 21:04:28', '2026-04-14 21:04:28', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_tags`
+--
+
+CREATE TABLE `category_tags` (
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `tag_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `color_settings`
+--
+
+CREATE TABLE `color_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bg_color` varchar(255) DEFAULT NULL,
+  `text_color` varchar(255) DEFAULT NULL,
+  `hover_bg_color` varchar(255) DEFAULT NULL,
+  `hover_text_color` varchar(255) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=Menu',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designations`
+--
+
+CREATE TABLE `designations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=committee,2=authors/editors',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `designations`
+--
+
+INSERT INTO `designations` (`id`, `order`, `name`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, NULL, 'Director', 1, 1, NULL, NULL, NULL),
+(2, NULL, 'Executive', 1, 1, NULL, NULL, NULL),
+(3, NULL, 'Senior Teacher', 2, 1, NULL, NULL, NULL),
+(4, NULL, 'Assistant Teacher', 2, 1, NULL, NULL, NULL),
+(5, NULL, 'Staff', 3, 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `districts`
+--
+
+CREATE TABLE `districts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `bn_name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `lat` varchar(255) DEFAULT NULL,
+  `lon` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `districts`
+--
+
+INSERT INTO `districts` (`id`, `division_id`, `name`, `bn_name`, `code`, `lat`, `lon`, `url`) VALUES
+(1, 1, 'Comilla', 'কুমিল্লা', '10', '23.4682747', '91.1788135', 'www.comilla.gov.bd'),
+(2, 1, 'Feni', 'ফেনী', '06', '23.023231', '91.3840844', 'www.feni.gov.bd'),
+(3, 1, 'Brahmanbaria', 'ব্রাহ্মণবাড়িয়া', '11', '23.9570904', '91.1119286', 'www.brahmanbaria.gov.bd'),
+(4, 1, 'Rangamati', 'রাঙ্গামাটি', '04', NULL, NULL, 'www.rangamati.gov.bd'),
+(5, 1, 'Noakhali', 'নোয়াখালী', '08', '22.869563', '91.099398', 'www.noakhali.gov.bd'),
+(6, 1, 'Chandpur', 'চাঁদপুর', '09', '23.2332585', '90.6712912', 'www.chandpur.gov.bd'),
+(7, 1, 'Lakshmipur', 'লক্ষীপুর', '07', '22.942477', '90.841184', 'www.lakshmipur.gov.bd'),
+(8, 1, 'Chattogram', 'চট্টগ্রাম', '01', '22.335109', '91.834073', 'www.chittagong.gov.bd'),
+(9, 1, 'Coxsbazar', 'কক্সবাজার', '02', NULL, NULL, 'www.coxsbazar.gov.bd'),
+(10, 1, 'Khagrachhari', 'খাগড়াছড়ি', '05', '23.119285', '91.984663', 'www.khagrachhari.gov.bd'),
+(11, 1, 'Bandarban', 'বান্দরবান', '03', '22.1953275', '92.2183773', 'www.bandarban.gov.bd'),
+(12, 2, 'Sirajganj', 'সিরাজগঞ্জ', '39', '24.4533978', '89.7006815', 'www.sirajganj.gov.bd'),
+(13, 2, 'Pabna', 'পাবনা', '40', '23.998524', '89.233645', 'www.pabna.gov.bd'),
+(14, 2, 'Bogura', 'বগুড়া', '37', '24.8465228', '89.377755', 'www.bogra.gov.bd'),
+(15, 2, 'Rajshahi', 'রাজশাহী', '33', NULL, NULL, 'www.rajshahi.gov.bd'),
+(16, 2, 'Natore', 'নাটোর', '38', '24.420556', '89.000282', 'www.natore.gov.bd'),
+(17, 2, 'Joypurhat', 'জয়পুরহাট', '36', NULL, NULL, 'www.joypurhat.gov.bd'),
+(18, 2, 'Chapainawabganj', 'চাঁপাইনবাবগঞ্জ', '34', '24.5965034', '88.2775122', 'www.chapainawabganj.gov.bd'),
+(19, 2, 'Naogaon', 'নওগাঁ', '35', NULL, NULL, 'www.naogaon.gov.bd'),
+(20, 3, 'Jashore', 'যশোর', '52', '23.16643', '89.2081126', 'www.jessore.gov.bd'),
+(21, 3, 'Satkhira', 'সাতক্ষীরা', '55', NULL, NULL, 'www.satkhira.gov.bd'),
+(22, 3, 'Meherpur', 'মেহেরপুর', '58', '23.762213', '88.631821', 'www.meherpur.gov.bd'),
+(23, 3, 'Narail', 'নড়াইল', '57', '23.172534', '89.512672', 'www.narail.gov.bd'),
+(24, 3, 'Chuadanga', 'চুয়াডাঙ্গা', '51', '23.6401961', '88.841841', 'www.chuadanga.gov.bd'),
+(25, 3, 'Kushtia', 'কুষ্টিয়া', '54', '23.901258', '89.120482', 'www.kushtia.gov.bd'),
+(26, 3, 'Magura', 'মাগুরা', '56', '23.487337', '89.419956', 'www.magura.gov.bd'),
+(27, 3, 'Khulna', 'খুলনা', '49', '22.815774', '89.568679', 'www.khulna.gov.bd'),
+(28, 3, 'Bagerhat', 'বাগেরহাট', '50', '22.651568', '89.785938', 'www.bagerhat.gov.bd'),
+(29, 3, 'Jhenaidah', 'ঝিনাইদহ', '53', '23.5448176', '89.1539213', 'www.jhenaidah.gov.bd'),
+(30, 4, 'Jhalakathi', 'ঝালকাঠি', '61', NULL, NULL, 'www.jhalakathi.gov.bd'),
+(31, 4, 'Patuakhali', 'পটুয়াখালী', '64', '22.3596316', '90.3298712', 'www.patuakhali.gov.bd'),
+(32, 4, 'Pirojpur', 'পিরোজপুর', '63', NULL, NULL, 'www.pirojpur.gov.bd'),
+(33, 4, 'Barisal', 'বরিশাল', '59', NULL, NULL, 'www.barisal.gov.bd'),
+(34, 4, 'Bhola', 'ভোলা', '62', '22.685923', '90.648179', 'www.bhola.gov.bd'),
+(35, 4, 'Barguna', 'বরগুনা', '60', NULL, NULL, 'www.barguna.gov.bd'),
+(36, 5, 'Sylhet', 'সিলেট', '25', '24.8897956', '91.8697894', 'www.sylhet.gov.bd'),
+(37, 5, 'Moulvibazar', 'মৌলভীবাজার', '27', '24.482934', '91.777417', 'www.moulvibazar.gov.bd'),
+(38, 5, 'Habiganj', 'হবিগঞ্জ', '28', '24.374945', '91.41553', 'www.habiganj.gov.bd'),
+(39, 5, 'Sunamganj', 'সুনামগঞ্জ', '26', '25.0658042', '91.3950115', 'www.sunamganj.gov.bd'),
+(40, 6, 'Narsingdi', 'নরসিংদী', '20', '23.932233', '90.71541', 'www.narsingdi.gov.bd'),
+(41, 6, 'Gazipur', 'গাজীপুর', '13', '24.0022858', '90.4264283', 'www.gazipur.gov.bd'),
+(42, 6, 'Shariatpur', 'শরীয়তপুর', '21', NULL, NULL, 'www.shariatpur.gov.bd'),
+(43, 6, 'Narayanganj', 'নারায়নগঞ্জ', '15', '23.63366', '90.496482', 'www.narayanganj.gov.bd'),
+(44, 6, 'Tangail', 'টাঙ্গাইল', '24', NULL, NULL, 'www.tangail.gov.bd'),
+(45, 6, 'Kishoreganj', 'কিশোরগঞ্জ', '23', '24.444937', '90.776575', 'www.kishoreganj.gov.bd'),
+(46, 6, 'Manikganj', 'মানিকগঞ্জ', '14', NULL, NULL, 'www.manikganj.gov.bd'),
+(47, 6, 'Dhaka', 'ঢাকা', '12', '23.7115253', '90.4111451', 'www.dhaka.gov.bd'),
+(48, 6, 'Munshiganj', 'মুন্সিগঞ্জ', '16', NULL, NULL, 'www.munshiganj.gov.bd'),
+(49, 6, 'Rajbari', 'রাজবাড়ী', '22', '23.7574305', '89.6444665', 'www.rajbari.gov.bd'),
+(50, 6, 'Madaripur', 'মাদারীপুর', '19', '23.164102', '90.1896805', 'www.madaripur.gov.bd'),
+(51, 6, 'Gopalganj', 'গোপালগঞ্জ', '17', '23.0050857', '89.8266059', 'www.gopalganj.gov.bd'),
+(52, 6, 'Faridpur', 'ফরিদপুর', '18', '23.6070822', '89.8429406', 'www.faridpur.gov.bd'),
+(53, 7, 'Panchagarh', 'পঞ্চগড়', '45', '26.3411', '88.5541606', 'www.panchagarh.gov.bd'),
+(54, 7, 'Dinajpur', 'দিনাজপুর', '43', '25.6217061', '88.6354504', 'www.dinajpur.gov.bd'),
+(55, 7, 'Lalmonirhat', 'লালমনিরহাট', '46', NULL, NULL, 'www.lalmonirhat.gov.bd'),
+(56, 7, 'Nilphamari', 'নীলফামারী', '42', '25.931794', '88.856006', 'www.nilphamari.gov.bd'),
+(57, 7, 'Gaibandha', 'গাইবান্ধা', '47', '25.328751', '89.528088', 'www.gaibandha.gov.bd'),
+(58, 7, 'Thakurgaon', 'ঠাকুরগাঁও', '44', '26.0336945', '88.4616834', 'www.thakurgaon.gov.bd'),
+(59, 7, 'Rangpur', 'রংপুর', '41', '25.7558096', '89.244462', 'www.rangpur.gov.bd'),
+(60, 7, 'Kurigram', 'কুড়িগ্রাম', '48', '25.805445', '89.636174', 'www.kurigram.gov.bd'),
+(61, 8, 'Sherpur', 'শেরপুর', '31', '25.0204933', '90.0152966', 'www.sherpur.gov.bd'),
+(62, 8, 'Mymensingh', 'ময়মনসিংহ', '29', NULL, NULL, 'www.mymensingh.gov.bd'),
+(63, 8, 'Jamalpur', 'জামালপুর', '32', '24.937533', '89.937775', 'www.jamalpur.gov.bd'),
+(64, 8, 'Netrokona', 'নেত্রকোণা', '30', '24.870955', '90.727887', 'www.netrokona.gov.bd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisions`
+--
+
+CREATE TABLE `divisions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `bn_name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `divisions`
+--
+
+INSERT INTO `divisions` (`id`, `name`, `bn_name`, `code`, `url`) VALUES
+(1, 'Chattagram', 'চট্টগ্রাম', '01', 'www.chittagongdiv.gov.bd'),
+(2, 'Rajshahi', 'রাজশাহী', '03', 'www.rajshahidiv.gov.bd'),
+(3, 'Khulna', 'খুলনা', '04', 'www.khulnadiv.gov.bd'),
+(4, 'Barisal', 'বরিশাল', '05', 'www.barisaldiv.gov.bd'),
+(5, 'Sylhet', 'সিলেট', '06', 'www.sylhetdiv.gov.bd'),
+(6, 'Dhaka', 'ঢাকা', '02', 'www.dhakadiv.gov.bd'),
+(7, 'Rangpur', 'রংপুর', '07', 'www.rangpurdiv.gov.bd'),
+(8, 'Mymensingh', 'ময়মনসিংহ', '08', 'www.mymensinghdiv.gov.bd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `features`
+--
+
+CREATE TABLE `features` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `footers`
+--
+
+CREATE TABLE `footers` (
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` longtext DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT 1 COMMENT '1=link based;2=description based',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `footers`
+--
+
+INSERT INTO `footers` (`section_id`, `name`, `link`, `type`, `created_at`, `updated_at`) VALUES
+(18, 'রাজনীতি', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(18, 'বিনোদন', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(18, 'অটোটেক', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(18, 'ডাক্তার আছেন', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(18, 'দৃষ্টিপাত', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(18, 'সোশ্যাল মিডিয়া', '#', 1, '2024-09-25 04:28:26', '2024-09-25 04:28:26'),
+(19, 'অর্থনীতি', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(19, 'শিক্ষাঙ্গন', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(19, 'পরবাস', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(19, 'চিত্র বিচিত্র', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(19, 'বাতায়ন', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(19, 'সাহিত্য', '#', 1, '2024-09-25 04:29:04', '2024-09-25 04:29:04'),
+(20, '<p><strong>মাওলানা আবুল বাসার নোমানী</strong></p><p><strong>প্রতিষ্ঠাতা :</strong> আল মাসজিদ ফাউন্ডেশন বাংলাদেশ</p><p>প্রকাশক কর্তৃক ক-২৪৪ প্রগতি সরণি, কুড়িল (বিশ্বরোড), বারিধারা, ঢাকা-১২২৯ থেকে প্রকাশিত এবং যমুনা প্রিন্টিং এন্ড পাবলিশিং লিঃ থেকে মুদ্রিত।</p><p>পিএবিএক্স : ৯৮২৪০৫৪-৬১, রিপোর্টিং : ৯৮২৩০৭৩, বিজ্ঞাপন : ৯৮২৪০৬২, ফ্যাক্স : ৯৮২৪০৬৩, সার্কুলেশন : ৯৮২৪০৭২। ফ্যাক্স : ৯৮২৪০৬৬</p><p>Email: companyname@gmail.com</p><p>স্বত্ব © অধিকার সংরক্ষিত</p><p></p><p></p><p></p><p></p>', NULL, 2, '2024-09-25 04:31:11', '2024-09-25 04:31:11'),
+(17, '<h5 class=\"ql-align-right\"><span class=\"ql-size-large\">Address</span></h5><p class=\"ql-align-right\">House No. 17, Road No. 5, Sector No. 7, Uttara Model Town, Dhaka-1230</p><p><br></p>', NULL, 2, '2025-12-07 01:21:12', '2025-12-07 01:21:12'),
+(16, '<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(11, 82, 164);\"><img src=\"https://banglabulletin.com/dream-homes/assets/img/icons/logo-transparent.png\" style=\"margin: 0px 0px 10px; padding: 0px; box-sizing: border-box; width: 80px; max-width: 80px;\"></span></p><h5>Hotline: 01986330128</h5><h5>Mobile:  01986330128</h5><h5>Email: dreamhomesuttara@gmail.com</h5><p><br></p>', NULL, 2, '2026-03-31 10:23:08', '2026-03-31 10:23:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image_videos`
+--
+
+CREATE TABLE `image_videos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL COMMENT 'for video youtube link',
+  `photo` varchar(255) DEFAULT NULL,
+  `sticky` tinyint(1) DEFAULT NULL COMMENT 'Home page big sticky video',
+  `block` tinyint(1) DEFAULT NULL COMMENT 'Home page under big sticky video block',
+  `sticky_image` tinyint(1) DEFAULT NULL COMMENT 'Home page big sticky image',
+  `block_image` tinyint(1) DEFAULT NULL COMMENT 'Home page under big sticky block image',
+  `important` tinyint(1) DEFAULT NULL COMMENT 'its for main page sticky. slider for image and video for at the top',
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=image;2=video',
+  `video_type` tinyint(4) DEFAULT NULL COMMENT '1=uploaded;2=youtube',
+  `total_view` int(11) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `map_link` text DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`id`, `name`, `slug`, `photo`, `map_link`, `description`, `status`, `order`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'ঢাকা ড্রীম হোমস', 'dhaka-dreem-homs', NULL, 'বাড়ি- ১৭, রোড: ০৫, সেক্টর- ০৭, উত্তরা, ঢাকা- ১২৩০', NULL, 1, 1, '2025-12-07 02:16:01', '2026-02-09 22:07:34', NULL),
+(2, 'কলেজ ড্রীম হোমস', 'klej-dreem-homs', NULL, 'বাড়ি- ২২, রোড- ০৩, সেক্টর- ০৬, উত্তরা, ঢাকা- ১২৩০', NULL, 1, 2, '2025-12-07 02:22:37', '2026-02-09 22:08:25', NULL),
+(3, 'চট্টগ্রাম', 'cttgram', NULL, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d227236.3570514981!2d91.819037!3d22.357395!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd8a64095dfd3%3A0x5015cc5bcb6905d9!2sChattogram!5e1!3m2!1sen!2sbd!4v1765609989518!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, 1, 3, '2025-12-13 01:12:19', '2026-01-05 06:09:46', '2026-01-05 06:09:46'),
+(4, 'চট্টগ্রাম ড্রীম হোমস', 'cttgram-dreem-homs', NULL, 'আশরাফ আলী বিল্ডিং, শমসেরপাড়া, চানমিয়া সরকারি প্রাথমিক বিদ্যালয় এর উত্তর পার্শ্বে, চান্দগাও, চট্টগ্রাম', NULL, 1, 6, '2026-01-05 06:09:37', '2026-02-09 22:15:00', NULL),
+(5, 'ওয়ামী ড্রীম হোমস', 'wamee-dreem-homs', NULL, 'ওয়ামী মসজিদ, সফিপুর, কালিয়াকৈর, গাজীপুর', NULL, 1, 4, '2026-02-09 22:10:47', '2026-02-09 22:10:47', NULL),
+(6, 'যশোর ড্রীম হোমস', 'zsor-dreem-heams', NULL, 'এডাস আভা ইন্টারন্যাশনাল একাডেমি, রুপদিয়া, রুদ্রপুর, চাঁচড়া সদর, যশোর', NULL, 1, 5, '2026-02-09 22:12:15', '2026-02-09 22:12:15', NULL),
+(7, 'ফিমেল ড্রীম হোমস', 'fimel-dreem-homs', NULL, '১ নং শ্যামলি হাউজিং, রোড- ৫/এ, সেক্টর- ৫, উত্তরা, ঢাকা- ১২৩০', NULL, 1, 3, '2026-02-09 22:14:26', '2026-02-09 22:14:26', NULL),
+(8, 'সুনামগঞ্জ ড্রীম হোমস', 'sunamgnj-dreem-homs', NULL, 'সাচায়ানী, নন্দীর গাঁও, জগন্নাথপুর, সুনামগঞ্জ', NULL, 1, 7, '2026-02-09 22:16:36', '2026-02-09 22:16:36', NULL),
+(9, 'মৌলভীবাজার ড্রীম হোমস', 'moulveebajar-dreem-homs', NULL, 'পুলিশ লাইন্স, শ্রীমঙ্গল রোড, মৌলভীবাজার', NULL, 1, 8, '2026-02-09 22:17:38', '2026-02-09 22:17:38', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+CREATE TABLE `members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `salary` double DEFAULT 0,
+  `slug` varchar(255) DEFAULT NULL,
+  `phone_no` varchar(255) DEFAULT NULL COMMENT 'comma separated',
+  `email` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `linkedin` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `blood_group` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `name`, `code`, `salary`, `slug`, `phone_no`, `email`, `description`, `link`, `facebook`, `twitter`, `linkedin`, `date_of_birth`, `blood_group`, `photo`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Engr. md. arifur rahman', NULL, 0, 'Engr.-md.-arifur-rahman', '01758444444', 'softwareindustry2008@gmail.com', '<p><span style=\"color: rgb(18, 18, 18);\">যুক্তরাজ্যের দুই স্বনামধন্য মানবাধিকার ও নীতি গবেষণাপ্রতিষ্ঠান রানিমিড ট্রাস্ট এবং রিপ্রিভ গত বৃহস্পতিবার এ গবেষণা প্রতিবেদন প্রকাশ করেছে। প্রতিবেদনে বলা হয়েছে, যুক্তরাজ্যে প্রায় ৯ মিলিয়ন (৯০ লাখ) মানুষ, অর্থাৎ মোট জনসংখ্যার প্রায় ১৩ শতাংশ দেশটির স্বরাষ্ট্রমন্ত্রীর ক্ষমতায় আইনগতভাবেই নাগরিকত্ব হারাতে পারেন</span></p>', NULL, 'https://www.facebook.com/engineer.arifur.rahman/', 'https://www.facebook.com/engineer.arifur.rahman/', 'https://www.facebook.com/engineer.arifur.rahman/', '1984-09-13', NULL, 'member/engr-md-arifur-rahman.jpg', 1, '2025-12-13 00:49:09', '2025-12-13 00:49:09', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_designations`
+--
+
+CREATE TABLE `member_designations` (
+  `member_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `designation_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `member_designations`
+--
+
+INSERT INTO `member_designations` (`member_id`, `designation_id`, `created_at`, `updated_at`) VALUES
+(1, 3, '2025-12-13 00:49:09', '2025-12-13 00:49:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '2020_08_08_120950_create_divisions_table', 1),
+(3, '2020_08_08_120951_create_designations_table', 1),
+(4, '2020_08_08_120951_create_districts_table', 1),
+(5, '2020_08_08_120952_create_areas_table', 1),
+(6, '2020_08_08_120953_create_members_table', 1),
+(7, '2020_08_08_120954_create_member_designations_table', 1),
+(8, '2024_09_11_060008_create_categories_table', 1),
+(9, '2024_09_11_060014_create_tags_table', 1),
+(10, '2024_09_11_060037_create_category_tags_table', 1),
+(11, '2024_09_11_060110_create_writers_table', 1),
+(12, '2024_09_11_060111_create_writer_designations_table', 1),
+(13, '2024_09_11_060112_create_news_table', 1),
+(14, '2024_09_11_060126_create_news_categories_table', 1),
+(15, '2024_09_12_060928_create_sections_table', 1),
+(16, '2024_09_12_060949_create_section_categories_table', 1),
+(17, '2024_09_13_110956_create_footers_table', 1),
+(18, '2024_09_13_112035_create_social_media_table', 1),
+(19, '2024_09_13_113522_create_news_sections_table', 1),
+(20, '2024_09_13_113629_create_settings_table', 1),
+(21, '2024_09_13_113633_create_color_settings_table', 1),
+(22, '2024_09_13_124327_create_image_videos_table', 1),
+(23, '2024_09_16_091039_create_prayer_timers_table', 1),
+(24, '2024_09_16_144322_create_permission_features_table', 1),
+(25, '2024_09_16_144323_create_permission_tables', 1),
+(26, '2024_09_20_033532_create_user_category_permissions_table', 1),
+(27, '2024_09_20_045820_create_votings_table', 1),
+(28, '2024_09_20_045824_create_voting_counts_table', 1),
+(29, '2024_09_20_045840_create_advertises_table', 1),
+(30, '2024_09_20_050908_create_advertise_sections_table', 1),
+(31, '2024_11_30_045145_create_albums_table', 1),
+(32, '2024_11_30_050632_create_album_categories_table', 1),
+(33, '2025_01_29_183153_create_sliders_table', 1),
+(34, '2025_05_11_055101_add_several_columns_to_settings_table', 1),
+(35, '2025_09_25_064004_create_package_categories_table', 1),
+(36, '2025_10_04_055442_create_features_table', 1),
+(37, '2025_12_02_152017_create_branches_table', 1),
+(38, '2025_12_02_152023_create_locations_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 2),
+(3, 'App\\Models\\User', 2),
+(1, 'App\\Models\\User', 4),
+(1, 'App\\Models\\User', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `top_title` varchar(255) DEFAULT NULL,
+  `bottom_title` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL COMMENT 'thumb image will be created when upload the main photo addint thumb_',
+  `description` longtext DEFAULT NULL,
+  `division_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track divisionwise news',
+  `district_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track districtwise news',
+  `area_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track areawise news',
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'who write/post this',
+  `writer_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `action_date` date DEFAULT NULL COMMENT 'to show the date&time in news feed',
+  `total_visit` int(11) DEFAULT NULL,
+  `total_share` int(11) DEFAULT NULL,
+  `total_print` int(11) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `show_in_home` tinyint(1) DEFAULT NULL COMMENT 'null=inactive;1=active',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `name`, `top_title`, `bottom_title`, `slug`, `photo`, `description`, `division_id`, `district_id`, `area_id`, `user_id`, `writer_id`, `action_date`, `total_visit`, `total_share`, `total_print`, `order`, `show_in_home`, `status`, `meta_title`, `meta_keyword`, `meta_description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'ড্রিম হোমস ছাত্রদের সাফল্যগাথা', NULL, NULL, 'suePmngHBYVsz8s', 'news/suepmnghbyvsz8s.webp', '<p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);\">আলহামদুলিল্লাহ</span></p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);\">ড্রিম হোমসের শিক্ষার্থীরা প্রতিকূলতাকে পেছনে ফেলে আলোর পথে এগিয়ে চলেছে। এখানে প্রত্যেকটি শিশু শুধু আশ্রয়ই নয়, পায় সঠিক দিকনির্দেশনা, মানসম্মত শিক্ষা এবং আত্মবিশ্বাস গড়ে তোলার সুযোগ। নানা সামাজিক চ্যালেঞ্জ সত্ত্বেও তারা নিজেদের স্বপ্ন ধরে রাখছে এবং প্রতিদিনই নতুন সাফল্যের গল্প লিখছে। কেউ ভালো রেজাল্ট করছে, কেউ আবার বিভিন্ন প্রতিযোগিতায় অংশ নিয়ে প্রতিষ্ঠানকে গর্বিত করছে। প্রযুক্তি, ক্রীড়া, শিল্প-সংস্কৃতি—সব ক্ষেত্রেই তারা নিজেদের দক্ষতা তুলে ধরছে। তাদের অধ্যবসায়, শৃঙ্খলা ও ইতিবাচক মানসিকতা ড্রিম হোমসের পরিবেশকে আরও সমৃদ্ধ করে। এই সাফল্যগুলো শুধু তাদের ব্যক্তিগত অর্জন নয়, বরং পুরো প্রতিষ্ঠানের যত্ন ও ভালোবাসার প্রতিফলন। ড্রিম হোমস বিশ্বাস করে—প্রতিটি শিশুই পারে, যদি তাকে সুযোগ দেওয়া হয়। আর সেই সুযোগই তাদের ভবিষ্যতের দরজা খুলে দিচ্ছে।</span></p><p><br></p>', NULL, NULL, NULL, 4, NULL, '2025-12-07', 9, NULL, NULL, 1, NULL, 1, NULL, NULL, NULL, '2025-12-07 02:06:22', '2026-04-28 11:00:15', NULL),
+(2, 'ড্রিম হোমস্ স্পোর্টস অনুষ্ঠিত', NULL, NULL, '1KVW91FLWtG6vh4', 'news/1kvw91flwtg6vh4.webp', '<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);\">ড্রিম হোমসে প্রাণবন্ত পরিবেশে অনুষ্ঠিত হয়েছে বার্ষিক স্পোর্টস প্রতিযোগিতা। শিশুদের হাসি, উৎসাহ এবং প্রতিযোগিতার মনোভাব পুরো মাঠে এক বিশেষ উচ্ছ্বাস ছড়িয়ে দিয়েছে। দৌড়, লাফ, বল খেলা সহ নানা ইভেন্টে অংশ নিয়ে তারা দেখিয়েছে নিজেদের দক্ষতা ও দলগত চেতনা। খেলাধুলার মাধ্যমে তাদের শারীরিক সুস্থতা, আত্মবিশ্বাস এবং পারস্পরিক সহযোগিতার মানসিকতা আরও বৃদ্ধি পেয়েছে। এই আয়োজন শুধু বিনোদনই নয়, বরং শিশুদের মানসিক বিকাশ ও সুস্থ প্রতিযোগিতার মূল্যবোধ তৈরি করার একটি সুন্দর পদক্ষেপ।</span></p>', NULL, NULL, NULL, 4, NULL, '2025-12-07', 8, NULL, NULL, 2, NULL, 1, NULL, NULL, NULL, '2025-12-07 02:07:18', '2026-04-06 17:00:45', NULL),
+(3, 'Donate us', NULL, NULL, 'UyZXiy3XL9PlNeq', NULL, '<p><img src=\"data:image/png;base64,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\"></p>', NULL, NULL, NULL, 1, NULL, '2025-12-09', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-09 07:50:49', '2025-12-09 07:50:49', NULL),
+(4, 'test', NULL, NULL, 'IGhQHG0MxhXLBEu', 'news/ighqhg0mxhxlbeu.jpg', '<p>test</p>', NULL, NULL, NULL, 1, NULL, '2025-12-09', 10, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-09 08:16:16', '2026-03-26 23:38:59', NULL),
+(5, 'tead', NULL, NULL, '4Djd0yzqolEqvT1', NULL, '<p>fsdfsa</p>', NULL, NULL, NULL, 1, NULL, '2025-12-09', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, '2025-12-09 08:23:53', '2025-12-09 08:23:53', NULL),
+(6, 'test', NULL, NULL, 'w6MmT8GHuTVZJyN', 'news/w6mmt8ghutvzjyn.jpg', '<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);\">আলহামদুলিল্লাহড্রিম হোমসের শিক্ষার্থীরা প্রতিকূলতাকে পেছনে ফেলে আলোর পথে এগিয়ে চলেছে। এখানে প্রত্যেকটি শিশু শুধু আশ্রয়ই নয়, পায় সঠিক দিকনির্দেশনা, মানসম্মত শিক্ষা এবং আত্মবিশ্বাস গড়ে তোলার সুযোগ। নানা সামাজিক চ্যালেঞ্জ সত্ত্বেও তারা নিজেদের স্বপ্ন ধরে রাখছে এবং প্রতিদিনই নতুন সাফল্যের গল্প লিখছ</span></p>', NULL, NULL, NULL, 4, NULL, '2025-12-13', 37, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2025-12-13 03:44:44', '2026-05-03 07:10:37', NULL),
+(7, 'test 02', NULL, NULL, 'lThjEQZG8wETohk', 'news/lthjeqzg8wetohk.png', '<p>ঘটনার সিসিটিভি ক্যামেরা ফুটেজ বিশ্লেষণ করে ওই ব্যক্তিকে শনাক্ত করা হয়েছে বলে পুলিশ জানিয়েছে। তাঁর ব্যাপারে তথ্য দিতে সবাইকে অনুরোধ জানিয়েছে ডিএমপি। আজ শনিবার ঢাকা মেট্রোপলিটন পুলিশ (ডিএমপি) সংবাদ বিজ্ঞপ্তিতে এ খবর জানিয়েছে।</p><p><br></p><p>ওসমান হাদির ওপর হামলাকারীদের খুঁজতে পুলিশ অভিযান চালাচ্ছে বলে ওই বিজ্ঞপ্তিতে জানানো হয়। শনাক্ত ব্যক্তির সম্পর্কে কোনো তথ্য থাকলে পুলিশকে জানাতে অনুরোধ জানানো হয়েছে।</p>', NULL, NULL, NULL, 4, NULL, '2025-12-13', 22, NULL, NULL, 2, 1, 1, NULL, NULL, NULL, '2025-12-13 03:47:20', '2026-04-22 22:12:04', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news_categories`
+--
+
+CREATE TABLE `news_categories` (
+  `news_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `news_categories`
+--
+
+INSERT INTO `news_categories` (`news_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(3, 5, '2025-12-09 07:52:45', '2025-12-09 07:52:45'),
+(4, 1, '2025-12-09 08:16:45', '2025-12-09 08:16:45'),
+(4, 6, '2025-12-09 08:16:45', '2025-12-09 08:16:45'),
+(5, 5, '2025-12-09 08:23:53', '2025-12-09 08:23:53'),
+(5, 8, '2025-12-09 08:23:53', '2025-12-09 08:23:53'),
+(7, 10, '2025-12-13 03:47:20', '2025-12-13 03:47:20'),
+(1, 1, '2025-12-13 03:49:44', '2025-12-13 03:49:44'),
+(2, 1, '2025-12-13 03:50:12', '2025-12-13 03:50:12'),
+(6, 10, '2025-12-13 03:51:12', '2025-12-13 03:51:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news_sections`
+--
+
+CREATE TABLE `news_sections` (
+  `news_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `package_categories`
+--
+
+CREATE TABLE `package_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `package_categories`
+--
+
+INSERT INTO `package_categories` (`id`, `name`, `slug`, `order`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Hajj', 'Hajj', 1, 1, NULL, NULL, NULL),
+(2, 'Umrah', 'Umrah', 2, 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `permission_feature_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `route_name` varchar(255) DEFAULT NULL,
+  `guard_name` varchar(255) NOT NULL DEFAULT 'web',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `permission_feature_id`, `name`, `route_name`, `guard_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Dashboard', 'admin.dashboard', 'web', 1, NULL, NULL, NULL),
+(2, 2, 'Category List', 'admin.category.index', 'web', 1, NULL, NULL, NULL),
+(3, 2, 'Category Create', 'admin.category.create', 'web', 1, NULL, NULL, NULL),
+(4, 2, 'Category Edit/Update', 'admin.category.edit', 'web', 1, NULL, NULL, NULL),
+(5, 2, 'Category Delete', 'admin.category.destroy', 'web', 1, NULL, NULL, NULL),
+(6, 3, 'SubCategory List', 'admin.subcategory.index', 'web', 1, NULL, NULL, NULL),
+(7, 3, 'SubCategory Create', 'admin.subcategory.create', 'web', 1, NULL, NULL, NULL),
+(8, 3, 'SubCategory Edit/Update', 'admin.subcategory.edit', 'web', 1, NULL, NULL, NULL),
+(9, 3, 'SubCategory Delete', 'admin.subcategory.destroy', 'web', 1, NULL, NULL, NULL),
+(10, 4, 'News List', 'admin.news.index', 'web', 1, NULL, NULL, NULL),
+(11, 4, 'News Create', 'admin.news.create', 'web', 1, NULL, NULL, NULL),
+(12, 4, 'News Edit/Update', 'admin.news.edit', 'web', 1, NULL, NULL, NULL),
+(13, 4, 'News Delete', 'admin.news.destroy', 'web', 1, NULL, NULL, NULL),
+(14, 5, 'Image List', 'admin.image.index', 'web', 1, NULL, NULL, NULL),
+(15, 5, 'Image Create', 'admin.image.create', 'web', 1, NULL, NULL, NULL),
+(16, 5, 'Image Edit/Update', 'admin.image.edit', 'web', 1, NULL, NULL, NULL),
+(17, 5, 'Image Delete', 'admin.image.destroy', 'web', 1, NULL, NULL, NULL),
+(18, 6, 'Video List', 'admin.video.index', 'web', 1, NULL, NULL, NULL),
+(19, 6, 'Video Create', 'admin.video.create', 'web', 1, NULL, NULL, NULL),
+(20, 6, 'Video Edit/Update', 'admin.video.edit', 'web', 1, NULL, NULL, NULL),
+(21, 6, 'Video Delete', 'admin.video.destroy', 'web', 1, NULL, NULL, NULL),
+(22, 7, 'Slider List', 'admin.slider.index', 'web', 1, NULL, NULL, NULL),
+(23, 7, 'Slider Create', 'admin.slider.create', 'web', 1, NULL, NULL, NULL),
+(24, 7, 'Slider Edit/Update', 'admin.slider.edit', 'web', 1, NULL, NULL, NULL),
+(25, 7, 'Slider Delete', 'admin.slider.destroy', 'web', 1, NULL, NULL, NULL),
+(26, 8, 'Feature List', 'admin.feature.index', 'web', 1, NULL, NULL, NULL),
+(27, 8, 'Feature Create', 'admin.feature.create', 'web', 1, NULL, NULL, NULL),
+(28, 8, 'Feature Edit/Update', 'admin.feature.edit', 'web', 1, NULL, NULL, NULL),
+(29, 8, 'Feature Delete', 'admin.feature.destroy', 'web', 1, NULL, NULL, NULL),
+(30, 9, 'Hajj and Umrah List', 'admin.package.index', 'web', 1, NULL, NULL, NULL),
+(31, 9, 'Hajj and Umrah Create', 'admin.package.create', 'web', 1, NULL, NULL, NULL),
+(32, 9, 'Hajj and Umrah Edit/Update', 'admin.package.edit', 'web', 1, NULL, NULL, NULL),
+(33, 9, 'Hajj and Umrah Delete', 'admin.package.destroy', 'web', 1, NULL, NULL, NULL),
+(34, 10, 'Other Package List', 'admin.otherpackage.index', 'web', 1, NULL, NULL, NULL),
+(35, 10, 'Other Package Create', 'admin.otherpackage.create', 'web', 1, NULL, NULL, NULL),
+(36, 10, 'Other Package Edit/Update', 'admin.otherpackage.edit', 'web', 1, NULL, NULL, NULL),
+(37, 10, 'Other Package Delete', 'admin.otherpackage.destroy', 'web', 1, NULL, NULL, NULL),
+(38, 11, 'User List', 'admin.user.index', 'web', 1, NULL, NULL, NULL),
+(39, 11, 'User Create', 'admin.user.create', 'web', 1, NULL, NULL, NULL),
+(40, 11, 'User Edit/Update', 'admin.user.edit', 'web', 1, NULL, NULL, NULL),
+(41, 11, 'User Delete', 'admin.user.destroy', 'web', 1, NULL, NULL, NULL),
+(42, 12, 'Title,Logo,Banner Update', 'admin.setting.index', 'web', 1, NULL, NULL, NULL),
+(43, 13, 'Social Media Update', 'admin.socialmedia.index', 'web', 1, NULL, NULL, NULL),
+(44, 14, 'Footer Widget Update', 'admin.footer.index', 'web', 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_features`
+--
+
+CREATE TABLE `permission_features` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission_features`
+--
+
+INSERT INTO `permission_features` (`id`, `name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Dashboard', 1, NULL, NULL, NULL),
+(2, 'Category Management', 1, NULL, NULL, NULL),
+(3, 'SubCategory Management', 1, NULL, NULL, NULL),
+(4, 'News Management', 1, NULL, NULL, NULL),
+(5, 'Image Management', 1, NULL, NULL, NULL),
+(6, 'Video Management', 1, NULL, NULL, NULL),
+(7, 'Slider Management', 1, NULL, NULL, NULL),
+(8, 'Feature Management', 1, NULL, NULL, NULL),
+(9, 'Hajj & Umrah Management', 1, NULL, NULL, NULL),
+(10, 'Other Package Management', 1, NULL, NULL, NULL),
+(11, 'User Management', 1, NULL, NULL, NULL),
+(12, 'Title,Logo,Banner Management', 1, NULL, NULL, NULL),
+(13, 'Social Media', 1, NULL, NULL, NULL),
+(14, 'Footer Widget', 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prayer_timers`
+--
+
+CREATE TABLE `prayer_timers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `timing` time DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=main prayer time;2=other timing',
+  `order` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL DEFAULT 'web',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', 'web', 1, NULL, NULL, NULL),
+(2, 'Admin', 'web', 1, NULL, NULL, NULL),
+(3, 'Manager', 'web', 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sections`
+--
+
+CREATE TABLE `sections` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT 'home page different section name ex:box,',
+  `route_name` varchar(255) DEFAULT NULL COMMENT 'to check the section name/for checking purpose',
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=News;2=Category,3=Footer Blocks,4=Ads Block positions',
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`id`, `name`, `route_name`, `type`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Scroll News', 'scroll_news', 1, NULL, NULL, NULL, NULL),
+(2, 'Home Top News 4', 'home4', 1, NULL, NULL, NULL, NULL),
+(3, 'Home Top Corner News', 'top_corner', 1, NULL, NULL, NULL, NULL),
+(4, 'Home Sticky News', 'sticky_news', 1, NULL, NULL, NULL, NULL),
+(5, 'Home Block News 6', 'block6_news', 1, NULL, NULL, NULL, NULL),
+(6, 'Important News', 'important_news', 1, NULL, NULL, NULL, NULL),
+(7, 'Category Sticky News', 'sticky_category_news', 1, NULL, NULL, NULL, NULL),
+(8, 'Show on Home Writer Category', 'writer_category_news', 1, NULL, NULL, NULL, NULL),
+(9, 'Show on Main Menu', 'main_menu_category', 2, NULL, NULL, NULL, NULL),
+(10, 'Big Box Category Section', 'big_box_category', 2, NULL, NULL, NULL, NULL),
+(11, 'Box Category Section', 'box_category', 2, NULL, NULL, NULL, NULL),
+(12, 'Block Category Section', 'block_category', 2, NULL, NULL, NULL, NULL),
+(13, 'Home Bottom Block Category1', 'bottom_category1', 2, NULL, NULL, NULL, NULL),
+(14, 'Home Bottom Block Category2', 'bottom_category2', 2, NULL, NULL, NULL, NULL),
+(15, 'Home Bottom Block Category3', 'bottom_category3', 2, NULL, NULL, NULL, NULL),
+(16, 'Footer Column 1', 'footer1', 3, NULL, NULL, NULL, NULL),
+(17, 'Footer Column 2', 'footer2', 3, NULL, NULL, NULL, NULL),
+(18, 'Square Home Top Right1', 'home_top_square_ad1', 4, NULL, NULL, NULL, NULL),
+(19, 'Square Home Top Right2', 'home_top_square_ad2', 4, NULL, NULL, NULL, NULL),
+(20, 'Horizontal After Home News 6', 'home_top_horizontal_ad', 4, NULL, NULL, NULL, NULL),
+(21, 'Horizontal After Block Category Left', 'home_bottom_horizontal_ad1', 4, NULL, NULL, NULL, NULL),
+(22, 'Horizontal After Block Category Right', 'home_bottom_horizontal_ad2', 4, NULL, NULL, NULL, NULL),
+(23, 'Horizontal News Category Top', 'news_category_top_horizontal', 4, NULL, NULL, NULL, NULL),
+(24, 'Square News Category Top Right1', 'news_category_top_square_ad1', 4, NULL, NULL, NULL, NULL),
+(25, 'Square News Category Top Right2', 'news_category_top_square_ad2', 4, NULL, NULL, NULL, NULL),
+(26, 'Horizontal News Top', 'news_top_horizontal', 4, NULL, NULL, NULL, NULL),
+(27, 'Square News Top Right1', 'news_top_square_ad1', 4, NULL, NULL, NULL, NULL),
+(28, 'Square News Top Right2', 'news_top_square_ad2', 4, NULL, NULL, NULL, NULL),
+(29, 'Square News Right3', 'news_top_square_ad3', 4, NULL, NULL, NULL, NULL),
+(30, 'Square News Right4', 'news_top_square_ad4', 4, NULL, NULL, NULL, NULL),
+(31, 'Square Inside News', 'news_inside_square', 4, NULL, NULL, NULL, NULL),
+(32, 'Horizontal Bottom News', 'news_horizontal_bottom', 4, NULL, NULL, NULL, NULL),
+(33, 'Horizontal Similar News1', 'news_horizontal_similar1', 4, NULL, NULL, NULL, NULL),
+(34, 'Horizontal Similar News2', 'news_horizontal_similar2', 4, NULL, NULL, NULL, NULL),
+(35, 'Horizontal Similar News3', 'news_horizontal_similar3', 4, NULL, NULL, NULL, NULL),
+(36, 'Footer Column 3', 'footer3', 3, NULL, NULL, NULL, NULL),
+(37, 'Footer Column 4', 'footer4', 3, NULL, NULL, NULL, NULL),
+(38, 'Footer Column 5', 'footer5', 3, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_categories`
+--
+
+CREATE TABLE `section_categories` (
+  `section_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `section_categories`
+--
+
+INSERT INTO `section_categories` (`section_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(9, 1, '2025-12-09 11:52:39', '2025-12-09 11:52:39'),
+(9, 5, '2025-12-09 11:53:18', '2025-12-09 11:53:18'),
+(9, 9, '2025-12-09 11:53:59', '2025-12-09 11:53:59'),
+(9, 10, '2025-12-09 11:54:32', '2025-12-09 11:54:32'),
+(9, 11, '2025-12-09 11:55:00', '2025-12-09 11:55:00'),
+(9, 12, '2025-12-09 11:56:35', '2025-12-09 11:56:35'),
+(9, 13, '2025-12-09 11:57:24', '2025-12-09 11:57:24'),
+(9, 14, '2025-12-09 12:00:05', '2025-12-09 12:00:05'),
+(9, 18, '2025-12-13 01:26:52', '2025-12-13 01:26:52'),
+(9, 20, '2025-12-13 01:31:07', '2025-12-13 01:31:07'),
+(9, 22, '2026-03-10 17:31:18', '2026-03-10 17:31:18'),
+(9, 23, '2026-04-14 21:04:28', '2026-04-14 21:04:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `copyright` varchar(255) DEFAULT NULL,
+  `short_name` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL COMMENT 'it will use next to favicon',
+  `logo` varchar(255) DEFAULT NULL,
+  `banner` varchar(255) DEFAULT NULL,
+  `admin_logo` varchar(255) DEFAULT NULL,
+  `footer_logo` varchar(255) DEFAULT NULL,
+  `scroll_top` varchar(255) DEFAULT NULL,
+  `favicon` varchar(255) DEFAULT NULL,
+  `male_students` int(11) DEFAULT NULL,
+  `female_students` int(11) DEFAULT NULL,
+  `donors` int(11) DEFAULT NULL,
+  `alumni` int(11) DEFAULT NULL,
+  `teachers` int(11) DEFAULT NULL,
+  `staffs` int(11) DEFAULT NULL,
+  `donate` text DEFAULT NULL,
+  `notice_title` varchar(255) DEFAULT NULL,
+  `notice` longtext DEFAULT NULL,
+  `about_title` varchar(255) DEFAULT NULL,
+  `about` longtext DEFAULT NULL,
+  `about_center_image` varchar(255) DEFAULT NULL,
+  `about_image` varchar(255) DEFAULT NULL,
+  `footer_connect_image` varchar(200) DEFAULT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `logo_background_color` varchar(255) DEFAULT NULL,
+  `logo_side_text_color` varchar(255) DEFAULT NULL,
+  `menu_border_top_color` varchar(255) DEFAULT NULL,
+  `menu_border_bottom_color` varchar(255) DEFAULT NULL,
+  `menu_background_color` varchar(255) DEFAULT NULL,
+  `menu_item_hover_background_color` varchar(255) DEFAULT NULL,
+  `menu_item_hover_text_color` varchar(255) DEFAULT NULL,
+  `submenu_background_color` varchar(255) DEFAULT NULL,
+  `submenu_arrow_background_color` varchar(255) DEFAULT NULL,
+  `submenu_item_hover_background_color` varchar(255) DEFAULT NULL,
+  `submenu_item_hover_text_color` varchar(255) DEFAULT NULL,
+  `footer_top_background_color` varchar(255) DEFAULT NULL,
+  `footer_body_background_color` varchar(255) DEFAULT NULL,
+  `footer_bottom_background_color` varchar(255) DEFAULT NULL,
+  `footer_text_color` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL, 
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `bottom_carousel_title` varchar(255) DEFAULT NULL,
+  `right_widget_color` varchar(255) DEFAULT NULL,
+  `right_widget_title_bgcolor` varchar(255) DEFAULT NULL,
+  `right_widget_bgcolor` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `email`, `phone`, `copyright`, `short_name`, `title`, `logo`, `banner`, `admin_logo`, `footer_logo`, `scroll_top`, `favicon`, `male_students`, `female_students`, `donors`, `alumni`, `teachers`, `staffs`, `donate`, `notice_title`, `notice`, `about_title`, `about`, `about_center_image`, `about_image`, `footer_connect_image`, `meta_title`, `meta_keyword`, `meta_description`, `logo_background_color`, `logo_side_text_color`, `menu_border_top_color`, `menu_border_bottom_color`, `menu_background_color`, `menu_item_hover_background_color`, `menu_item_hover_text_color`, `submenu_background_color`, `submenu_arrow_background_color`, `submenu_item_hover_background_color`, `submenu_item_hover_text_color`, `footer_top_background_color`, `footer_body_background_color`, `footer_bottom_background_color`, `footer_text_color`, `created_at`, `updated_at`, `deleted_at`, `bottom_carousel_title`, `right_widget_color`, `right_widget_title_bgcolor`, `right_widget_bgcolor`) VALUES
+(1, 'Dream Homes', 'dreamhomesuttara@gmail.com', '01986330128', 'Copyright © 2025-26 Dream Homes. All rights reserved.', 'Dream Homes', 'Dream Homes', 'logo/logo.png', 'logo/banner.jpg', 'logo/admin-logo.png', 'logo/footer-logo.png', 'logo/scroll-top.png', 'logo/favicon.png', 370, 82, 60, 42, 150, 86, 'ড্রিম হোমসের এই সার্বিক কার্যক্রম পরিচালনা করার জন্য আপনাদের সহযোগিতা কামনা করছি। সহযোগিতার জন্য কল করুন এই 01986330128 নাম্বারে।', 'রমজানে প্রাতিষ্ঠানিক কার্যক্রম প্রসঙ্গে', '<p>এতদ্বারা <strong>ড্রিম হোমসের </strong>সকল শিক্ষার্থী, শিক্ষক, কর্মকর্তা ও কর্মচারীদের দৃষ্টি আকর্ষণ করা হচ্ছে যে আসন্ন মাহে রমজান উপলক্ষ্যে অ্যাকাডেমিক এবং প্রশাসনিক কার্যক্রম স্ব স্ব বিভাগীয় প্রধান কর্তৃক পরিচালিত হবে, এই মর্মে সকলকে বিভাগীয় প্রধানের নির্দেশনা মেনে চলার জন্য নির্দেশনা প্রদান করা হলো।</p><p><br></p><p>																																							নির্দেশনায়</p><p>																																				হাসনাইন আহমেদ</p><p>																																							পরিচালক		 																			</p><p>																																				ড্রিম হোমস, উত্তরা</p>', 'আমাদের সম্পর্কে', '<p class=\"ql-align-justify\">​প্রতিটি মানুষই স্বপ্ন নিয়ে বেঁচে থাকে। আশা-আকাঙ্খা-স্বপ্নের সাথে বাস্তব কর্মকাণ্ডের কার্যকরী সমন্বয়ই একজন মানুষকে তার সফলতার স্বর্ণ-শিখরে পৌঁছে দেয়। বাবা-মা\'য়ের স্বপ্ন- তার সন্তান হবে একজন ভালো মানুষ, যে পেশাগত উৎকর্ষতার সাথেসাথে সমাজ ও পরিবারের জন্য বয়ে আনবে সুনাম ও সুখ্যাতি। আমরা ও আমাদের সন্তানদের নিয়ে স্বপ্ন দেখি, পরিকল্পনা করি, সামর্থের সর্বোচ্চটুকু দিয়ে ভালো মানুষ করার চেষ্টা করি।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">​সুজলা, সুফলা, শস্য-শ্যামলা, অনিন্দ্য সুন্দর নদী-মাতৃক বাংলাদেশে প্রতিবছরই বন্যা, নদীভাঙ্গন, ঝড়-জলোচ্ছ্বাস, সড়ক দুর্ঘটনাসহ নানাবিধ প্রাকৃতিক ও মানব সৃষ্ট দুর্যোগে উল্লেখযোগ্য সংখ্যক মানুষ প্রাণ হারায়। পরিবারের একমাত্র কর্মক্ষম মানুষটিকে হারিয়ে অনেকেই হয়ে যায় বিধবা, সম্ভাবনাময় শিশুটি হয়ে যায় পিতৃ-হারা। অনেকে পিতা মাতা দু\'জনকেই হারিয়ে হয়ে যায় আশ্রয়হীন। আর অন্যদিকে এই শিশুরা হারিয়ে ফেলে স্বপ্নময় বর্ণিল জীবন। সমাজে এরাই অনাথ, অসহায়, ইয়াতিম হিসাবে পরিচিত।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">​জীবনের ঊষালগ্নে বেঁচে থাকার কঠিন যুদ্ধে অবতীর্ণ হয় এই অসহায় শিশু কিশোরেরা। মেধাবী ও সৃজনশীল প্রতিভার অধিকারী হওয়া সত্ত্বেও প্রয়োজনীয় ও মৌলিক সুযোগ-সুবিধার অভাবে বেশীরভাগ শিশুরাই অকালেই শিক্ষার আলো থেকে বঞ্চিত হয়। জীবিকার প্রয়োজনে জড়িয়ে পড়ে নানাবিধ কষ্টকর ও ঝুঁকিপূর্ণ পেশায়। স্বপ্ন যেনো স্বপ্নই থেকে যায়।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">​দেশের বিভিন্ন এলাকায় স্থানীয় মানবহিতৈষী ব্যক্তিবর্গের উদ্যোগে প্রতিষ্ঠিত ইয়াতিমখানায় উল্লেখযোগ্য সংখ্যক অনাথ শিশুরা প্রতিপালিত হয়। সামর্থ্যের অপ্রতুলতা ও সুন্দর ব্যবস্থাপনার ঘাটতির কারণে বেশিরভাগ স্থানেই শিশুরা দুর্বিসহ অবস্থায় দিনাতিপাত করে। ব্যাহত হয় শিশুর মানসিক ও শারীরিক বৃদ্ধি। সারাদেশের বিভিন্ন অঞ্চলে ছড়িয়ে ছিটিয়ে থাকা এ সকল সুবিধা বঞ্চিত অসহায়-অনাথ শিশুদের মধ্য থেকে বাছাইকৃত মেধাবী ইয়াতিমদেরকে কার্যকর মানবসম্পদে পরিণত করার মহৎ উদ্দেশ্য নিয়ে শুরু হচ্ছে \"ড্রিমহোমস\" প্রকল্প।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">​রাজধানী ঢাকার উত্তরায় উন্নত আবাসন, সুষম ও পুষ্টিকর খাদ্য সরবরাহ, যুগোপযোগী একাডেমিক ও নৈতিকশিক্ষা, চিকিৎসা ও স্বাস্থ্যসেবা, সার্বক্ষণিক তত্ত্বাবধান, খেলাধুলা ও বিনোদন এবং সর্বোপরি সুপ্তপ্রতিভা বিকাশের সুযোগসুবিধা প্রকল্পের অনন্য বৈশিষ্ট্য। ড্রিমহোমসের প্রথম পর্যায়ে সুবিধাভোগী শিশুর সংখ্যা আনুমানিক ৮০ জন।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">​সমাজের একজন সামর্থবান মানুষ হিসাবে আপনি আপনার পরিবার ও সন্তানের যাবতীয় চাহিদা পূরণের সাথেসাথে একজন অসহায় ইয়াতিমের দায়িত্বও নিতে পারেন। পার্থিব জীবনের পাশাপাশি পারলৌকিক জীবনে সফলতার ক্ষেত্রে এ উদ্যোগ নিঃসন্দেহে একটি উত্তম বিনিয়োগ। বিশ্ব নবী স. বলেছেন, আমি ও ইয়াতিমের লালন-পালনকারী জান্নাতে পাশাপাশি অবস্থান করবো (এ বলে তিনি তাঁর মধ্যমা ও তর্জনী আঙ্গুল প্রদর্শন করলেন)। আল্লাহ তা\'আলা আমাদেরকে ইয়াতিম প্রতিপালনের এ মহতী উদ্যোগের সাথে সম্পৃক্ত হয়ে জান্নাতে অবস্থান করার তৌফিক দিন।</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">আমীন ||</p>', 'about_center_image/about-center-image.jpg', 'about_image/about-image.jpg', 'footer_connect_image/footer-connect-image.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '#499bf8', NULL, NULL, NULL, '2026-03-31 10:05:37', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL COMMENT '1=main_slider;2=home_page_slider',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `title`, `subtitle`, `photo`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'This is slider 1', NULL, 'slider/this-is-slider-12025-12-07-07-53-25.webp', 1, 1, '2025-12-07 01:53:25', '2025-12-09 12:02:58', NULL),
+(2, 'This is slider 2', NULL, 'slider/this-is-slider-22025-12-07-07-53-37.webp', 1, 1, '2025-12-07 01:53:37', '2025-12-07 01:53:37', NULL),
+(3, 'This is home block slider1', NULL, 'slider/this-is-home-block-slider12025-12-07-07-54-51.jpg', 2, 1, '2025-12-07 01:54:51', '2025-12-13 03:41:05', '2025-12-13 03:41:05'),
+(4, 'Home block slider2', NULL, 'slider/home-block-slider22025-12-07-07-55-20.jpg', 2, 1, '2025-12-07 01:55:20', '2025-12-07 01:55:20', NULL),
+(5, 'Home Block slider3', NULL, 'slider/home-block-slider32025-12-07-07-56-03.png', 2, 1, '2025-12-07 01:56:03', '2025-12-09 08:12:18', '2025-12-09 08:12:18'),
+(6, '.', NULL, 'slider/2025-12-13-09-32-48.jpg', 1, 1, '2025-12-13 03:32:48', '2025-12-13 03:32:48', NULL),
+(7, 'Togather, let\'s build a brighter tomorrow for our children', NULL, 'slider/togather-lets-build-a-brighter-tomorrow-for-our-children2025-12-13-09-40-46.jpg', 2, 1, '2025-12-13 03:40:46', '2025-12-13 03:40:46', NULL),
+(8, 'স্লাইড 01', NULL, 'slider/slaid-012026-01-05-08-29-56.jpg', 2, 1, '2026-01-05 02:29:56', '2026-01-05 02:29:56', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_media`
+--
+
+CREATE TABLE `social_media` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `name`, `link`, `icon`, `photo`, `order`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Facebook', 'https://www.facebook.com/bddreamhomes', 'bx bxl-facebook', NULL, 1, 1, NULL, '2026-03-31 09:55:28', NULL),
+(2, 'Instagram', 'https://www.instagram.com/', 'bx bxl-instagram', NULL, 2, 1, NULL, '2025-12-09 12:21:26', NULL),
+(3, 'Twitter', '#', 'bxl bx-twitter-x', NULL, 3, 1, NULL, NULL, NULL),
+(4, 'Youtube', 'https://www.youtube.com/@BDDreamHomes', 'bx bxl-youtube', NULL, 4, 1, NULL, '2026-03-31 09:56:48', NULL),
+(5, 'Linkedin', 'https://www.linkedln.com/', 'bx bxl-linkedin', NULL, 5, 1, NULL, '2025-12-09 12:22:19', NULL),
+(6, 'Tiktok', 'tiktok.com', 'bx bxl-tiktok', NULL, 6, 1, NULL, '2025-12-09 12:20:36', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT 'student name',
+  `email` varchar(255) DEFAULT NULL COMMENT 'student email',
+  `phone` varchar(255) DEFAULT NULL COMMENT 'student phone',
+  `gender` varchar(255) DEFAULT NULL COMMENT 'male/female/other',
+  `acc_class_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'student id',
+  `branch_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'branch id',
+  `division_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track divisionwise news',
+  `district_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track districtwise news',
+  `area_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'track areawise news',
+  `address` varchar(255) DEFAULT NULL COMMENT 'student address',
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'who write/post this',
+  `photo` varchar(255) DEFAULT NULL COMMENT 'student photo',
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_talent`
+--
+
+CREATE TABLE `student_talent` (
+  `student_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'student id',
+  `name` varchar(255) DEFAULT NULL COMMENT 'talent name',
+  `description` text DEFAULT NULL COMMENT 'talent description',
+  `is_highlight` tinyint(1) DEFAULT NULL COMMENT 'null=not highlight;1=highlight',
+  `show_front` tinyint(1) DEFAULT NULL COMMENT 'null=not show;1=show',
+  `order` tinyint(4) DEFAULT NULL COMMENT 'order',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE `tags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Super Admin', 'sadmin@gmail.com', NULL, '$2y$12$n8jXvCiOjCgF0w.9Mn444eCS8SvMtGhBgny6gcWRyE8Ik/OEx/wia', NULL, NULL, NULL, NULL),
+(2, 'Admin', 'admin@gmail.com', NULL, '$2y$12$KQiOAK9ifirXHVbkTfbjs.OPJgZ5SBMDfintbial87jh5kyc2uMmC', NULL, NULL, NULL, NULL),
+(3, 'Manager', 'manager@gmail.com', NULL, '$2y$12$48YQS4393aDRCgMIkZZYAuLcGCydyaNklXQMD/4n/2yjs9BojxnrW', NULL, NULL, NULL, NULL),
+(4, 'software industry Ltd', 'softwareindustry2008@gmail.com', NULL, '$2y$12$Fr45xQibto77smHJdtP6DO6EfpQP1RkotQ1xj9sfZLnFRiIVbzPOC', NULL, '2025-12-13 00:38:14', '2025-12-13 00:38:14', NULL),
+(5, 'test', '2008@gmail.com', NULL, '$2y$12$4U0yjgshOuf2S4MbsZN6H.VnyHZYR/yw4twuAd6TBG/6ILQwmZCRa', NULL, '2025-12-13 00:38:53', '2025-12-13 00:39:01', '2025-12-13 00:39:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_category_permissions`
+--
+
+CREATE TABLE `user_category_permissions` (
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_category_permissions`
+--
+
+INSERT INTO `user_category_permissions` (`user_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(4, 1, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 5, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 9, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 10, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 11, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 12, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 13, '2025-12-13 00:39:29', '2025-12-13 00:39:29'),
+(4, 14, '2025-12-13 00:39:29', '2025-12-13 00:39:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votings`
+--
+
+CREATE TABLE `votings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT 'question',
+  `option1` varchar(255) DEFAULT NULL COMMENT 'answer option string',
+  `option2` varchar(255) DEFAULT NULL COMMENT 'answer option2 string',
+  `option3` varchar(255) DEFAULT NULL COMMENT 'answer option3 string',
+  `action_date` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1 COMMENT 'null=inactive;1=active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voting_counts`
+--
+
+CREATE TABLE `voting_counts` (
+  `voting_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `option1_answer` int(11) DEFAULT NULL COMMENT 'number of vote this option',
+  `option2_answer` int(11) DEFAULT NULL COMMENT 'number of vote this option',
+  `option3_answer` int(11) DEFAULT NULL COMMENT 'number of vote this option',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `writers`
+--
+
+CREATE TABLE `writers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `writer_designations`
+--
+
+CREATE TABLE `writer_designations` (
+  `writer_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `designation_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `acc_classes`
+--
+ALTER TABLE `acc_classes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advertises`
+--
+ALTER TABLE `advertises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advertise_sections`
+--
+ALTER TABLE `advertise_sections`
+  ADD KEY `advertise_sections_advertise_id_foreign` (`advertise_id`),
+  ADD KEY `advertise_sections_section_id_foreign` (`section_id`);
+
+--
+-- Indexes for table `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `album_categories`
+--
+ALTER TABLE `album_categories`
+  ADD KEY `album_categories_album_id_foreign` (`album_id`),
+  ADD KEY `album_categories_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `areas`
+--
+ALTER TABLE `areas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `areas_district_id_foreign` (`district_id`);
+
+--
+-- Indexes for table `branches`
+--
+ALTER TABLE `branches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categories_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `category_tags`
+--
+ALTER TABLE `category_tags`
+  ADD KEY `category_tags_category_id_foreign` (`category_id`),
+  ADD KEY `category_tags_tag_id_foreign` (`tag_id`);
+
+--
+-- Indexes for table `color_settings`
+--
+ALTER TABLE `color_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `designations`
+--
+ALTER TABLE `designations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `districts`
+--
+ALTER TABLE `districts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `districts_division_id_foreign` (`division_id`);
+
+--
+-- Indexes for table `divisions`
+--
+ALTER TABLE `divisions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `features`
+--
+ALTER TABLE `features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `footers`
+--
+ALTER TABLE `footers`
+  ADD KEY `footers_section_id_foreign` (`section_id`);
+
+--
+-- Indexes for table `image_videos`
+--
+ALTER TABLE `image_videos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `image_videos_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `member_designations`
+--
+ALTER TABLE `member_designations`
+  ADD KEY `member_designations_member_id_foreign` (`member_id`),
+  ADD KEY `member_designations_designation_id_foreign` (`designation_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_division_id_foreign` (`division_id`),
+  ADD KEY `news_district_id_foreign` (`district_id`),
+  ADD KEY `news_area_id_foreign` (`area_id`),
+  ADD KEY `news_user_id_foreign` (`user_id`),
+  ADD KEY `news_writer_id_foreign` (`writer_id`);
+
+--
+-- Indexes for table `news_categories`
+--
+ALTER TABLE `news_categories`
+  ADD KEY `news_categories_news_id_foreign` (`news_id`),
+  ADD KEY `news_categories_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `news_sections`
+--
+ALTER TABLE `news_sections`
+  ADD KEY `news_sections_news_id_foreign` (`news_id`),
+  ADD KEY `news_sections_section_id_foreign` (`section_id`);
+
+--
+-- Indexes for table `package_categories`
+--
+ALTER TABLE `package_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`),
+  ADD KEY `permissions_permission_feature_id_foreign` (`permission_feature_id`);
+
+--
+-- Indexes for table `permission_features`
+--
+ALTER TABLE `permission_features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `prayer_timers`
+--
+ALTER TABLE `prayer_timers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
+-- Indexes for table `sections`
+--
+ALTER TABLE `sections`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `section_categories`
+--
+ALTER TABLE `section_categories`
+  ADD KEY `section_categories_section_id_foreign` (`section_id`),
+  ADD KEY `section_categories_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `social_media`
+--
+ALTER TABLE `social_media`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `students_acc_class_id_foreign` (`acc_class_id`),
+  ADD KEY `students_branch_id_foreign` (`branch_id`),
+  ADD KEY `students_division_id_foreign` (`division_id`),
+  ADD KEY `students_district_id_foreign` (`district_id`),
+  ADD KEY `students_area_id_foreign` (`area_id`),
+  ADD KEY `students_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `student_talent`
+--
+ALTER TABLE `student_talent`
+  ADD KEY `student_talent_student_id_foreign` (`student_id`);
+
+--
+-- Indexes for table `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `user_category_permissions`
+--
+ALTER TABLE `user_category_permissions`
+  ADD KEY `user_category_permissions_user_id_foreign` (`user_id`),
+  ADD KEY `user_category_permissions_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `votings`
+--
+ALTER TABLE `votings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `voting_counts`
+--
+ALTER TABLE `voting_counts`
+  ADD KEY `voting_counts_voting_id_foreign` (`voting_id`);
+
+--
+-- Indexes for table `writers`
+--
+ALTER TABLE `writers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `writer_designations`
+--
+ALTER TABLE `writer_designations`
+  ADD KEY `writer_designations_writer_id_foreign` (`writer_id`),
+  ADD KEY `writer_designations_designation_id_foreign` (`designation_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `acc_classes`
+--
+ALTER TABLE `acc_classes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `advertises`
+--
+ALTER TABLE `advertises`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `areas`
+--
+ALTER TABLE `areas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
+
+--
+-- AUTO_INCREMENT for table `branches`
+--
+ALTER TABLE `branches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `color_settings`
+--
+ALTER TABLE `color_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `designations`
+--
+ALTER TABLE `designations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `districts`
+--
+ALTER TABLE `districts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT for table `divisions`
+--
+ALTER TABLE `divisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `features`
+--
+ALTER TABLE `features`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `image_videos`
+--
+ALTER TABLE `image_videos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `package_categories`
+--
+ALTER TABLE `package_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `permission_features`
+--
+ALTER TABLE `permission_features`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `prayer_timers`
+--
+ALTER TABLE `prayer_timers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `sections`
+--
+ALTER TABLE `sections`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `social_media`
+--
+ALTER TABLE `social_media`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `votings`
+--
+ALTER TABLE `votings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `writers`
+--
+ALTER TABLE `writers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `advertise_sections`
+--
+ALTER TABLE `advertise_sections`
+  ADD CONSTRAINT `advertise_sections_advertise_id_foreign` FOREIGN KEY (`advertise_id`) REFERENCES `advertises` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `advertise_sections_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `album_categories`
+--
+ALTER TABLE `album_categories`
+  ADD CONSTRAINT `album_categories_album_id_foreign` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `album_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `areas`
+--
+ALTER TABLE `areas`
+  ADD CONSTRAINT `areas_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `category_tags`
+--
+ALTER TABLE `category_tags`
+  ADD CONSTRAINT `category_tags_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `category_tags_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `districts`
+--
+ALTER TABLE `districts`
+  ADD CONSTRAINT `districts_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `footers`
+--
+ALTER TABLE `footers`
+  ADD CONSTRAINT `footers_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `image_videos`
+--
+ALTER TABLE `image_videos`
+  ADD CONSTRAINT `image_videos_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `member_designations`
+--
+ALTER TABLE `member_designations`
+  ADD CONSTRAINT `member_designations_designation_id_foreign` FOREIGN KEY (`designation_id`) REFERENCES `designations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `member_designations_member_id_foreign` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_area_id_foreign` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_writer_id_foreign` FOREIGN KEY (`writer_id`) REFERENCES `writers` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `news_categories`
+--
+ALTER TABLE `news_categories`
+  ADD CONSTRAINT `news_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_categories_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `news_sections`
+--
+ALTER TABLE `news_sections`
+  ADD CONSTRAINT `news_sections_news_id_foreign` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `news_sections_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD CONSTRAINT `permissions_permission_feature_id_foreign` FOREIGN KEY (`permission_feature_id`) REFERENCES `permission_features` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `section_categories`
+--
+ALTER TABLE `section_categories`
+  ADD CONSTRAINT `section_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `section_categories_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `students`
+--
+ALTER TABLE `students`
+  ADD CONSTRAINT `students_acc_class_id_foreign` FOREIGN KEY (`acc_class_id`) REFERENCES `acc_classes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `students_area_id_foreign` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `students_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `students_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `students_division_id_foreign` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `students_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `student_talent`
+--
+ALTER TABLE `student_talent`
+  ADD CONSTRAINT `student_talent_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_category_permissions`
+--
+ALTER TABLE `user_category_permissions`
+  ADD CONSTRAINT `user_category_permissions_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_category_permissions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `voting_counts`
+--
+ALTER TABLE `voting_counts`
+  ADD CONSTRAINT `voting_counts_voting_id_foreign` FOREIGN KEY (`voting_id`) REFERENCES `votings` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `writer_designations`
+--
+ALTER TABLE `writer_designations`
+  ADD CONSTRAINT `writer_designations_designation_id_foreign` FOREIGN KEY (`designation_id`) REFERENCES `designations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `writer_designations_writer_id_foreign` FOREIGN KEY (`writer_id`) REFERENCES `writers` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

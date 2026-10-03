@@ -1,0 +1,41 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "axios": "^1.6.4",
+        "bootstrap": "^5.3.3",
+        "laravel-vite-plugin": "^1.0",
+        "sass": "^1.56.1",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.2",
+        "admin-lte": "^4.0.0-beta1",
+        "aos": "^2.3.4",
+        "datatables.net-bs5": "^2.0.8",
+        "datatables.net-buttons-bs5": "^3.0.2",
+        "flatpickr": "^4.6.13",
+        "jquery": "^3.7.1",
+        "jquery-ui": "^1.13.3",
+        "jquery-validation": "^1.20.1",
+        "lightbox2": "^2.11.5",
+        "overlayscrollbars": "^2.8.3",
+        "select2": "^4.1.0-rc.0",
+        "sweetalert2": "^11.6.13",
+        "swiper": "^11.1.14",
+        "toastr": "^2.1.4"
+    },
+    "name": "law-firm",
+    "version": "1.0.0",
+    "description": "Law Firm website",
+    "main": "vite.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": []
+}

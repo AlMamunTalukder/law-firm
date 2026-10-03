@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import 'variables';
+
+@import 'bootstrap/scss/bootstrap';
+
+@import "admin-lte/dist/css/adminlte.min.css";
+
+@import 'sweetalert2/src/sweetalert2.scss';
+@import 'toastr/toastr.scss';
+@import 'flatpickr/dist/flatpickr.css';
+@import 'select2/dist/css/select2.min.css';
+@import 'flatpickr/dist/plugins/monthSelect/style.css';
+@import 'flatpickr/dist/themes/confetti.css';
+@import '../../public/assets/css/style.css';
+@import '../../public/assets/css/jasny_bootstrap.css';

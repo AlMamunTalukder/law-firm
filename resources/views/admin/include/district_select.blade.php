@@ -1,0 +1,10 @@
+<x-Form::select
+    small="{{$small??''}}"
+    name="district_id"
+    id="{{$id??'district_id'}}"
+    class="select2"
+    :default="$default??[]"
+    placeholder="{{__('page.choose_option')}}"
+    label="{{__('page.district')}}"
+    :options="$districts"
+    />

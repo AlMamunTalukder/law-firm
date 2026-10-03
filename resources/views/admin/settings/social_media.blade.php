@@ -1,0 +1,75 @@
+@extends('layouts.admin')
+@section('title')
+Social Media List
+@endsection
+@section('content')
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Social Media List</h3>
+                    <div class="card-tools">
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @include('shared.redirect_msg')
+
+                    @section('table_head')
+                      <th>{{ __('page.sl')}}</th>
+                      <th width="200px">{{ __('page.name')}}</th>
+                      <th>{{ __('Icon Class')}}</th>
+                      <th>{{ __('page.status')}}</th>
+                      <th width="300px">{{ __('page.action')}}</th>
+                    @endsection
+                    @include('admin.include.table',['table_body_class'=>'sortable_table_contents'])
+
+                </div>
+
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    @section('modal_body_add_component')
+
+        <x-Form::input name="name" label="Social Media {{__('page.name')}}"  placeholder="Ex: Facebook" autocomplete="off" req="required" />
+        <x-Form::input name="icon" label="Icon Class"  placeholder="Ex: bx bxl-facebook" autocomplete="off" req="required" />
+
+        <x-Form::input type="number" name="salary" label="{{__('page.salary')}}"  placeholder="Ex: 15000" autocomplete="off" req="required" />
+    @endsection
+    @include('admin.include.modal_add',['title'=>__('page.add_new_member'),'id'=>'add_form','route'=>'socialmedia'])
+
+    @section('modal_body_edit_component')
+        <input type="hidden" id="table_id" name="table_id">
+        <x-Form::input id="edit_modal_name" name="name" label="Social Media {{__('page.name')}}"  placeholder="Ex: মুহাম্মদ আব্দুল্লাহ" readonly autocomplete="off" req="required" />
+        <x-Form::input id="edit_modal_short_name" name="icon" label="Icon Class"  placeholder="Ex: bx bxl-facebook" autocomplete="off" readonly req="required" />
+        <x-Form::input id="edit_modal_phone_no" name="link" label="Link" helper="Use # if not available" placeholder="Ex: https://socialmedia.com/xyz" autocomplete="off" req="required" />
+        <x-Form::checkbox id="edit_modal_status" helper="check is active and uncheck is for Inactive"  class="status" name="status"  value="1"  label="{{__('page.status')}}" />
+    @endsection
+    @include('admin.include.modal_edit',['title'=>__('Social Media Edit Form'),'id'=>'edit_form','route'=>'socialmedia'])
+
+@endsection
+@push('scripts')
+    <script type='module'>
+        setTimeout(() => {
+            $( ".sortable_table_contents" ).sortable({
+                items: "tr",
+                cursor: 'grabbing',
+                opacity: 0.6,
+                update: function() {
+                    sendOrderToServer('SocialMedia');
+                    get_common_list('socialmedia');
+                }
+            });
+        }, 100);
+        get_common_list('socialmedia');
+    </script>
+@endpush

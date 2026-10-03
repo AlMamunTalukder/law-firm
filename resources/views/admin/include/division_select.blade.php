@@ -1,0 +1,9 @@
+<x-Form::select
+    small="{{$small??''}}"
+    name="division_id"
+    id="{{$id??'division_id'}}"
+    class="select2"
+    :default="$default??[]"
+    placeholder="{{__('page.choose_option')}}"
+    label="{{__('page.division')}}"
+    :options="$divisions"/>

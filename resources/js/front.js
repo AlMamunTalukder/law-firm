@@ -1,0 +1,10 @@
+import './bootstrap';
+import Swiper from 'swiper/bundle';
+window.Swiper = Swiper;
+import 'swiper/css/bundle';
+import AOS from 'aos';
+window.AOS = AOS;
+import 'aos/dist/aos.css';
+import  '../../public/front_assets/js/main.js';
+import lightbox from 'lightbox2';
+window.lightbox = lightbox;

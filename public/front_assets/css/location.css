@@ -1,0 +1,238 @@
+.location-area {
+    padding: 100px 0;
+    background: #0D1B3E;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.location-glow-top {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201, 150, 42, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.location-glow-bottom {
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.location-area .section-heading h3 {
+    color: #FFFDF9;
+}
+
+.location-title-line {
+    width: 50px;
+    height: 3px;
+    background: #C9962A;
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+.location-split-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    margin: 0 auto;
+}
+
+.location-navigation-panel {
+    width: 100%;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 4px;
+}
+
+.tab-scroller-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    gap: 7px;
+    overflow-x: auto;
+
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #C9962A rgba(255, 255, 255, 0.05);
+}
+
+.tab-scroller-track::-webkit-scrollbar {
+    height: 5px;
+
+    display: block;
+}
+
+.tab-scroller-track::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+}
+
+.tab-scroller-track::-webkit-scrollbar-thumb {
+    background: rgba(201, 150, 42, 0.3);
+
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.tab-scroller-track::-webkit-scrollbar-thumb:hover {
+    background: #C9962A;
+
+}
+
+.tab-scroller-track button {
+    flex: 0 0 auto;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.65);
+    padding: 10px 8px;
+    font-size: 14px;
+    font-weight: 650;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    outline: none;
+}
+
+.tab-scroller-track button i {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.tab-scroller-track button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+.tab-scroller-track button.active {
+    background: #C9962A;
+
+    border-color: #C9962A;
+    color: #0D1B3E;
+    box-shadow: 0 10px 25px rgba(201, 150, 42, 0.25);
+}
+
+.tab-scroller-track button.active i {
+    color: #0D1B3E;
+}
+
+.location-content-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.tabcontent {
+    animation: smoothTabFade 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes smoothTabFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.map-window-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-left: 4px;
+}
+
+.indicator-pulse {
+    width: 10px;
+    height: 10px;
+    background: #C9962A;
+    border-radius: 50%;
+    position: relative;
+}
+
+.indicator-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #C9962A;
+    animation: radarPulse 1.8s infinite linear;
+}
+
+@keyframes radarPulse {
+    0% {
+        transform: scale(0.6);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.map-window-header h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFDF9;
+    margin: 0;
+}
+
+.map_iframe {
+    width: 100%;
+    height: 400px;
+
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.map_iframe iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+}
+
+@media (max-width: 576px) {
+    .location-area{
+        padding: 30px 0 !important;
+    }
+    .location-area .container{
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .location-content-panel {
+        padding: 16px;
+    }
+
+    .map_iframe {
+        height: 280px;
+
+    }
+}
