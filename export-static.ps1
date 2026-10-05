@@ -34,12 +34,38 @@ try {
 
     # ---------- 1. fetch pages ----------
     Write-Host "== fetching pages =="
-    $homeHtml = Get-Page "/"
-    $contactHtml = Get-Page "/contact"
+    $PageDefs = @(
+        @{ Path="/"; File="index.html" },
+        @{ Path="/contact"; File="contact.html" },
+        @{ Path="/details/info/about"; File="about.html" },
+        @{ Path="/our-team"; File="team.html" },
+        @{ Path="/news/category/News"; File="insights.html" },
+        @{ Path="/image"; File="gallery.html" },
+        @{ Path="/video"; File="videos.html" }
+    )
+    $Pages = @()
+    foreach ($d in $PageDefs) {
+        Write-Host "  GET $($d.Path)"
+        $Pages += @{ File=$d.File; Html=(Get-Page $d.Path) }
+    }
+    # article slugs referenced by home/insights pages
+    $slugSet = New-Object System.Collections.Generic.HashSet[string]
+    foreach ($pg in $Pages) {
+        foreach ($m in ([regex]'(?:href="|window\.location='')(?:https?://127\.0\.0\.1:[0-9]+)?/news/([A-Za-z0-9_-]+)').Matches($pg.Html)) {
+            $s = $m.Groups[1].Value
+            if ($s -ne 'category') { [void]$slugSet.Add($s) }
+        }
+    }
+    foreach ($s in $slugSet) {
+        Write-Host "  GET /news/$s"
+        try { $Pages += @{ File=("news-" + $s + ".html"); Html=(Get-Page ("/news/" + $s)) } }
+        catch { Write-Host "  !! skip article $s" }
+    }
 
     # ---------- 2. collect local asset URLs ----------
     $assetPaths = New-Object System.Collections.Generic.HashSet[string]
-    foreach ($h in @($homeHtml, $contactHtml)) {
+    foreach ($pg in $Pages) { $h = $pg.Html
+
         foreach ($m in ([regex]'(?:src|href)\s*=\s*"((?:https?://127\.0\.0\.1:[0-9]+)?/[^"]+)"').Matches($h)) {
             $u = $m.Groups[1].Value -replace '\?.*$', ''
             if ($u -match '\.(css|js|png|jpg|jpeg|webp|gif|svg|ico|woff2?|ttf|eot)($|/)') {
@@ -79,48 +105,33 @@ try {
         }
     }
 
-    # ---------- 4. rewrite URLs ----------
+    # ---------- 4. rewrite URLs (every exported page links to a real file) ----------
     function Rewrite-Urls([string]$h) {
         $h = $h -replace [regex]::Escape($ServePrefix), ''
         # root-relative asset paths -> relative (works on user AND project pages)
         $h = [regex]::Replace($h, '(src|href)="/(front_assets|storage|build)/', '$1="$2/')
-        $h = $h -replace 'href="/contact"', 'href="contact.html"'
+        # category / listing pages (longest first)
+        $h = $h -replace 'href="/news/category/News"', 'href="insights.html"'
+        $h = $h -replace 'href="/news/category/video"', 'href="videos.html"'
+        $h = $h -replace 'href="/news/category/image"', 'href="gallery.html"'
+        $h = $h -replace 'href="/news/location/[^"]*"', 'href="insights.html"'
+        # articles: /news/{slug} (href + onclick only, never image paths) -> news-{slug}.html
+        $h = [regex]::Replace($h, '(href="|window\.location='')/news/([A-Za-z0-9_-]+)', '$1news-$2.html')
+        # main pages
+        $h = $h -replace 'href="/details/info/about"', 'href="about.html"'
+        $h = $h -replace 'href="/our-team"', 'href="team.html"'
+        $h = $h -replace 'href="/teachers"', 'href="team.html"'
+        $h = $h -replace 'href="/image"', 'href="gallery.html"'
+        $h = $h -replace 'href="/video"', 'href="videos.html"'
         $h = $h -replace 'href="/home"', 'href="index.html"'
         $h = $h -replace 'href="/"', 'href="index.html"'
+        $h = $h -replace 'href="/contact"', 'href="contact.html"'
         $h = $h -replace 'action="/contact"', 'action="#"'
         return $h
     }
 
-    # ---------- 5. HIDE everything that is not home/contact ----------
-    function Hide-Others([string]$h, [string]$pageName) {
-        # header Practice Areas + Insights dropdowns
-        $h = [regex]::Replace($h, '<div class="ch-nav-drop">.*?</ul>\s*</div>', '', 'Singleline')
-        # mobile menu dropdown groups + Our Team link
-        $h = [regex]::Replace($h, '<li class="dropdown">.*?</ul>\s*</li>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<li>\s*<a[^>]*>Our Team</a>\s*</li>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*>Our Team</a>', '', 'Singleline')
-        # buttons going to removed pages
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*Read More\s*<span>.*?</span>\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*View Profile\s*<span>.*?</span>\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*View All\s+Practice Areas\s*<span>.*?</span>\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*View All\s*<span>.*?</span>\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*Meet Our Team\s*<span>.*?</span>\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="[^"]*"[^>]*>\s*See All[^<]*</a>', '', 'Singleline')
-        # practice rows: link -> plain div (keep look, no destination)
-        $h = [regex]::Replace($h, '<a\s+href="[^"]*"\s+class="(ch-pa-item[^"]*)">', '<div class="$1">')
-        # insight cards: drop click-through
-        $h = [regex]::Replace($h, '\s*onclick="window\.location=[^"]*"', '')
-        # Team page is not exported -> hide its links/buttons too
-        $h = [regex]::Replace($h, '<li>\s*<a[^>]*>Our Team</a>\s*</li>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*>Our Team</a>', '', 'Singleline')
-        # About page is not exported -> hide its links/buttons too
-        $h = [regex]::Replace($h, '<li>\s*<a[^>]*href="/details/info/about"[^>]*>\s*About\s*</a>\s*</li>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*href="/details/info/about"[^>]*>\s*About\s*</a>', '', 'Singleline')
-        $h = [regex]::Replace($h, '<a[^>]*class="[^"]*ch-btn-outline[^"]*"[^>]*>.*?</a>', '', 'Singleline')
-        # gallery See All (contains an icon tag inside)
-        $h = [regex]::Replace($h, '<a[^>]*>\s*See All.*?</a>', '', 'Singleline')
-        # footer link columns (keep brand col + bottom bar)
-        $h = [regex]::Replace($h, '<div class="(?:|footer-column)">\s*<h4 class="footer-label">(?:Quick Links|Our Services|Legal Resources|Support)</h4>\s*<ul.*?</ul>\s*</div>', '', 'Singleline')
+    # ---------- 5. static-hosting touches (menus stay, everything resolves) ----------
+    function Final-Touches([string]$h) {
         # leftover absolute dev URL inside inline JS config
         $h = $h -replace 'http:\\/\\/127\.0\.0\.1:[0-9]+', ''
         # contact form cannot POST on static hosting -> friendly note
@@ -128,11 +139,10 @@ try {
         return $h
     }
 
-    $homeHtml = Hide-Others (Rewrite-Urls $homeHtml) "home"
-    $contactHtml = Hide-Others (Rewrite-Urls $contactHtml) "contact"
-
-    [IO.File]::WriteAllText((Join-Path $OutDir "index.html"), $homeHtml)
-    [IO.File]::WriteAllText((Join-Path $OutDir "contact.html"), $contactHtml)
+    foreach ($pg in $Pages) {
+        $html = Final-Touches (Rewrite-Urls $pg.Html)
+        [IO.File]::WriteAllText((Join-Path $OutDir $pg.File), $html)
+    }
     [IO.File]::WriteAllText((Join-Path $OutDir ".nojekyll"), '')
 
     Write-Host "== done. Files:"
