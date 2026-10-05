@@ -1,10 +1,17 @@
+<style>
+@media(max-width:576px){
+  .youtube-grid{grid-template-columns:repeat(2,1fr) !important; gap:10px !important;}
+  .youtube-gallery-area .container{width:100% !important; max-width:100% !important; padding-left:10px !important; padding-right:10px !important;}
+}
+</style>
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="kPKghiSDlZgGIYKWcBeJLdbuXwNDhPtmlLzZfXdz">
+    <meta name="csrf-token" content="8BULRwQ2rtZMwpyn3qOwSKJ26L3Ebn3UWE61F3W6">
     <title>N.H. TALUKDER &amp; ASSOCIATES</title>
 
         
@@ -94,7 +101,7 @@
                         <li><a href="insights.html">Legal Insights</a></li>
                     </ul>
                 </div>
-                <a href="contact.html" class="text-decoration-none active">Contact</a>
+                <a href="contact.html" class="text-decoration-none ">Contact</a>
             </nav>
             <a href="contact.html" class="btn ch-consult-btn d-none d-lg-inline-flex align-items-center rounded-1 text-nowrap ms-lg-3">Book a Consultation <span class="arr">→</span></a>
             <button type="button" id="open-menu-btn" class="btn ch-burger d-lg-none ms-auto" aria-label="Menu">
@@ -184,423 +191,80 @@
             </div>
         </nav>
     </div>
-    <style>
-* {
-    box-sizing: border-box;
-}
-
-.contact-hero {
-    background: radial-gradient(900px 400px at 50% 0%, rgba(201, 164, 92, 0.16), transparent 60%),
-    linear-gradient(135deg, #141210 0%, #1d1a15 55%, #241c12 100%);
-    background-size: cover;
-    background-position: center;
-    padding: 50px 16px 60px;
-    text-align: center;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(201, 164, 92, 0.25);
-}
-
-.contact-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: #f5f0e4;
-    clip-path: ellipse(70% 100% at 50% 100%);
-    z-index: 1;
-}
-
-.contact-hero h1 {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 700;
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 2;
-    color: #e7cd97;
-    letter-spacing: 0.01em;
-}
-
-.contact-hero p {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-    line-height: 1.6;
-    background: rgba(255, 255, 255, 0.08);
-    padding: 8px 16px;
-    border-radius: 999px;
-    display: inline-block;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-hero .breadcrumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 14px;
-    border-radius: 40px;
-    font-size: 13px;
-    margin-bottom: 16px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    position: relative;
-    z-index: 2;
-}
-
-.contact-hero .breadcrumb a {
-    color: #e7cd97;
-}
-
-.contact-main-section {
-    padding: 32px 0 40px;
-    background: #f5f0e4;
-    position: relative;
-    z-index: 2;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    align-items: start;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 12px;
-}
-
-@media(min-width:992px) {
-    .contact-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 32px;
-        padding: 0 15px;
-    }
-
-    .contact-hero {
-        padding: 60px 0 70px;
-    }
-}
-
-.contact-form-wrapper {
-    background: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(13, 27, 62, 0.06);
-    border: 1px solid rgba(201, 150, 42, 0.12);
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-@media(min-width:576px) {
-    .contact-form-wrapper {
-        padding: 28px;
-    }
-}
-
-.contact-form-wrapper h3 {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: #191510;
-    margin-bottom: 6px;
-}
-
-.form-subtitle {
-    color: #64748b;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.form-group-modern {
-    margin-bottom: 14px;
-    width: 100%;
-}
-
-.form-group-modern label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: #2a251c;
-    margin-bottom: 6px;
-}
-
-.form-group-modern label .required {
-    color: #ef4444;
-}
-
-.form-group-modern input:focus,
-.form-group-modern textarea:focus,
-.form-group-modern select:focus {
-    outline: none;
-    border-color: #c9a45c;
-    box-shadow: 0 0 0 4px rgba(201, 164, 92, 0.16);
-    background: #fff;
-}
-.form-group-modern input,
-.form-group-modern textarea,
-.form-group-modern select {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 14px;
-    background: #f8fafc;
-    transition: 0.2s;
-    display: block;
-    color: #2a251c;
-}
-
-.form-group-modern textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-row-2 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-}
-
-@media(min-width:576px) {
-    .form-row-2 {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
-}
-
-.submit-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 24px;
-    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
-    color: #1a1408;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    justify-content: center;
-    box-shadow: 0 8px 22px rgba(201, 164, 92, 0.3);
-}
-.submit-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(201, 164, 92, 0.4);
-}
-
-.contact-info-side {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    width: 100%;
-}
-
-.contact-info-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 6px 20px rgba(13, 27, 62, 0.05);
-    border: 1px solid rgba(201, 150, 42, 0.1);
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    width: 100%;
-    overflow: hidden;
-}
-
-.contact-info-icon {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #1a1408;
-    flex-shrink: 0;
-}
-
-.contact-info-text h4 {
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: #191510;
-    margin-bottom: 4px;
-}
-
-.contact-info-text p {
-    font-size: 13px;
-    color: #475569;
-    line-height: 1.5;
-    margin: 0;
-    word-break: break-word;
-}
-
-.contact-info-text p a {
-    color: #2a251c;
-    word-break: break-all;
-}
-
-.map-section {
-    padding: 32px 0 48px;
-    background: #141210;
-    border-top: 1px solid rgba(201, 164, 92, 0.25);
-}
-
-.map-section .map-container {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(201, 164, 92, 0.3);
-    height: 300px;
-    width: 100%;
-}
-
-@media(max-width:576px) {
-    .map-section .map-container {
-        height: 220px;
-    }
-
-    .contact-social-links a {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-    }
-}
-
-.contact-social-links {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-}
-
-.contact-social-links a {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2a251c;
-    font-size: 16px;
-    transition: 0.2s;
-}
-.contact-social-links a:hover {
-    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
-    color: #1a1408;
-}
-</style>
-<section class="contact-hero">
-    <div class="container" style="max-width:1200px; margin:0 auto; padding:0 12px;">
-        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span
-                style="color:rgba(255,255,255,0.5);">Contact</span></div>
-        <h1 data-aos="fade-up">Contact Us</h1>
-        <p data-aos="fade-up" data-aos-delay="80">Have questions? Reach out — we’re here to help.</p>
-    </div>
-</section>
-<section class="contact-main-section">
-    <div class="contact-grid">
-        <div class="contact-form-wrapper" data-aos="fade-up">
-            <h3>Send a Message</h3>
-            <p class="form-subtitle">We’ll get back to you as soon as possible. Your message goes directly to dashboard.
-            </p>
-                                    <form action="#" method="POST" onsubmit="alert('Thanks! Please call or email us â€” online sending needs hosting with PHP.'); return false;">
-                <input type="hidden" name="_token" value="kPKghiSDlZgGIYKWcBeJLdbuXwNDhPtmlLzZfXdz" autocomplete="off">                <div style="position:absolute; left:-5000px; top:auto; width:1px; height:1px; overflow:hidden;">
-                    <label>Leave this field empty</label><input type="text" name="website" value="" autocomplete="off"
-                        tabindex="-1"></div>
-                <div class="form-row-2">
-                    <div class="form-group-modern"><label>Full Name <span class="required">*</span></label><input
-                            type="text" name="name" value="" placeholder="Your full name" required>
-                    </div>
-                    <div class="form-group-modern"><label>Email <span class="required">*</span></label><input
-                            type="email" name="email" value="" placeholder="you@example.com" required>
-                    </div>
-                </div>
-                <div class="form-row-2">
-                    <div class="form-group-modern"><label>Phone</label><input type="tel" name="phone"
-                            value="" placeholder="Your phone"></div>
-                    <div class="form-group-modern"><label>Subject <span class="required">*</span></label>
-                        <select name="subject" required>
-                            <option value="">Select a subject</option>
-                            <option value="general" >General Inquiry
-                            </option>
-                            <option value="consultation" >Book a Consultation</option>
-                            <option value="criminal" >Criminal Defense &amp; Litigation</option>
-                            <option value="civil-property" >Civil &amp; Property Law</option>
-                            <option value="family" >Family &amp; Personal Law</option>
-                            <option value="corporate" >Corporate &amp; Commercial Law</option>
-                            <option value="other" >Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group-modern"><label>Message <span class="required">*</span></label><textarea
-                        name="message" placeholder="Write your message..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-            </form>
+    <div class="content">
+<section class="youtube-gallery-area" style="padding:40px 0;">
+    <div class="container">
+        <div class="section-heading text-center" data-aos="fade-down">
+            <h3>Video Gallery</h3>
+            <p class="sub-title">Law Firm</p>
         </div>
-        <div class="contact-info-side" data-aos="fade-up" data-aos-delay="80">
-            <div class="contact-info-card">
-                <div class="contact-info-icon"><i class="fas fa-map-pin"></i></div>
-                <div class="contact-info-text">
-                    <h4>Our Location</h4>
-                    <p>Uttara, Dhaka – 1230<br>Bangladesh</p>
+        <div class="youtube-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;">
+                        <div class="yt-video-card" data-aos="zoom-in" style="background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e2e8f0;">
+                <div class="yt-thumbnail" style="position:relative; height:180px; overflow:hidden;">
+                    <a class="video" title="youtube" href="https://www.youtube.com/watch?v=ERqvtzqs2UE" target="_blank">
+                                                    <img src="storage/album/video/thumbnail/album-image-dvrma.jpg" alt="youtube" style="width:100%; height:100%; object-fit:cover;">
+                                                <span class="yt-play-button" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-play"></i></span>
+                    </a>
+                </div>
+                <div class="yt-video-info" style="padding:12px;">
+                    <div class="yt-video-title" style="font-weight:700; font-size:14px; color:#0f172a; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">youtube</div>
                 </div>
             </div>
-            <div class="contact-info-card">
-                <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
-                <div class="contact-info-text">
-                    <h4>Phone</h4>
-                    <p><a href="tel:01986330128">01986330128</a></p>
+                        <div class="yt-video-card" data-aos="zoom-in" style="background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e2e8f0;">
+                <div class="yt-thumbnail" style="position:relative; height:180px; overflow:hidden;">
+                    <a class="video" title="Documentary Of Law Firm" href="https://www.youtube.com/watch?v=GzeUM0bzdRk" target="_blank">
+                                                    <img src="storage/album/video/thumbnail/album-image-vqgtr.jpg" alt="Documentary Of Law Firm" style="width:100%; height:100%; object-fit:cover;">
+                                                <span class="yt-play-button" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-play"></i></span>
+                    </a>
+                </div>
+                <div class="yt-video-info" style="padding:12px;">
+                    <div class="yt-video-title" style="font-weight:700; font-size:14px; color:#0f172a; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">Documentary Of Law Firm</div>
                 </div>
             </div>
-            <div class="contact-info-card">
-                <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-                <div class="contact-info-text">
-                    <h4>Email</h4>
-                    <p><a href="mailto:info@lawfirm.com">info@lawfirm.com</a>
-                    </p>
+                        <div class="yt-video-card" data-aos="zoom-in" style="background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e2e8f0;">
+                <div class="yt-thumbnail" style="position:relative; height:180px; overflow:hidden;">
+                    <a class="video" title="???????????????????????????????????? ????????? ?????????????????????????????? ?????????????????????????????? ??? ???????????? ???????????????????????????????????????????????? ????????????????????? ?????????????????????" href="album/video/album-video-muf4w.mp4" target="_blank">
+                                                    <img src="storage/album/video/thumbnail/album-image-qzvei.jpg" alt="???????????????????????????????????? ????????? ?????????????????????????????? ?????????????????????????????? ??? ???????????? ???????????????????????????????????????????????? ????????????????????? ?????????????????????" style="width:100%; height:100%; object-fit:cover;">
+                                                <span class="yt-play-button" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-play"></i></span>
+                    </a>
+                </div>
+                <div class="yt-video-info" style="padding:12px;">
+                    <div class="yt-video-title" style="font-weight:700; font-size:14px; color:#0f172a; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">???????????????????????????????????? ????????? ?????????????????????????????? ?????????????????????????????? ??? ???????????? ???????????????????????????????????????????????? ????????????????????? ?????????????????????</div>
                 </div>
             </div>
-            <div class="contact-info-card">
-                <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
-                <div class="contact-info-text">
-                    <h4>Office Hours</h4>
-                    <p>Sunday – Thursday: 9:00 AM – 6:00 PM<br>Friday & Saturday: Closed</p>
+                        <div class="yt-video-card" data-aos="zoom-in" style="background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e2e8f0;">
+                <div class="yt-thumbnail" style="position:relative; height:180px; overflow:hidden;">
+                    <a class="video" title="Welcome to our Law Firm" href="album/video/album-video-1j76m.mp4" target="_blank">
+                                                    <img src="https://img.youtube.com/vi//sddefault.jpg" alt="Welcome to our Law Firm" style="width:100%; height:100%; object-fit:cover;">
+                                                <span class="yt-play-button" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-play"></i></span>
+                    </a>
+                </div>
+                <div class="yt-video-info" style="padding:12px;">
+                    <div class="yt-video-title" style="font-weight:700; font-size:14px; color:#0f172a; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">Welcome to our Law Firm</div>
                 </div>
             </div>
-            <div class="contact-info-card" style="flex-direction:column; align-items:flex-start;">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <div class="contact-info-icon" style="width:38px; height:38px; min-width:38px; font-size:16px;"><i
-                            class="fas fa-share-alt"></i></div>
-                    <h4 style="margin:0; font-size:14px;">Follow Us</h4>
+                        <div class="yt-video-card" data-aos="zoom-in" style="background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e2e8f0;">
+                <div class="yt-thumbnail" style="position:relative; height:180px; overflow:hidden;">
+                    <a class="video" title="Welcome to our Law Firm" href="album/video/album-video-4mcv1.mp4" target="_blank">
+                                                    <img src="https://img.youtube.com/vi//sddefault.jpg" alt="Welcome to our Law Firm" style="width:100%; height:100%; object-fit:cover;">
+                                                <span class="yt-play-button" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-play"></i></span>
+                    </a>
                 </div>
-                <div class="contact-social-links"><a href="https://www.facebook.com/lawfirm"
-                        target="_blank"><i class="bx bxl-facebook"></i></a><a href="https://www.instagram.com/"
-                        target="_blank"><i class="bx bxl-instagram"></i></a><a href="#"
-                        target="_blank"><i class="bx bxl-twitter"></i></a><a href="https://www.facebook.com/lawfirm"
-                        target="_blank"><i class="bx bxl-youtube"></i></a><a href="https://www.linkedln.com/"
-                        target="_blank"><i class="bx bxl-linkedin"></i></a><a href="https://tiktok.com"
-                        target="_blank"><i class="bx bxl-tiktok"></i></a></div>
+                <div class="yt-video-info" style="padding:12px;">
+                    <div class="yt-video-title" style="font-weight:700; font-size:14px; color:#0f172a; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">Welcome to our Law Firm</div>
+                </div>
             </div>
+                    </div>
+        <div class="pagination-wrapper" style="margin-top:28px; padding:16px; background:#fff; border-radius:14px; border:1px solid #e2e8f0; display:flex; flex-direction:column; align-items:center; gap:10px;">
+            <div style="display:flex; gap:8px;">
+                                    <span style="padding:8px 16px; background:#f1f5f9; color:#94a3b8; border-radius:999px; font-size:12px; font-weight:600; border:1px solid #e2e8f0;">← Previous</span>
+                                                    <span style="padding:8px 16px; background:#f1f5f9; color:#94a3b8; border-radius:999px; font-size:12px; font-weight:600; border:1px solid #e2e8f0;">Next →</span>
+                            </div>
+            <small style="color:#64748b; font-size:12px;">Page 1 of 1 • 5 videos</small>
         </div>
     </div>
 </section>
+</div>
 
     <section class="footer-area-modern" style="background:#090e16; ">
         <div class="container">
@@ -777,6 +441,34 @@
     });
     </script>
 
-    </body>
+        <script type="module">
+    $('.video').magnificPopup({
+        type: 'iframe',
+        iframe: {
+            markup:
+            '<div class="mfp-iframe-scaler">'+
+                '<div class="mfp-close"></div>'+
+                '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+                '<div class="mfp-title">Some caption</div>'+
+            '</div>'
+        },
+        callbacks: {
+            markupParse: function(template, values, item) {
+                values.title = item.el.attr('title');
+                let id = item.el.attr('id');
+                $.ajax({
+                    method: "POST",
+                    url: `${APP_URL_BASE}/seen_counter/${id}`,
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {},
+                    success: function(response)
+                    {
+                    }
+                });
+            }
+        }
+    });
+</script>
+</body>
 
 </html>
