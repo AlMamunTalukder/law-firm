@@ -19,7 +19,7 @@ Website Settings Form
                         <h2 class="text-center fw-bold">Center Image Section</h2>
                         <div class="row">
                             <div class="col-md-4">
-                                <x-Form::input type="number" name="teachers" value="{{$item->teachers}}" autocomplete="off"  placeholder="Ex: Total Teachers" label="{{__('Teachers Number')}}" req="required" />
+                                <x-Form::input type="number" name="teachers" value="{{$item->teachers}}" autocomplete="off"  placeholder="Ex: Total Advocates" label="{{__('Advocates Number')}}" req="required" />
                                 <x-Form::input type="number" name="male_students" value="{{$item->male_students}}" autocomplete="off"  placeholder="Ex: Total Male Students" label="{{__('Male Students Number')}}" req="required" />
                                 <x-Form::input type="number" name="female_students" value="{{$item->female_students}}" autocomplete="off"  placeholder="Ex: Total Female Students" label="{{__('Female Students Number')}}" req="required" />
                             </div>
@@ -42,8 +42,6 @@ Website Settings Form
                                  <x-Form::input type="number" name="phone" value="{{$item->phone}}" autocomplete="off"  placeholder="Ex: Website phone" label="{{__('Enter Website phone')}}"  />
                             </div>
                         </div>
-                         <x-Form::textarea value="{{$item->donate}}" name="donate" autocomplete="off" label="{{__('Donate Info')}}" />
-
                         @include('admin.include.image_div_with_value',['label_name'=>'Footer Connect Image','input_name'=>'footer_connect_image','photo'=>$item->footer_connect_image])
                         <div class="row mt-4">
                             <div class="col text-center">

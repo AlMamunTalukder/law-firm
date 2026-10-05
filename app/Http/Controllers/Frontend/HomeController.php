@@ -27,7 +27,7 @@ class HomeController extends Controller
         $sliders = Slider::orderBy('id')->where('type', 1)->whereNotNull('status')->get();
         $home_page_sliders = Slider::orderBy('id')->where('type', 2)->whereNotNull('status')->get();
 
-        $members = Member::whereHas('designations', fn($q) => $q->whereHas('designation', fn($q2) => $q2->where('type', 2)))->whereNotNull('status')->get();
+        $members = Member::with('designations.designation')->whereNotNull('status')->orderBy('id')->get();
         $staffs = Member::whereHas('designations', fn($q) => $q->whereHas('designation', fn($q2) => $q2->where('type', 3)))->whereNotNull('status')->get();
 
         $features = Feature::whereNotNull('status')->orderBy('id')->get();
@@ -105,9 +105,10 @@ class HomeController extends Controller
     public function teachers()
     {
 
-        $members = Member::whereHas('designations', fn($q) => $q->whereHas('designation', fn($q2) => $q2->where('type', 2)))
+        $members = Member::with('designations.designation')
             ->whereNotNull('status')
-            ->paginate(10);
+            ->orderBy('id')
+            ->paginate(12);
 
         return view('frontend.teachers', compact('members'));
     }

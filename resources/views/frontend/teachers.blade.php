@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-    {{ __('All Teachers') }}
+    Our Team
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="container">
             <div class="section-heading mb-50" data-aos="fade-down">
 
-                <h3>All Teachers</h3>
+                <h3>Our Team</h3>
                 <div class="title-divider"></div>
             </div>
 
@@ -41,7 +41,7 @@
                 </div>
                 @empty
                 <div class="col-12 text-center">
-                    <p>No teachers found.</p>
+                    <p>No team members found.</p>
                 </div>
                 @endforelse
             </div>

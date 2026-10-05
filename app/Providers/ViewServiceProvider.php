@@ -56,6 +56,7 @@ class ViewServiceProvider extends ServiceProvider
             $footer3 = Footer::whereHas('section',fn($q)=>$q->where('route_name','footer3'))->get();
             $footer4 = Footer::whereHas('section',fn($q)=>$q->where('route_name','footer4'))->get();
             $footer5 = Footer::whereHas('section',fn($q)=>$q->where('route_name','footer5'))->get();
+            $footerSections = \App\Models\Section::whereIn('route_name',['footer1','footer2','footer3','footer4','footer5'])->pluck('name','route_name');
             $view->with([
 
                 'menu'=>$menu,
@@ -66,6 +67,7 @@ class ViewServiceProvider extends ServiceProvider
                 'footer3'=>$footer3,
                 'footer4'=>$footer4,
                 'footer5'=>$footer5,
+                'footerSections'=>$footerSections,
                 'social_media'=>$social_media,
             ]);
         });

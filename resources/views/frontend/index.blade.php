@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4" data-aos="fade-up">
-                <div class="ch-kicker d-flex align-items-center gap-2">01 <span class="ch-kicker-line"></span> ABOUT THE
+                <div class="ch-kicker d-flex align-items-center gap-2"> ABOUT THE
                     CHAMBER</div>
                 <h2>A Modern Legal Practice Grounded in Professionalism</h2>
                 <p class="ch-chamber-lead">
@@ -150,10 +150,13 @@
                 </div>
             </div>
             <div class="col-12 col-lg-7" data-aos="fade-up">
-                <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2">02 <span
-                        class="ch-kicker-line"></span> HEAD OF THE CHAMBER</div>
-                <h2>MUHA NOMAN HOSSAIN</h2>
+                <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2"> HEAD OF THE CHAMBER</div>
+                <h2>M. NOMAN HOSSAIN TALUKDER</h2>
                 <div class="ch-head-degrees">LL.B. (Hon's, DU), LL.M. (DU)</div>
+                <p class="ch-head-bio">Advocate M. Noman Hossain Talukder is the founder and Head of Chamber of N.H.
+                    Talukder &amp; Associates. A graduate of the University of Dhaka (LL.B. Honours and LL.M.), he
+                    practises before the Appellate Division and the High Court Division of the Supreme Court of
+                    Bangladesh.</p>
                 <div class="d-flex flex-wrap gap-2 mb-3">
                     <span class="ch-pill">Appellate Division</span>
                     <span class="ch-pill">High Court Division</span>
@@ -180,39 +183,51 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-12 col-lg-4" data-aos="fade-right">
-                <div class="ch-kicker d-flex align-items-center gap-2">03 <span class="ch-kicker-line"></span> PRACTICE
+                <div class="ch-kicker d-flex align-items-center gap-2"> PRACTICE
                     AREAS</div>
                 <h2>Our Practice Areas</h2>
-                <p class="ch-practice-lead">We provide comprehensive legal services across a wide range of practice
-                    areas, tailored to meet your unique needs.</p>
+                <p class="ch-practice-lead">Comprehensive legal support, from the trial court to the Supreme Court,
+                    across the following areas of law.</p>
                 <a href="{{ route('all.details', ['info','about']) }}" class="btn ch-btn-dark rounded-1">View All
                     Practice Areas <span>→</span></a>
             </div>
             <div class="col-12 col-lg-8" data-aos="fade-up">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">01</span><span
-                                class="name flex-grow-1">Corporate &amp; Commercial Law</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">02</span><span
-                                class="name flex-grow-1">Civil Litigation</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">03</span><span
-                                class="name flex-grow-1">Criminal Law</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">04</span><span
-                                class="name flex-grow-1">Constitutional Law</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">05</span><span
-                                class="name flex-grow-1">Banking &amp; Finance</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">01</span><span class="name flex-grow-1">Criminal Defense &amp;
+                                Litigation</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">02</span><span class="name flex-grow-1">Constitutional Law
+                                (Writ)</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">03</span><span class="name flex-grow-1">Civil &amp; Property Law</span><span
+                                class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">04</span><span class="name flex-grow-1">Family &amp; Personal
+                                Law</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">05</span><span class="name flex-grow-1">Banking &amp; Finance (NI
+                                Act)</span><span class="arr">→</span></a>
                     </div>
                     <div class="col-12 col-md-6">
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">06</span><span
-                                class="name flex-grow-1">Land &amp; Property Law</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">07</span><span
-                                class="name flex-grow-1">Family Law</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">08</span><span
-                                class="name flex-grow-1">Tax, VAT &amp; Customs</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">09</span><span
-                                class="name flex-grow-1">Labour &amp; Employment</span><span class="arr">→</span></a>
-                        <a href="{{ route('all.details', ['info','about']) }}" class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span class="num">10</span><span
-                                class="name flex-grow-1">Arbitration &amp; Mediation</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">06</span><span class="name flex-grow-1">Labour &amp; Employment
+                                Law</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">07</span><span class="name flex-grow-1">Cyber, ICT &amp; Digital Security
+                                Law</span><span class="arr">→</span></a>
+                        <a href="{{ route('all.details', ['info','about']) }}"
+                            class="ch-pa-item d-flex align-items-center gap-3 text-decoration-none"><span
+                                class="num">08</span><span class="name flex-grow-1">Alternative Dispute Resolution
+                                (ADR)</span><span class="arr">→</span></a>
                     </div>
                 </div>
             </div>
@@ -223,15 +238,14 @@
 {{-- 04 / Legal services (static for now — TODO(dynamic): bind service records) --}}
 <section class="ch-services d-flex flex-column flex-xl-row">
     <div class="ch-services-photo-strip" data-aos="fade-right">
-        <img src="{{ asset('storage/sections/legal-services-bg.png') }}" alt="Legal Services"
-            class="img-fluid" onerror="this.remove()">
+        <img src="{{ asset('storage/sections/legal-services-bg.png') }}" alt="Legal Services" class="img-fluid"
+            onerror="this.remove()">
     </div>
     <div class="ch-services-body flex-grow-1">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-12 col-xl-4" data-aos="fade-up">
-                    <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2">04 <span
-                            class="ch-kicker-line"></span> LEGAL SERVICES</div>
+                    <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2">LEGAL SERVICES</div>
                     <h2>Comprehensive Legal Support</h2>
                     <p>From consultation to representation, we offer a full spectrum of legal services to
                         individuals, businesses and organisations.</p>
@@ -241,47 +255,49 @@
                 <div class="col-12 col-xl-8" data-aos="fade-up">
                     <div class="ch-services-lists">
                         <div class="row row-cols-1 row-cols-sm-2 g-4">
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-comments"></i><span>Legal Consultation</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-magnifying-glass"></i><span>Due Diligence</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-scale-balanced"></i><span>Litigation &amp; Representation</span>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-comments"></i><span>Legal Consultation</span></div>
                             </div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-handshake"></i><span>Dispute Resolution</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-briefcase"></i><span>Corporate Legal Advisory</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-people-arrows"></i><span>Arbitration &amp; Mediation</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-file-signature"></i><span>Contract Review</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-clipboard-check"></i><span>Regulatory Advisory</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-folder-open"></i><span>Legal Documentation</span></div>
-                        </div>
-                        <div class="col" data-aos="fade-up">
-                            <div class="ch-svc-item d-flex align-items-center gap-3"><i
-                                    class="fa-solid fa-circle-plus"></i><span>And More</span></div>
-                        </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-magnifying-glass"></i><span>Due Diligence</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-scale-balanced"></i><span>Litigation &amp;
+                                        Representation</span>
+                                </div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-handshake"></i><span>Dispute Resolution</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-briefcase"></i><span>Corporate Legal Advisory</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-people-arrows"></i><span>Arbitration &amp; Mediation</span>
+                                </div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-file-signature"></i><span>Contract Review</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-clipboard-check"></i><span>Regulatory Advisory</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-folder-open"></i><span>Legal Documentation</span></div>
+                            </div>
+                            <div class="col" data-aos="fade-up">
+                                <div class="ch-svc-item d-flex align-items-center gap-3"><i
+                                        class="fa-solid fa-circle-plus"></i><span>And More</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -293,8 +309,7 @@
 {{-- 05 / Why choose us (static for now — TODO(dynamic): bind feature records) --}}
 <section class="ch-why">
     <div class="container py-5">
-        <div class="ch-kicker d-flex align-items-center gap-2" data-aos="fade-up">05 <span
-                class="ch-kicker-line"></span> WHY CHOOSE US</div>
+        <div class="ch-kicker d-flex align-items-center gap-2" data-aos="fade-up"> WHY CHOOSE US</div>
         <h2 data-aos="fade-up">Why N.H. Talukder &amp; Associates</h2>
         <p class="ch-why-lead" data-aos="fade-up">We are dedicated to delivering strategic legal solutions with
             integrity, expertise and a client-first approach.</p>
@@ -354,7 +369,7 @@
                     <div class="stat-info">
                         <h1 class="counter golden-text" data-target="{{ $settings->teachers }}">
                             {{ $settings->teachers }}</h1>
-                        <p>Teachers</p>
+                        <p>Advocates</p>
                     </div>
                 </div>
                 <div class="stat-card" data-aos="fade-right" data-aos-delay="300">
@@ -405,13 +420,13 @@
         </div>
     </div>
 </section> -->
+
 {{-- 06 / Our team (dynamic: members; arrows scroll the track) --}}
 <section class="ch-team">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-12 col-lg-3" data-aos="fade-right">
-                <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2">06 <span
-                        class="ch-kicker-line"></span> OUR TEAM</div>
+                <div class="ch-kicker ch-kicker--light d-flex align-items-center gap-2"> OUR TEAM</div>
                 <h2>Our Team of Legal Professionals</h2>
                 <p class="ch-team-lead">A skilled team of advocates, associates and legal experts, working together for
                     your success.</p>
@@ -449,44 +464,8 @@
     </div>
 </section>
 
-{{-- 07 / Insights & legal research (dynamic: latest news) --}}
-<section class="ch-insights">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-12 col-lg-3" data-aos="fade-right">
-                <div class="ch-kicker d-flex align-items-center gap-2">07 <span class="ch-kicker-line"></span> INSIGHTS
-                    &amp; LEGAL RESEARCH</div>
-                <h2>Latest Insights</h2>
-                <p class="ch-insights-lead">Stay updated with our articles, case analyses and legal developments.</p>
-                <a href="{{ route('news', 'News') }}" class="btn ch-btn-dark rounded-1">View All <span>→</span></a>
-            </div>
-            <div class="col-12 col-lg-9" data-aos="fade-up">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4">
-                    @foreach($news as $item)
-                    <div class="col">
-                        <article class="ch-insight-card h-100"
-                            onclick="window.location='{{ route('news.details', ['slug' => $item->slug ?? '#']) }}'">
-                            <div class="ch-insight-img">
-                                @if(!empty($item->photo))
-                                <img src="{{ asset('storage/' . $item->photo) }}" alt="{{ $item->name }}"
-                                    class="img-fluid" loading="lazy" onerror="this.remove()">
-                                @endif
-                            </div>
-                            <div class="ch-insight-body">
-                                <span
-                                    class="ch-insight-cat">{{ strtoupper($item->categories->first()?->category?->name ?? 'ARTICLE') }}</span>
-                                <h3>{{ Str::limit($item->name, 60) }}</h3>
-                                <span class="ch-insight-date"><i class="fa-regular fa-calendar"></i>
-                                    {{ $item->action_date ? \Carbon\Carbon::parse($item->action_date)->format('d F Y') : ($item->created_at ? $item->created_at->format('d F Y') : '') }}</span>
-                            </div>
-                        </article>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+
 {{-- Modern Home Image Gallery - Bento / Masonry modern design --}}
 <section class="home-gallery-area">
     <div class="container">
@@ -558,7 +537,7 @@
 <section class="ch-testimonials">
     <div class="container py-5">
         <div class="text-center mx-auto ch-testimonials-head" data-aos="fade-down">
-            <div class="ch-kicker d-flex align-items-center justify-content-center gap-2">08 <span class="ch-kicker-line"></span> CLIENT TESTIMONIALS</div>
+            <div class="ch-kicker d-flex align-items-center justify-content-center gap-2"> CLIENT TESTIMONIALS</div>
             <h2>What Our Clients Say</h2>
             <p>We take pride in the trust and confidence our clients place in us.</p>
         </div>
@@ -567,7 +546,8 @@
                 <div class="ch-t-slide">
                     <div class="ch-t-mark">&ldquo;</div>
                     <div class="ch-t-stars">★★★★★</div>
-                    <p>N.H. Talukder &amp; Associates provided exceptional legal support in our case. Their professionalism, timely communication and strategic approach were of great assistance.</p>
+                    <p>N.H. Talukder &amp; Associates provided exceptional legal support in our case. Their
+                        professionalism, timely communication and strategic approach were of great assistance.</p>
                     <div class="ch-t-person">
                         <span class="ch-t-avatar">RG</span>
                         <span class="ch-t-who"><strong>Rahman Group</strong><em>Corporate Client</em></span>
@@ -576,7 +556,8 @@
                 <div class="ch-t-slide">
                     <div class="ch-t-mark">&ldquo;</div>
                     <div class="ch-t-stars">★★★★★</div>
-                    <p>From our first consultation to the final verdict, the chamber handled everything with remarkable diligence and honesty. I always felt informed and protected.</p>
+                    <p>From our first consultation to the final verdict, the chamber handled everything with remarkable
+                        diligence and honesty. I always felt informed and protected.</p>
                     <div class="ch-t-person">
                         <span class="ch-t-avatar">PC</span>
                         <span class="ch-t-who"><strong>Private Client</strong><em>Dhaka</em></span>
@@ -585,7 +566,8 @@
                 <div class="ch-t-slide">
                     <div class="ch-t-mark">&ldquo;</div>
                     <div class="ch-t-stars">★★★★★</div>
-                    <p>Their research-driven approach and confident courtroom advocacy delivered exactly the outcome our business needed. A truly trusted legal partner.</p>
+                    <p>Their research-driven approach and confident courtroom advocacy delivered exactly the outcome our
+                        business needed. A truly trusted legal partner.</p>
                     <div class="ch-t-person">
                         <span class="ch-t-avatar">BC</span>
                         <span class="ch-t-who"><strong>Business Client</strong><em>Chattogram</em></span>
@@ -598,15 +580,19 @@
                 <button type="button" class="ch-t-arrow" aria-label="Next" onclick="chTMove(1)">›</button>
             </div>
         </div>
-        <div class="ch-cta-strip mx-auto d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3" data-aos="fade-up">
+        <div class="ch-cta-strip mx-auto d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3"
+            data-aos="fade-up">
             <h3>Your Legal Matters, Our Priority</h3>
-            <a href="{{ route('contact') }}" class="btn ch-btn-gold rounded-1 text-nowrap">Request a Consultation <span>→</span></a>
+            <a href="{{ route('contact') }}" class="btn ch-btn-gold rounded-1 text-nowrap">Request a Consultation
+                <span>→</span></a>
         </div>
     </div>
 </section>
+
 <script>
-(function () {
-    var idx = 0, timer = null;
+(function() {
+    var idx = 0,
+        timer = null;
     var track = document.querySelector('.ch-t-track');
     if (!track) return;
     var slides = track.children.length;
@@ -616,18 +602,39 @@
         d.type = 'button';
         d.className = 'ch-t-dot';
         d.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
-        (function (n) { d.onclick = function () { chTGo(n); }; })(i);
+        (function(n) {
+            d.onclick = function() {
+                chTGo(n);
+            };
+        })(i);
         dotsBox.appendChild(d);
     }
+
     function paint() {
         track.style.transform = 'translateX(-' + (idx * 100) + '%)';
         var dots = dotsBox.children;
         for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('on', i === idx);
     }
-    window.chTGo = function (n) { idx = (n + slides) % slides; paint(); restart(); };
-    window.chTMove = function (s) { idx = (idx + s + slides) % slides; paint(); restart(); };
-    function restart() { if (timer) clearInterval(timer); timer = setInterval(function () { idx = (idx + 1) % slides; paint(); }, 6000); }
-    paint(); restart();
+    window.chTGo = function(n) {
+        idx = (n + slides) % slides;
+        paint();
+        restart();
+    };
+    window.chTMove = function(s) {
+        idx = (idx + s + slides) % slides;
+        paint();
+        restart();
+    };
+
+    function restart() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(function() {
+            idx = (idx + 1) % slides;
+            paint();
+        }, 6000);
+    }
+    paint();
+    restart();
 })();
 </script>
 
@@ -635,8 +642,8 @@
 <section class="ch-contact">
     <div class="container py-5">
         <div class="text-center mx-auto ch-contact-head" data-aos="fade-down">
-            <div class="ch-kicker ch-kicker--light d-flex align-items-center justify-content-center gap-2">09 <span
-                    class="ch-kicker-line"></span> CONTACT</div>
+            <div class="ch-kicker ch-kicker--light d-flex align-items-center justify-content-center gap-2"> CONTACT
+            </div>
             <h2>Get In Touch</h2>
             <p>We are here to assist you. Contact us for consultation, inquiries or more information.</p>
         </div>
@@ -707,6 +714,45 @@
                             <div><strong>Sun – Thu</strong><span>9:00 AM – 6:00 PM</span></div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- 07 / Insights & legal research (dynamic: latest news) --}}
+<section class="ch-insights">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-12 col-lg-3" data-aos="fade-right">
+                <div class="ch-kicker d-flex align-items-center gap-2">INSIGHTS
+                    &amp; LEGAL RESEARCH</div>
+                <h2>Latest Insights</h2>
+                <p class="ch-insights-lead">Stay updated with our articles, case analyses and legal developments.</p>
+                <a href="{{ route('news', 'News') }}" class="btn ch-btn-dark rounded-1">View All <span>→</span></a>
+            </div>
+            <div class="col-12 col-lg-9" data-aos="fade-up">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4">
+                    @foreach($news as $item)
+                    <div class="col">
+                        <article class="ch-insight-card h-100"
+                            onclick="window.location='{{ route('news.details', ['slug' => $item->slug ?? '#']) }}'">
+                            <div class="ch-insight-img">
+                                @if(!empty($item->photo))
+                                <img src="{{ asset('storage/' . $item->photo) }}" alt="{{ $item->name }}"
+                                    class="img-fluid" loading="lazy" onerror="this.remove()">
+                                @endif
+                            </div>
+                            <div class="ch-insight-body">
+                                <span
+                                    class="ch-insight-cat">{{ strtoupper($item->categories->first()?->category?->name ?? 'ARTICLE') }}</span>
+                                <h3>{{ Str::limit($item->name, 60) }}</h3>
+                                <span class="ch-insight-date"><i class="fa-regular fa-calendar"></i>
+                                    {{ $item->action_date ? \Carbon\Carbon::parse($item->action_date)->format('d F Y') : ($item->created_at ? $item->created_at->format('d F Y') : '') }}</span>
+                            </div>
+                        </article>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

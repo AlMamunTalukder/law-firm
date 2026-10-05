@@ -32,7 +32,6 @@ class SettingController extends Controller
         $object->donors = $request->donors;
         $object->email = $request->email;
         $object->phone = $request->phone;
-        $object->donate = $request->donate;
         $object->about_title = $request->about_title;
         if ($request->filled('description')) {
             $object->about = $request->description;

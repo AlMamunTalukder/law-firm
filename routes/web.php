@@ -22,9 +22,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('home', 'HomeController@index')->name('home');
 
     Route::get('details/{type}/{slug?}', 'HomeController@details')->name('all.details');
-    Route::get('notices', 'NoticeController@index')->name('notices.index');
-    Route::get('notices/{slug}', 'NoticeController@show')->name('notices.show');
-    Route::get('n/{id}', 'NoticeController@short')->name('notice.short');
+    // Notices pages hidden from live site (admin + data kept)
+    // Route::get('notices', 'NoticeController@index')->name('notices.index');
+    // Route::get('notices/{slug}', 'NoticeController@show')->name('notices.show');
+    // Route::get('n/{id}', 'NoticeController@short')->name('notice.short');
 
     Route::get('image', 'ImageController@index')->name('image');
     Route::get('member-info/{slug?}', 'NewsController@member_details')->name('front_member.details');
@@ -45,17 +46,17 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('news/location/{location_name}', 'LocationController@index')->name('news.location');
     Route::get('news/location/{location_name}/all', 'LocationController@all_news')->name('news.location.all');
-    Route::get('teachers', 'HomeController@teachers')->name('teachers.index');
+    Route::get('our-team', 'HomeController@teachers')->name('teachers.index');
+    Route::redirect('teachers', 'our-team', 301);
     Route::get('contact', 'HomeController@contact')->name('contact');
     Route::post('contact', 'HomeController@contactSubmit')->middleware('throttle:5,1')->name('contact.submit');
 
     Route::get('our-activities', 'ActivityController@index')->name('activities.index');
     Route::get('our-activities/{slug}', 'ActivityController@show')->name('activities.show');
-    Route::get('donate-us', 'ActivityController@donate')->name('donate.index');
 
 });
 
 require __DIR__.'/admin.php';Route::get('sitemap.xml', function(){
-    $urls = collect([route('home'), route('contact')])->merge(\App\Models\Notice::where('status',1)->pluck('slug')->map(fn($s)=>route('notices.show', $s)));
+    $urls = collect([route('home'), route('contact')]);
     return response()->view('sitemap', compact('urls'))->header('Content-Type','text/xml');
 });

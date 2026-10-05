@@ -7,8 +7,8 @@
 }
 
 .contact-hero {
-    background: linear-gradient(145deg, rgba(7, 33, 74, 0.92), rgba(4, 18, 41, 0.96)),
-    url('{{ asset("front_assets/img/bg/pattern.png") }}');
+    background: radial-gradient(900px 400px at 50% 0%, rgba(201, 164, 92, 0.16), transparent 60%),
+    linear-gradient(135deg, #141210 0%, #1d1a15 55%, #241c12 100%);
     background-size: cover;
     background-position: center;
     padding: 50px 16px 60px;
@@ -16,6 +16,7 @@
     color: #fff;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.25);
 }
 
 .contact-hero::after {
@@ -25,18 +26,20 @@
     left: 0;
     width: 100%;
     height: 80px;
-    background: var(--cream, #faf6ef);
+    background: #f5f0e4;
     clip-path: ellipse(70% 100% at 50% 100%);
     z-index: 1;
 }
 
 .contact-hero h1 {
-    font-family: var(--font-display, "Playfair Display", serif);
+    font-family: "Playfair Display", Georgia, serif;
     font-size: clamp(28px, 5vw, 44px);
     font-weight: 700;
     margin-bottom: 10px;
     position: relative;
     z-index: 2;
+    color: #e7cd97;
+    letter-spacing: 0.01em;
 }
 
 .contact-hero p {
@@ -71,12 +74,12 @@
 }
 
 .contact-hero .breadcrumb a {
-    color: var(--gold, #c9962a);
+    color: #e7cd97;
 }
 
 .contact-main-section {
     padding: 32px 0 40px;
-    background: var(--cream, #faf6ef);
+    background: #f5f0e4;
     position: relative;
     z-index: 2;
 }
@@ -121,9 +124,10 @@
 }
 
 .contact-form-wrapper h3 {
-    font-family: var(--font-display, "Playfair Display", serif);
-    font-size: 22px;
-    color: var(--navy, #0d1b3e);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #191510;
     margin-bottom: 6px;
 }
 
@@ -142,7 +146,7 @@
     display: block;
     font-size: 13px;
     font-weight: 600;
-    color: var(--navy, #0d1b3e);
+    color: #2a251c;
     margin-bottom: 6px;
 }
 
@@ -150,6 +154,14 @@
     color: #ef4444;
 }
 
+.form-group-modern input:focus,
+.form-group-modern textarea:focus,
+.form-group-modern select:focus {
+    outline: none;
+    border-color: #c9a45c;
+    box-shadow: 0 0 0 4px rgba(201, 164, 92, 0.16);
+    background: #fff;
+}
 .form-group-modern input,
 .form-group-modern textarea,
 .form-group-modern select {
@@ -162,6 +174,7 @@
     background: #f8fafc;
     transition: 0.2s;
     display: block;
+    color: #2a251c;
 }
 
 .form-group-modern textarea {
@@ -186,16 +199,21 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 24px;
-    background: var(--gold, #c9962a);
-    color: #fff;
+    padding: 13px 24px;
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
     border: none;
-    border-radius: 12px;
+    border-radius: 6px;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     width: 100%;
     justify-content: center;
+    box-shadow: 0 8px 22px rgba(201, 164, 92, 0.3);
+}
+.submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(201, 164, 92, 0.4);
 }
 
 .contact-info-side {
@@ -222,20 +240,21 @@
     width: 44px;
     height: 44px;
     min-width: 44px;
-    background: rgba(201, 150, 42, 0.08);
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: var(--gold, #c9962a);
+    color: #1a1408;
     flex-shrink: 0;
 }
 
 .contact-info-text h4 {
-    font-size: 14px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 15px;
     font-weight: 700;
-    color: var(--navy, #0d1b3e);
+    color: #191510;
     margin-bottom: 4px;
 }
 
@@ -248,20 +267,21 @@
 }
 
 .contact-info-text p a {
-    color: var(--navy, #0d1b3e);
+    color: #2a251c;
     word-break: break-all;
 }
 
 .map-section {
-    padding: 32px 0 40px;
-    background: #fff;
+    padding: 32px 0 48px;
+    background: #141210;
+    border-top: 1px solid rgba(201, 164, 92, 0.25);
 }
 
 .map-section .map-container {
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(13, 27, 62, 0.06);
-    border: 1px solid rgba(201, 150, 42, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(201, 164, 92, 0.3);
     height: 300px;
     width: 100%;
 }
@@ -293,9 +313,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--navy, #0d1b3e);
+    color: #2a251c;
     font-size: 16px;
     transition: 0.2s;
+}
+.contact-social-links a:hover {
+    background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+    color: #1a1408;
 }
 </style>
 <section class="contact-hero">
@@ -340,10 +364,11 @@
                             <option value="">Select a subject</option>
                             <option value="general" {{ old('subject')=='general'?'selected':'' }}>General Inquiry
                             </option>
-                            <option value="admission" {{ old('subject')=='admission'?'selected':'' }}>Admission</option>
-                            <option value="donation" {{ old('subject')=='donation'?'selected':'' }}>Donation /
-                                Sponsorship</option>
-                            <option value="volunteer" {{ old('subject')=='volunteer'?'selected':'' }}>Volunteer</option>
+                            <option value="consultation" {{ old('subject')=='consultation'?'selected':'' }}>Book a Consultation</option>
+                            <option value="criminal" {{ old('subject')=='criminal'?'selected':'' }}>Criminal Defense &amp; Litigation</option>
+                            <option value="civil-property" {{ old('subject')=='civil-property'?'selected':'' }}>Civil &amp; Property Law</option>
+                            <option value="family" {{ old('subject')=='family'?'selected':'' }}>Family &amp; Personal Law</option>
+                            <option value="corporate" {{ old('subject')=='corporate'?'selected':'' }}>Corporate &amp; Commercial Law</option>
                             <option value="other" {{ old('subject')=='other'?'selected':'' }}>Other</option>
                         </select>
                     </div>
@@ -400,8 +425,8 @@
 <section class="map-section">
     <div class="container" style="max-width:1200px; margin:0 auto; padding:0 12px;">
         <div class="section-heading" style="text-align:center; margin-bottom:16px;"><span class="sub-title"
-                style="color:#c9962a; font-weight:700; font-size:12px; letter-spacing:1px;">Find Us</span>
-            <h3 style="font-weight:800; color:#0d1b3e;">Our Location</h3>
+                style="color:#c9a45c; font-weight:700; font-size:12px; letter-spacing:3px;">FIND US</span>
+            <h3 style="font-family:'Playfair Display',Georgia,serif; font-weight:600; color:#f3ead6;">Our Location</h3>
         </div>
         <div class="map-container" data-aos="fade-up">{!! $settings->map_link !!}</div>
     </div>

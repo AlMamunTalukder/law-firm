@@ -74,7 +74,8 @@
                     @endif
                 </span>
                 <span class="ch-brand-text lh-sm">
-                    <span class="ch-brand-name d-block">{{ $settings->name ?? 'N.H. TALUKDER & ASSOCIATES' }}</span>
+                    @php $brandParts = explode('&', $settings->name ?? 'N.H. TALUKDER & ASSOCIATES'); @endphp
+                    <span class="ch-brand-name d-block">{{ trim($brandParts[0]) }}<br>&amp; {{ trim($brandParts[1] ?? 'ASSOCIATES') }}</span>
                     <span class="ch-brand-estd d-block">ESTD. 2024</span>
                 </span>
             </a>
@@ -85,10 +86,14 @@
                     <button type="button">Practice Areas <span class="chev">▾</span></button>
                     <ul class="ch-drop-menu">
                         {{-- TODO(dynamic): render from practice-areas table when available --}}
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Civil &amp; Criminal Litigation</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Corporate &amp; Commercial Law</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Family &amp; Property Law</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Legal Advisory Services</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Criminal Defense &amp; Litigation</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Constitutional Law (Writ)</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Civil &amp; Property Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Family &amp; Personal Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Banking &amp; Finance (NI Act)</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Labour &amp; Employment Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Cyber, ICT &amp; Digital Security Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Alternative Dispute Resolution (ADR)</a></li>
                     </ul>
                 </div>
                 <a href="{{ route('teachers.index') }}" class="text-decoration-none">Our Team</a>
@@ -96,14 +101,12 @@
                     <button type="button">Insights <span class="chev">▾</span></button>
                     <ul class="ch-drop-menu">
                         <li><a href="{{ route('news', 'News') }}">Legal Insights</a></li>
-                        <li><a href="{{ route('notices.index') }}">Notices</a></li>
                     </ul>
                 </div>
                 <a href="{{ route('contact') }}" class="text-decoration-none {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </nav>
             <a href="{{ route('contact') }}" class="btn ch-consult-btn d-none d-lg-inline-flex align-items-center rounded-1 text-nowrap ms-lg-3">Book a Consultation <span class="arr">→</span></a>
-            <button type="button" id="open-menu-btn" class="btn ch-burger d-lg-none ms-auto">
-                <span>Menu</span>
+            <button type="button" id="open-menu-btn" class="btn ch-burger d-lg-none ms-auto" aria-label="Menu">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                     <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -138,10 +141,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         {{-- TODO(dynamic): render from practice-areas table when available --}}
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Civil &amp; Criminal Litigation</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Corporate &amp; Commercial Law</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Family &amp; Property Law</a></li>
-                        <li><a href="{{ route('all.details', ['info','about']) }}">Legal Advisory Services</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Criminal Defense &amp; Litigation</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Constitutional Law (Writ)</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Civil &amp; Property Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Family &amp; Personal Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Banking &amp; Finance (NI Act)</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Labour &amp; Employment Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Cyber, ICT &amp; Digital Security Law</a></li>
+                        <li><a href="{{ route('all.details', ['info','about']) }}">Alternative Dispute Resolution (ADR)</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('teachers.index') }}">Our Team</a></li>
@@ -155,7 +162,6 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('news', 'News') }}">Legal Insights</a></li>
-                        <li><a href="{{ route('notices.index') }}">Notices</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
@@ -215,7 +221,7 @@
                 </div>
 
                 <div class="">
-                    <h4 class="footer-label">Branches</h4>
+                    <h4 class="footer-label">{{ $footerSections['footer2'] ?? 'Quick Links' }}</h4>
                     @if (!$footer2->isEmpty() && $footer2[0]->type==1)
                     <ul class="footer-links">
                         @foreach ($footer2 as $item)
@@ -228,7 +234,7 @@
                 </div>
 
                 <div class="">
-                    <h4 class="footer-label">Quick Actions</h4>
+                    <h4 class="footer-label">{{ $footerSections['footer3'] ?? 'Our Services' }}</h4>
                     @if (!$footer3->isEmpty() && $footer3[0]->type==1)
                     <ul class="footer-links">
                         @foreach ($footer3 as $item)
@@ -241,7 +247,7 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4 class="footer-label">Media</h4>
+                    <h4 class="footer-label">{{ $footerSections['footer4'] ?? 'Resources' }}</h4>
                     @if (!$footer4->isEmpty() && $footer4[0]->type==1)
                     <ul class="footer-links">
                         @foreach ($footer4 as $item)
@@ -254,7 +260,7 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4 class="footer-label">About & Support</h4>
+                    <h4 class="footer-label">{{ $footerSections['footer5'] ?? 'Support' }}</h4>
                     @if (!$footer5->isEmpty() && $footer5[0]->type==1)
                     <ul class="footer-links">
                         @foreach ($footer5 as $item)

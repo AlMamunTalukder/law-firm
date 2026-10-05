@@ -26,10 +26,10 @@ class DesignationController extends Controller
                         return '<span class="badge text-bg-success">Management</span>';
                     }
                     if ($row->type==2) {
-                        return '<span class="badge text-bg-info text-white">Teacher</span>';
+                        return '<span class="badge text-bg-info text-white">Advocate</span>';
                     }
                     if ($row->type==3) {
-                        return '<span class="badge text-bg-primary">Employee</span>';
+                        return '<span class="badge text-bg-primary">Staff</span>';
                     }
 
                 })

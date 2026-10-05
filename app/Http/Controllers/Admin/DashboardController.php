@@ -14,13 +14,21 @@ class DashboardController extends Controller
 
     public function __invoke(Request $request)
     {
-        $total_teachers = Member::whereHas('designations',fn($q)=>$q->whereHas('designation',fn($q2)=>$q2->where('type',2)))->whereNotNull('status')->get();
+        $teamMembers = Member::whereNotNull('status')->count();
+        $insights = \App\Models\News::whereNotNull('status')->count();
+        $notices = \App\Models\Notice::where('status', 1)->count();
+        $messages = \App\Models\ContactMessage::count();
+        $unreadMessages = \App\Models\ContactMessage::where('is_read', false)->count();
         $total_sliders = Slider::whereNotNull('status')->get()->count();
-        $staffs = Member::whereHas('designations',fn($q)=>$q->whereHas('designation',fn($q2)=>$q2->where('type',3)))->whereNotNull('status')->get();
+        $gallery = \App\Models\Album::where('type', 1)->whereNotNull('status')->count();
         return view('admin.dashboard',compact([
-            'total_teachers',
+            'teamMembers',
+            'insights',
+            'notices',
+            'messages',
+            'unreadMessages',
             'total_sliders',
-            'staffs',
+            'gallery',
         ]));
     }
 }

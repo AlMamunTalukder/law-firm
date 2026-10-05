@@ -20,12 +20,4 @@ class ActivityController extends Controller
         $related = Activity::active()->where('id','!=',$activity->id)->orderByDesc('id')->take(4)->get();
         return view('frontend.activities.show', compact('activity','related'));
     }
-
-    public function donate()
-    {
-        $donate = \App\Models\DonateSetting::first();
-        $banks = \App\Models\BankAccount::orderBy('order')->orderBy('id')->get();
-        $activities = Activity::active()->orderBy('order')->orderByDesc('id')->get();
-        return view('frontend.activities.donate', compact('donate','banks','activities'));
-    }
 }

@@ -55,7 +55,7 @@
             <div class="meta">
                 <span><i class="far fa-calendar me-1"></i> {{ $activity->created_at->format('d M Y') }}</span>
                 <span class="badge">Activity</span>
-                <a href="{{ route('donate.index') }}" style="color:#ffd76d; font-weight:600; text-decoration:none;">Donate <i class="fas fa-heart ms-1" style="font-size:11px;"></i></a>
+                <a href="{{ route('contact') }}" style="color:#ffd76d; font-weight:600; text-decoration:none;">Contact Us <i class="fas fa-envelope ms-1" style="font-size:11px;"></i></a>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
 
                     <div class="mt-4 d-flex flex-wrap gap-2">
                         <a href="{{ route('activities.index') }}" class="btn btn-outline-secondary" style="border-radius:10px; padding:10px 18px;"><i class="fas fa-arrow-left me-1"></i> All Activities</a>
-                        <a href="{{ route('donate.index') }}" class="btn" style="background:#0f172a; color:#fff; border-radius:10px; padding:10px 20px; font-weight:600;">Donate Now <i class="fas fa-heart ms-1" style="color:#ffd76d;"></i></a>
+                        <a href="{{ route('contact') }}" class="btn" style="background:#0f172a; color:#fff; border-radius:10px; padding:10px 20px; font-weight:600;">Contact Us <i class="fas fa-envelope ms-1" style="color:#ffd76d;"></i></a>
                         <button onclick="if(navigator.share){navigator.share({title:document.title, url:location.href})}else{navigator.clipboard.writeText(location.href); alert('Link copied!')}" class="btn btn-light" style="border:1px solid #e2e8f0; border-radius:10px;"><i class="fas fa-share-nodes me-1"></i> Share</button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <h4><i class="fas fa-info-circle"></i> About this activity</h4>
                     <p class="small text-muted mb-3" style="line-height:1.6;">{{ $activity->excerpt ? \Illuminate\Support\Str::limit($activity->excerpt, 140) : 'Learn more about this initiative and how you can support it.' }}</p>
                     <div class="d-grid gap-2">
-                        <a href="{{ route('donate.index') }}" class="btn" style="background:#c9962a; color:#fff; font-weight:700; border-radius:10px; padding:11px;">Donate to this cause</a>
+                        <a href="{{ route('contact') }}" class="btn" style="background:#c9962a; color:#fff; font-weight:700; border-radius:10px; padding:11px;">Ask about this matter</a>
                         <a href="{{ route('activities.index') }}" class="btn btn-outline-secondary" style="border-radius:10px;">Browse all activities</a>
                     </div>
                     <hr class="my-3" style="border-color:#e2e8f0;">

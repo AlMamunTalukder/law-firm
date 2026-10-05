@@ -13,9 +13,9 @@
         *{font-family: 'Inter', system-ui, -apple-system, sans-serif;}
         .login-wrapper{
             min-height:100vh; display:flex; align-items:center; justify-content:center;
-            background: radial-gradient(1200px 600px at 10% -10%, #1e3a8a 0%, transparent 60%),
-                        radial-gradient(900px 500px at 90% 110%, #0f172a 0%, transparent 60%),
-                        linear-gradient(135deg, #0b1020 0%, #0f1b3d 45%, #00043a 100%);
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(201,164,92,0.16) 0%, transparent 60%),
+                        radial-gradient(900px 500px at 90% 110%, rgba(120,84,30,0.22) 0%, transparent 60%),
+                        linear-gradient(135deg, #141210 0%, #1d1a15 45%, #241c12 100%);
             padding:24px; position:relative; overflow:hidden;
         }
         .login-wrapper::before{
@@ -25,7 +25,7 @@
         }
         .login-wrapper::after{
             content:''; position:absolute; width:600px; height:600px; border-radius:50%;
-            background: radial-gradient(circle, rgba(78,115,223,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(201,164,92,0.14) 0%, transparent 70%);
             top:-100px; right:-150px; pointer-events:none;
         }
         .login-card{
@@ -35,8 +35,9 @@
             border:1px solid rgba(255,255,255,0.6);
         }
         .login-header{
-            background: linear-gradient(135deg, #00043a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #141210 0%, #2b241a 100%);
             padding:32px 32px 28px; text-align:center; position:relative; overflow:hidden;
+            border-bottom:1px solid rgba(201,164,92,0.35);
         }
         .login-header::after{
             content:''; position:absolute; bottom:-1px; left:0; right:0; height:24px;
@@ -47,21 +48,21 @@
             margin:0 auto 14px; box-shadow:0 8px 24px rgba(0,0,0,0.25); padding:10px;
         }
         .login-logo img{ max-width:100%; max-height:100%; object-fit:contain; }
-        .login-header h1{ color:#fff; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; font-size:22px; margin:0; letter-spacing:-0.5px; }
-        .login-header p{ color:rgba(255,255,255,0.7); font-size:13px; margin:6px 0 0; }
+        .login-header h1{ color:#f3ead6; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; font-size:22px; margin:0; letter-spacing:-0.5px; }
+        .login-header p{ color:rgba(231,205,151,0.75); font-size:13px; margin:6px 0 0; }
         .login-body{ padding:28px 32px 32px; }
-        .form-label{ font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
-        .form-label i{ color:#4e73df; font-size:12px; }
+        .form-label{ font-size:13px; font-weight:700; color:#2a251c; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+        .form-label i{ color:#a8823f; font-size:12px; }
         .input-wrap{ position:relative; }
         .input-wrap .form-control{
             padding:13px 14px 13px 44px; border:1.5px solid #e2e8f0; border-radius:14px; background:#f8fafc;
             font-size:14px; transition:all 0.2s; height:auto;
         }
-        .input-wrap .form-control:focus{ border-color:#4e73df; background:#fff; box-shadow:0 0 0 4px rgba(78,115,223,0.12); outline:none; }
+        .input-wrap .form-control:focus{ border-color:#c9a45c; background:#fff; box-shadow:0 0 0 4px rgba(201,164,92,0.16); outline:none; }
         .input-wrap .input-icon{
             position:absolute; left:14px; top:50%; transform:translateY(-50%);
-            width:32px; height:32px; background:#eef2ff; border-radius:10px; display:flex; align-items:center; justify-content:center;
-            color:#4e73df; font-size:14px; pointer-events:none;
+            width:32px; height:32px; background:rgba(201,164,92,0.14); border-radius:10px; display:flex; align-items:center; justify-content:center;
+            color:#a8823f; font-size:14px; pointer-events:none;
         }
         .captcha-box{
             background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:14px; padding:12px; display:flex; align-items:center; gap:12px;
@@ -69,15 +70,15 @@
         .captcha-box img{ border-radius:10px; height:44px; border:1px solid #e2e8f0; }
         .captcha-box input{ flex:1; border:none; background:transparent; outline:none; font-size:14px; }
         .btn-login{
-            width:100%; background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
-            color:#fff; border:none; border-radius:14px; padding:14px; font-weight:800; font-size:15px;
-            box-shadow:0 10px 24px rgba(78,115,223,0.35); transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px;
+            width:100%; background: linear-gradient(180deg, #ddbb77 0%, #c39a52 100%);
+            color:#1a1408; border:none; border-radius:14px; padding:14px; font-weight:800; font-size:15px;
+            box-shadow:0 10px 24px rgba(201,164,92,0.35); transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px;
         }
-        .btn-login:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(78,115,223,0.45); background: linear-gradient(135deg, #224abe 0%, #1a3a9e 100%); color:#fff; }
+        .btn-login:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(201,164,92,0.45); background: linear-gradient(180deg, #e7cd97 0%, #cfa856 100%); color:#1a1408; }
         .divider{ display:flex; align-items:center; gap:12px; margin:18px 0 0; color:#94a3b8; font-size:12px; }
         .divider::before,.divider::after{ content:''; flex:1; height:1px; background:#e2e8f0; }
         .footer-text{ text-align:center; margin-top:18px; font-size:12px; color:#64748b; }
-        .footer-text a{ color:#4e73df; font-weight:600; text-decoration:none; }
+        .footer-text a{ color:#a8823f; font-weight:600; text-decoration:none; }
         .alert{ border-radius:14px; font-size:13px; padding:12px 14px; border:none; }
         .is-invalid{ border-color:#ef4444 !important; background:#fef2f2 !important; }
         @media (max-width:480px){ .login-card{ border-radius:20px; } .login-body{ padding:24px 20px 28px; } .login-header{ padding:28px 20px 24px; } }
@@ -93,7 +94,7 @@
                     @elseif(!empty($settings->logo))
                         <img src="{{ asset('storage/'.$settings->logo) }}" alt="Logo">
                     @else
-                        <i class="fas fa-shield-halved" style="font-size:28px;color:#00043a;"></i>
+                        <i class="fas fa-shield-halved" style="font-size:28px;color:#a8823f;"></i>
                     @endif
                 </div>
                 <h1>{{ $settings->short_name ?? 'Law Firm' }}</h1>
@@ -132,7 +133,7 @@
                         <div class="captcha-box">
                             <img src="{{ captcha_src() }}" alt="captcha" id="captchaImg" style="cursor:pointer;" title="Click to refresh" onclick="this.src='{{ captcha_src() }}?'+Math.random()">
                             <input type="text" name="captcha" required placeholder="Enter captcha" class="form-control-plaintext @error('captcha') is-invalid @enderror" style="border:none; background:transparent;">
-                            <button type="button" onclick="document.getElementById('captchaImg').src='{{ captcha_src() }}?'+Math.random()" style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:#4e73df;"><i class="fas fa-rotate"></i></button>
+                            <button type="button" onclick="document.getElementById('captchaImg').src='{{ captcha_src() }}?'+Math.random()" style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:#a8823f;"><i class="fas fa-rotate"></i></button>
                         </div>
                         @error('captcha')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
                     </div>

@@ -84,7 +84,7 @@
                     <h2 class="notice-title" style="flex:1; min-width:220px; margin:0;">
                         {{ $item->title ?? ($item->notice_title ?? 'Notice') }}
                     </h2>
-                    <button type="button" onclick="copyNoticeLink('{{ route('notice.short', $item->id) }}', this)"
+                    <button type="button" onclick="copyNoticeLink('{{ route('all.details', ['type' => 'notice', 'slug' => $item->slug]) }}', this)"
                         style="display:inline-flex; align-items:center; gap:7px; background:#fff; color:#0f172a; border:1.5px solid #e2e8f0; padding:8px 14px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0;"><i
                             class="fas fa-link" style="font-size:11px;"></i> Copy Link <span class="copy-feedback"
                             style="font-size:11px; color:#059669; display:none; margin-left:4px;">Copied!</span></button>
@@ -117,14 +117,14 @@
                 <ul>
                     @forelse($sideNotices as $notice)
                     <li>
-                        <a href="{{ route('notices.show', $notice->slug) }}">
+                        <a href="{{ route('all.details', ['type' => 'notice', 'slug' => $notice->slug]) }}">
                             <i class='bx bx-chevron-right'></i> {{ $notice->title }}
                         </a>
                     </li>
                     @empty
                     <li>
-                        <a href="{{ route('notices.index') }}">
-                            <i class='bx bx-chevron-right'></i> View all notices
+                        <a href="{{ route('home') }}">
+                            <i class='bx bx-chevron-right'></i> Back to home
                         </a>
                     </li>
                     @endforelse
@@ -138,8 +138,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('notices.index') }}">
-                            <i class='bx bx-chevron-right'></i> Notices
+                        <a href="{{ route('news', 'News') }}">
+                            <i class='bx bx-chevron-right'></i> Insights
                         </a>
                     </li>
                     <li>

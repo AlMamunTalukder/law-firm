@@ -31,9 +31,6 @@ Route::group(['prefix'=>'admin/','as'=>'admin.','namespace'=>'Admin','middleware
         Route::post('setting', 'SettingController@update')->name('setting.update');
 
         Route::resource('activities', 'ActivityController')->except(['show']);
-        Route::get('donate', 'DonateController@index')->name('donate.index');
-        Route::post('donate', 'DonateController@update')->name('donate.update');
-        Route::delete('donate/banks/{id}', 'DonateController@destroyBank')->name('donate.banks.destroy');
 
         Route::resource('socialmedia', 'SocialMediaController')->only(['index','store']);
         Route::resource('prayertimer', 'PrayerTimerController')->only(['index','store']);
