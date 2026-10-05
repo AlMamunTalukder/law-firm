@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="JTUkqU0W26JrG5HbsBvjHGfgBZIxlFUZoCtnqMJD">
+    <meta name="csrf-token" content="yJQzjKJ0A2HsLxrGqve6UUZE2Pwq6AvqkYEeep1m">
     <title>N.H. TALUKDER &amp; ASSOCIATES</title>
 
         
@@ -177,7 +177,7 @@
                                                             <a href="https://www.linkedln.com/" class="hover-linkedin" target="_blank">
                         <i class="bx bxl-linkedin"></i>
                     </a>
-                                                            <a href="tiktok.com" class="hover-tiktok" target="_blank">
+                                                            <a href="https://tiktok.com" class="hover-tiktok" target="_blank">
                         <i class="bx bxl-tiktok"></i>
                     </a>
                                     </div>
@@ -278,7 +278,7 @@
                             <i class="bx bxl-linkedin"></i>
                         </a>
                                                 
-                        <a href="tiktok.com" class="social-btn hover-tiktok" target="_blank">
+                        <a href="https://tiktok.com" class="social-btn hover-tiktok" target="_blank">
                             <i class="bx bxl-tiktok"></i>
                         </a>
                                             </div>
@@ -314,7 +314,7 @@
             <span class="link-text">LinkedIn</span>
         </a>
                 
-        <a target="_blank" class="social-link tiktok" href="tiktok.com">
+        <a target="_blank" class="social-link tiktok" href="https://tiktok.com">
             <i class="bx bxl-tiktok"></i>
             <span class="link-text">TikTok</span>
         </a>
